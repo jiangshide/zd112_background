@@ -46,10 +46,21 @@ func AuthList(page, pageSize int, filters ...interface{}) ([]*Auth, int64) {
 	return list, total
 }
 
-func AuthGetById(id int)(this *Auth,err error){
+func AuthGetById(id int) (this *Auth, err error) {
 	this = &Auth{
-		Id:id,
+		Id: id,
 	}
-	return this,orm.NewOrm().Read(this)
+	return this, orm.NewOrm().Read(this)
 }
 
+func AuthGetListByIds(authIds string, userId int) ([]*Auth, error) {
+	list := make([]*Auth, 0)
+	var lists []orm.Params
+	var err error
+	if userId == 1 {
+		_, err = orm.NewOrm().Raw("select id,name,url,pid,sort,icon,is_show from zd_auth where status=? order by pid asc,sort asc", 1).Values(&lists)
+	} else {
+		_, err = orm.NewOrm().Raw("select id,name,url,pid,sort,icon,is_show from zd_auth where status=1 and id in("+authIds+") order by pid asc,sort asc", authIds).Values(&lists)
+	}
+	return list, err
+}
