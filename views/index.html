@@ -1,28 +1,46 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-  <title>Beego</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head>
-
+{{template "comm/head.html"}}
 <body>
-  <header>
-    <h1 class="logo">Welcome to Beego</h1>
-    <div class="description">
-      Beego is a simple & powerful Go web framework which is inspired by tornado and sinatra.
+{{template "comm/nav-top.html"}}
+<div class="layui-carousel" id="banner">
+    <div carousel-item>
+        <div><img
+                src="http://s2.mogucdn.com/mlcdn/c45406/170714_2f9k4a3lgdfb80cie2g7aaba8l4ag_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
+        <div><img
+                src="http://s10.mogucdn.com/mlcdn/c45406/170710_3a6jf5f0j24bgcc3i3f36el2a2ckj_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
+        <div><img
+                src="http://s10.mogucdn.com/mlcdn/c45406/170714_5e8867724c4bfae8ka6l3a5274h0h_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
+        <div><img
+                src="http://s3.mogucdn.com/mlcdn/c45406/170609_83i077ikhb3023kch5gah5b2il9k3_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
+        <div><img
+                src="http://s10.mogucdn.com/mlcdn/c45406/170714_8d301bj507l9la1cjccbabg433beh_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
+        <div><img
+                src="http://s10.mogucdn.com/mlcdn/c45406/170710_4kaiaee4j39899b08abc685j2ehk1_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
+        <div><img
+                src="http://s10.mogucdn.com/mlcdn/c45406/170710_31a9gb225bga4agf4c9b25a8c8924_778x440.jpg_900x9999.v1c7E.70.webp"
+                width="100%;"></div>
     </div>
-  </header>
-  <footer>
-    <div class="author">
-      Official website:
-      <a href="http://{{.Website}}">{{.Website}}</a> /
-      Contact me:
-      <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
-    </div>
-  </footer>
-  <div class="backdrop"></div>
-
-  <script src="/static/js/reload.min.js"></script>
-</body>
-</html>
+</div>
+<div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item">sss</li>
+    </ul>
+</div>
+<script>
+    layui.use('carousel', function () {
+        var carousel = layui.carousel;
+        carousel.render({
+            elem: '#banner'
+            , width: '100%' //设置容器宽度
+            // ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    })
+</script>
+{{template "comm/flow.html"}}
+{{template "comm/foot.html"}}

@@ -14,6 +14,7 @@ type LoginController struct {
 }
 
 func (this *LoginController) Login() {
+	beego.Info("--------------login")
 	if this.userId > 0 {
 		this.redirect(beego.URLFor("HomeController.Index"))
 	}

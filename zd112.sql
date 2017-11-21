@@ -171,4 +171,9 @@ CREATE TABLE `zd_api_detail`(
 )ENGINE =InnoDB DEFAULT CHARSET =utf8mb4 COMMENT ='API附表';
 
 #--------the api---end------#
+
+#--------the main---start-----#
+
+#--------the main---end-----#
+
 SET FOREIGN_KEY_CHECKS=1;

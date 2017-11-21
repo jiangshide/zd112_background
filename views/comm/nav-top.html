@@ -1,0 +1,42 @@
+<div>
+    <ul class="layui-nav layui-layout">
+        <li class="layui-nav-item"><a href="">zd112</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">北京</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">上海</a></dd>
+                <dd><a href="javascript:;">深圳</a></dd>
+                <dd><a href="">贵阳</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">微信<span class="layui-badge-dot"></span></a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">手机app</a>
+        </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="/login"><i class="layui-icon">&#xe612;</i>登录/注册</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><i class="layui-icon">&#xe60e;</i>后台管理</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    layui.use(['element', 'form'], function () {
+        var element = layui.element;
+        element.on('tab(test)', function (data) {
+            console.log(this, data);
+        });
+
+        element.on('nav(test)', function (elem) {
+            console.log(elem)
+        });
+
+        element.on('collapse(test)', function (data) {
+            console.log(data);
+        });
+    });
+</script>
