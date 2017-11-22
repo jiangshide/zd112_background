@@ -1,6 +1,6 @@
 {{template "comm/head.html"}}
-<body>
-{{template "comm/nav-top.html"}}
+<link rel="stylesheet" href="/static/css/main.css">
+{{template "comm/nav-top.html" .}}
 <div class="layui-carousel" id="banner">
     <div carousel-item>
         <div><img
@@ -28,7 +28,7 @@
 </div>
 <div>
     <ul class="layui-nav">
-        <li class="layui-nav-item">sss</li>
+        <li class="layui-nav-item">{{.jankey}}</li>
     </ul>
 </div>
 <script>

@@ -44,11 +44,13 @@ CREATE TABLE `zd_uc_auth`(
 DROP TABLE IF EXISTS `zd_uc_admin`;
 CREATE TABLE `zd_uc_admin`(
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `login_name` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '用户名',
+  `name` VARCHAR(20) NOT NULL DEFAULT '' COMMENT '用户名',
   `real_name` VARCHAR(32) NOT NULL DEFAULT '0' COMMENT '真实姓名',
   `password` CHAR(32) NOT NULL DEFAULT '' COMMENT '密码',
   `role_ids` VARCHAR(255) NOT NULL DEFAULT '0' COMMENT '角色id字符串,eg:2,3,4,5',
   `phone` VARCHAR(20) NOT NULL DEFAULT '0' COMMENT '手机号码',
+  `motto` TEXT COMMENT '个人格言',
+  `sex` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '性别,0:男,1:女',
   `email` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '邮箱',
   `salt` CHAR(10) NOT NULL DEFAULT '' COMMENT '密码加盐',
   `last_login` INT(11) NOT NULL DEFAULT '0' COMMENT '最后登录时间',
@@ -59,7 +61,7 @@ CREATE TABLE `zd_uc_admin`(
   `create_time` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_user_name` (`login_name`)
+  UNIQUE KEY `idx_user_name` (`name`)
 )ENGINE=InnoDB DEFAULT CHARSET =utf8mb4 COMMENT ='管理员表';
 
 #--------the user---end------#

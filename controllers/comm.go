@@ -3,9 +3,10 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"strings"
-	"github.com/george518/PPGo_ApiAdmin/models"
 	"strconv"
 	"zd112/utils"
+	"fmt"
+	"zd112/models"
 )
 
 const (
@@ -22,7 +23,42 @@ type BaseController struct {
 	loginName  string
 	pageSize   int
 	allowUrl   string
-	user *models.Admin
+	user       *models.Admin
+}
+
+var defaultTips = "该项不能为空!"
+var defaultMinSize = 6
+
+func (this *BaseController) showTips(errorMsg interface{}) {
+	beego.Info("errorMsg:", errorMsg)
+	flash := beego.NewFlash()
+	flash.Error(fmt.Sprint(errorMsg))
+	flash.Store(&this.Controller)
+	controller, action := this.GetControllerAndAction()
+	this.redirect(beego.URLFor(controller + "." + action))
+}
+
+func (this *BaseController) getString(key, tips string, minSize int) string {
+	value := strings.TrimSpace(this.GetString(key, ""))
+	errorMsg := ""
+	if len(value) == 0 {
+		errorMsg = tips
+	} else if len(value) < minSize {
+		errorMsg = "长度不能小于" + fmt.Sprint(minSize) + "字符"
+	}
+	if errorMsg != "" {
+		this.showTips(errorMsg)
+	}
+	return value
+}
+
+func (this *BaseController) getInt(key string) int {
+	resInt, _ := this.GetInt(key, 0)
+	errorMsg := ""
+	if errorMsg != "" {
+		this.showTips(errorMsg)
+	}
+	return resInt
 }
 
 func (this *BaseController) Prepare() {
@@ -30,8 +66,7 @@ func (this *BaseController) Prepare() {
 	controller, action := this.GetControllerAndAction()
 	this.controller = strings.ToLower(controller[0:len(controller)-10])
 	this.action = strings.ToLower(action)
-	this.Data["version"] = beego.AppConfig.String("version")
-	this.Data["siteName"] = beego.AppConfig.String("siteName")
+
 	this.Data["route"] = this.controller + "." + this.action
 	this.Data["action"] = this.action
 
@@ -41,34 +76,39 @@ func (this *BaseController) Prepare() {
 	this.Data["userName"] = this.userName
 }
 
+func(this *BaseController) currParam(){
+	this.Data["version"] = beego.AppConfig.String("version")
+	this.Data["siteName"] = beego.AppConfig.String("site.name")
+}
+
 func (this *BaseController) auth() {
 	arr := strings.Split(this.Ctx.GetCookie("auth"), "|")
 	this.userId = 0
 	if len(arr) == 2 {
 		idstr, psw := arr[0], arr[1]
 		userId, _ := strconv.Atoi(idstr)
-		if userId > 1 {
+		if userId > 0 {
 			user, err := models.AdminGetById(userId)
-			if err == nil && psw == utils.Md5([]byte(this.getClientIp()+"|"+user.Password+user.Salt)) {
+			if err == nil && psw == utils.Md5(this.getClientIp()+"|"+user.Password+user.Salt) {
 				this.userId = user.Id
-				this.loginName = user.LoginName
+				this.loginName = user.Name
 				this.userName = user.RealName
 				this.user = user
 			}
-			this.AdminAuth()
-			isHashAuth := strings.Contains(this.allowUrl,this.controller+"/"+this.action)
-			noAuth := "ajaxsave/ajaxdel/table/loginin/getnodes/start/show/ajaxapisace"
-			isNoAuth := strings.Contains(noAuth,this.action)
-			if isHashAuth == false && isNoAuth == false{
-				this.Ctx.WriteString("没有权限")
-				this.ajaxMsg("没有权限",MSG_ERR)
-				return
-			}
+			//this.AdminAuth()
+			//isHashAuth := strings.Contains(this.allowUrl, this.controller+"/"+this.action)
+			//noAuth := "ajaxsave/ajaxdel/table/loginin/getnodes/start/show/ajaxapisace"
+			//isNoAuth := strings.Contains(noAuth, this.action)
+			//if isHashAuth == false && isNoAuth == false {
+			//	this.Ctx.WriteString("没有权限")
+			//	this.ajaxMsg("没有权限", MSG_ERR)
+			//	return
+			//}
 		}
 	}
-	if this.userId == 0 && (this.controller!="login" && this.action != "loginin"){
-		this.redirect(beego.URLFor("LoginController.LoginIn"))
-	}
+	//if this.userId == 0 && (this.controller != "login" && this.action != "loginin") {
+	//	this.redirect(beego.URLFor("LoginController.LoginIn"))
+	//}
 }
 
 func (this *BaseController) AdminAuth() {
@@ -76,42 +116,42 @@ func (this *BaseController) AdminAuth() {
 	filters = append(filters, "status", 1)
 	if this.userId != 1 {
 		adminAuthIds, _ := models.RoleAuthGetByIds(this.user.RoleIds)
-		adminAuthIdArr := strings.Split(adminAuthIds,",")
-		filters = append(filters,"id__in",adminAuthIdArr)
+		adminAuthIdArr := strings.Split(adminAuthIds, ",")
+		filters = append(filters, "id__in", adminAuthIdArr)
 	}
-	result,_:=models.AuthGetList(1,100,filters...)
-	list := make([]map[string]interface{},len(result))
-	lists := make([]map[string]interface{},len(result))
-	allow_url:=""
-	i,j := 0,0
-	for _,v := range result{
-		if v.AuthUrl != " " || v.AuthUrl != "/"{
-			allow_url+=v.AuthUrl
+	result, _ := models.AuthList(1, 100, filters...)
+	list := make([]map[string]interface{}, len(result))
+	lists := make([]map[string]interface{}, len(result))
+	allow_url := ""
+	i, j := 0, 0
+	for _, v := range result {
+		if v.Url != " " || v.Url != "/" {
+			allow_url += v.Url
 		}
-		row :=make(map[string]interface{})
-		if v.Pid == 1 && v.IsShow == 1{
-			row["Id"]=int(v.Id)
-			row["Sort"]=v.Sort
-			row["AuthName"]=v.AuthName
-			row["AuthUrl"]=v.AuthUrl
-			row["Icon"]=v.Icon
-			row["Pid"]=int(v.Pid)
-			list[i]=row
+		row := make(map[string]interface{})
+		if v.Pid == 1 && v.IsShow == 1 {
+			row["Id"] = int(v.Id)
+			row["Sort"] = v.Sort
+			row["AuthName"] = v.Name
+			row["AuthUrl"] = v.Url
+			row["Icon"] = v.Icon
+			row["Pid"] = int(v.Pid)
+			list[i] = row
 			i++
 		}
-		if v.Pid != 1 && v.IsShow == 1{
-			row["Id"]=int(v.Id)
-			row["Sort"]=v.Sort
-			row["AuthName"]=v.AuthName
-			row["AuthUrl"]=v.AuthUrl
-			row["Icon"]=v.Icon
-			row["Pid"]=int(v.Pid)
-			lists[j]=row
+		if v.Pid != 1 && v.IsShow == 1 {
+			row["Id"] = int(v.Id)
+			row["Sort"] = v.Sort
+			row["AuthName"] = v.Name
+			row["AuthUrl"] = v.Url
+			row["Icon"] = v.Icon
+			row["Pid"] = int(v.Pid)
+			lists[j] = row
 			j++
 		}
 	}
-	this.Data["SideMenu1"]=list[:i]
-	this.Data["SideMenu2"]=lists[:j]
+	this.Data["SideMenu1"] = list[:i]
+	this.Data["SideMenu2"] = lists[:j]
 }
 
 func (this *BaseController) isPost() bool {
@@ -119,7 +159,7 @@ func (this *BaseController) isPost() bool {
 }
 
 func (this *BaseController) getClientIp() string {
-	return strings.Split(this.Ctx.Request.RemoteAddr, ":")[0]
+	return this.Ctx.Input.IP()
 }
 
 func (this *BaseController) redirect(url string) {
@@ -134,26 +174,26 @@ func (this *BaseController) display(tpl ...string) {
 	} else {
 		tplName = this.controller + "/" + this.action + ".html"
 	}
-	this.Layout = "public/layout.html"
+	beego.Info("tplName:",tplName)
 	this.TplName = tplName
 }
 
 func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	out := make(map[string]interface{})
-	out["status"]=msgNo
-	out["msg"]=msg
-	this.Data["json"]=out
+	out["status"] = msgNo
+	out["msg"] = msg
+	this.Data["json"] = out
 	this.ServeJSON()
 	this.StopRun()
 }
 
-func(this *BaseController) ajaxList(msg interface{},msgNo int,count int64,data interface{}){
+func (this *BaseController) ajaxList(msg interface{}, msgNo int, count int64, data interface{}) {
 	out := make(map[string]interface{})
-	out["code"]=msgNo
-	out["msg"]=msg
-	out["count"]=count
-	out["data"]=data
-	this.Data["json"]=out
+	out["code"] = msgNo
+	out["msg"] = msg
+	out["count"] = count
+	out["data"] = data
+	this.Data["json"] = out
 	this.ServeJSON()
 	this.StopRun()
 }

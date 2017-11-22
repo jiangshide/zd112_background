@@ -8,7 +8,7 @@ import (
 )
 
 type RoleAuth struct {
-	AuthId int
+	AuthId int `orm:"pk"`
 	RoleId int64
 }
 

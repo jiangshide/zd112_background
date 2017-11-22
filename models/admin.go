@@ -4,11 +4,13 @@ import "github.com/astaxie/beego/orm"
 
 type Admin struct {
 	Id         int
-	Name  string
+	Name       string
 	RealName   string
 	Password   string
 	RoleIds    string
 	Phone      string
+	Motto      string
+	Sex        int
 	Email      string
 	Salt       string
 	LastLogin  int64
@@ -21,7 +23,7 @@ type Admin struct {
 }
 
 func (this *Admin) TableName() string {
-	return TableName("admin")
+	return TableName("uc_admin")
 }
 
 func (this *Admin) Update(fields ...string) error {
@@ -36,7 +38,7 @@ func AdminAdd(this *Admin) (int64, error) {
 func AdminList(page, pageSize int, filters ...interface{}) ([]*Admin, int64) {
 	offSet := (page - 1) * pageSize
 	list := make([]*Admin, 0)
-	query := orm.NewOrm().QueryTable(TableName("admin"))
+	query := orm.NewOrm().QueryTable(TableName("uc_admin"))
 	size := len(filters)
 	if size > 0 {
 		for k := 0; k < size; k += 2 {
@@ -57,5 +59,5 @@ func AdminGetById(id int) (this *Admin, err error) {
 
 func AdminGetByName(name string) (*Admin, error) {
 	this := new(Admin)
-	return this, orm.NewOrm().QueryTable(TableName("admin")).Filter("name", name).One(this)
+	return this, orm.NewOrm().QueryTable(TableName("uc_admin")).Filter("name", name).One(this)
 }

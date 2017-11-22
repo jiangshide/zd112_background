@@ -6,14 +6,15 @@ import (
 	"time"
 	"regexp"
 	"math/rand"
+	"encoding/hex"
 )
 
 var emailPattern = regexp.MustCompile("[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[a-zA-Z0-9](?:[\\w-]*[\\w])?")
 
-func Md5(buf []byte) string {
+func Md5(str string) string {
 	hash := md5.New()
-	hash.Write(buf)
-	return fmt.Sprintf("%x", hash.Sum(nil))
+	hash.Write([]byte(str))
+	return hex.EncodeToString(hash.Sum(nil))
 }
 
 func SizeFormat(size float64) string {
@@ -29,16 +30,6 @@ func SizeFormat(size float64) string {
 
 func IsEmail(b []byte) bool {
 	return emailPattern.Match(b)
-}
-
-func Password(len int, pwdO string) (pwd string, salt string) {
-	salt = GetRandomString(4)
-	defaultPwd := "george518"
-	if pwdO != "" {
-		defaultPwd = pwdO
-	}
-	pwd = Md5([]byte(defaultPwd + salt))
-	return pwd, salt
 }
 
 // 生成32位MD5
