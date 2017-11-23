@@ -1,0 +1,24 @@
+{{template "comm/head.html"}}
+<div class="layui-layout layui-layout-admin kit-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">{{.siteName}}</div>
+        <div class="layui-logo kit-logo-mobile">Z</div>
+        <ul class="layui-nav layui-layout-right kit-nav">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="/static/img/userface.jpg" class="layui-nav-img">{{.loginUserName}}
+                </a>
+            </li>
+            <li class="layui-nav-item"><a href="/loginOut"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
+        </ul>
+    </div>
+    <div class="layui-side layui-bg-black kit-side">
+        <div class="layui-side-scroll">
+            <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
+            <ul class="layui-nav layui-nav-tree" lay-filter="kitNavBar" kit-navbar>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+{{template "comm/foot.html"}}

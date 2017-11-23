@@ -1,6 +1,6 @@
 <div>
     <ul class="layui-nav layui-layout">
-        <li class="layui-nav-item"><a href=""> {{.siteName}}</a></li>
+        <li class="layui-nav-item"><a href=""> {{.siteName}}{{.version}}</a></li>
         <li class="layui-nav-item layui-this">
             <a href="javascript:;">北京</a>
             <dl class="layui-nav-child">
@@ -24,7 +24,7 @@
         </li>
     {{if gt .userId 0}}
         <li class="layui-nav-item">
-            <a href=""><i class="layui-icon">&#xe60e;</i>后台管理</a>
+            <a href="/backstage"><i class="layui-icon">&#xe60e;</i>后台管理</a>
         </li>
     {{end}}
     </ul>
