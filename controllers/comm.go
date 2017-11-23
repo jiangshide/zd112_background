@@ -69,14 +69,14 @@ func (this *BaseController) Prepare() {
 
 	this.Data["route"] = this.controller + "." + this.action
 	this.Data["action"] = this.action
+	this.currParam()
+}
 
+func (this *BaseController) currParam() {
 	this.auth()
 
 	this.Data["userId"] = this.userId
 	this.Data["userName"] = this.userName
-}
-
-func(this *BaseController) currParam(){
 	this.Data["version"] = beego.AppConfig.String("version")
 	this.Data["siteName"] = beego.AppConfig.String("site.name")
 }
@@ -95,7 +95,9 @@ func (this *BaseController) auth() {
 				this.userName = user.RealName
 				this.user = user
 			}
-			//this.AdminAuth()
+			if strings.Contains(this.controller, "backstage") {
+				this.AdminAuth()
+			}
 			//isHashAuth := strings.Contains(this.allowUrl, this.controller+"/"+this.action)
 			//noAuth := "ajaxsave/ajaxdel/table/loginin/getnodes/start/show/ajaxapisace"
 			//isNoAuth := strings.Contains(noAuth, this.action)
@@ -114,12 +116,15 @@ func (this *BaseController) auth() {
 func (this *BaseController) AdminAuth() {
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
+	beego.Info("-------userId:", this.userId)
 	if this.userId != 1 {
 		adminAuthIds, _ := models.RoleAuthGetByIds(this.user.RoleIds)
+		beego.Info("----adminAuthIds:", adminAuthIds)
 		adminAuthIdArr := strings.Split(adminAuthIds, ",")
 		filters = append(filters, "id__in", adminAuthIdArr)
 	}
 	result, _ := models.AuthList(1, 100, filters...)
+	beego.Info("result:", result)
 	list := make([]map[string]interface{}, len(result))
 	lists := make([]map[string]interface{}, len(result))
 	allow_url := ""
@@ -132,8 +137,8 @@ func (this *BaseController) AdminAuth() {
 		if v.Pid == 1 && v.IsShow == 1 {
 			row["Id"] = int(v.Id)
 			row["Sort"] = v.Sort
-			row["AuthName"] = v.Name
-			row["AuthUrl"] = v.Url
+			row["Name"] = v.Name
+			row["Url"] = v.Url
 			row["Icon"] = v.Icon
 			row["Pid"] = int(v.Pid)
 			list[i] = row
@@ -142,8 +147,8 @@ func (this *BaseController) AdminAuth() {
 		if v.Pid != 1 && v.IsShow == 1 {
 			row["Id"] = int(v.Id)
 			row["Sort"] = v.Sort
-			row["AuthName"] = v.Name
-			row["AuthUrl"] = v.Url
+			row["Name"] = v.Name
+			row["Url"] = v.Url
 			row["Icon"] = v.Icon
 			row["Pid"] = int(v.Pid)
 			lists[j] = row
@@ -152,6 +157,7 @@ func (this *BaseController) AdminAuth() {
 	}
 	this.Data["SideMenu1"] = list[:i]
 	this.Data["SideMenu2"] = lists[:j]
+	this.allowUrl = allow_url + "/backstage/index"
 }
 
 func (this *BaseController) isPost() bool {
@@ -168,13 +174,16 @@ func (this *BaseController) redirect(url string) {
 }
 
 func (this *BaseController) display(tpl ...string) {
+	this.currParam()
 	var tplName string
 	if len(tpl) > 0 {
 		tplName = strings.Join([]string{tpl[0], "html"}, ".")
 	} else {
 		tplName = this.controller + "/" + this.action + ".html"
 	}
-	beego.Info("tplName:",tplName)
+	if strings.Contains(tplName, "backstage") {
+		this.Layout = "backstage/comm/layout.html"
+	}
 	this.TplName = tplName
 }
 

@@ -14,7 +14,7 @@ type Role struct {
 }
 
 func (this *Role) TableName() string {
-	return TableName("role")
+	return TableName("uc_role")
 }
 
 func (this *Role) Update(fields ...string) error {
@@ -29,7 +29,7 @@ func RoleAdd(this *Role) (int64, error) {
 func RoleList(page, pageSize int, filters ...interface{}) ([]*Role, int64) {
 	offSet := (page - 1) * pageSize
 	list := make([]*Role, 0)
-	query := orm.NewOrm().QueryTable(TableName("role"))
+	query := orm.NewOrm().QueryTable(TableName("uc_role"))
 	if len(filters) > 0 {
 		size := len(filters)
 		for k := 0; k < size; k += 2 {

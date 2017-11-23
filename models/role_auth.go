@@ -5,6 +5,7 @@ import (
 	"strings"
 	"bytes"
 	"strconv"
+	"github.com/astaxie/beego"
 )
 
 type RoleAuth struct {
@@ -34,6 +35,7 @@ func RoleAuthGetByIds(roleIds string) (string, error) {
 	list := make([]*RoleAuth, 0)
 	ids := strings.Split(roleIds, ",")
 	_, err := orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id_in", ids).All(&list, "AuthId")
+	beego.Error("------------err:",err)
 	if err != nil {
 		return "", err
 	}
