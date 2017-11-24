@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 type Role struct {
 	Id         int
@@ -37,6 +39,6 @@ func RoleList(page, pageSize int, filters ...interface{}) ([]*Role, int64) {
 		}
 	}
 	total, _ := query.Count()
-	query.OrderBy("-id").Limit(page, offSet).All(&list)
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
 }

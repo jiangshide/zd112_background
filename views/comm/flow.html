@@ -15,7 +15,7 @@
                 setTimeout(function () {
                     var lis = [];
                     for (var i = 0; i < 6; i++) {
-                        lis.push('<li><img lay-src="http://s6.mogucdn.com/p2/160914/iz_5lc1cdg3j2hibl9ai99lg7c28k1fh_305x330.jpg?v=' + (page + i) + '" style="width: 100%;"></li>')
+                        lis.push('<li><img lay-src="static/mingzu/img/' + i + '.jpg?v=' + (page + i) + '" style="width: 100%;"></li>')
                     }
                     next(lis.join(''), page < 3);
                 }, 500);

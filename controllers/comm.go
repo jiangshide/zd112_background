@@ -24,10 +24,15 @@ type BaseController struct {
 	pageSize   int
 	allowUrl   string
 	user       *models.Admin
+	defaultPsw string
 }
 
 var defaultTips = "该项不能为空!"
 var defaultMinSize = 6
+
+func (this *BaseController) pageTitle(pageTitle string) {
+	this.Data["pageTitle"] = pageTitle
+}
 
 func (this *BaseController) showTips(errorMsg interface{}) {
 	beego.Info("errorMsg:", errorMsg)
@@ -41,6 +46,7 @@ func (this *BaseController) showTips(errorMsg interface{}) {
 func (this *BaseController) getString(key, tips string, minSize int) string {
 	value := strings.TrimSpace(this.GetString(key, ""))
 	errorMsg := ""
+	beego.Info("----------key:", key, " | value:", value)
 	if len(value) == 0 {
 		errorMsg = tips
 	} else if len(value) < minSize {
@@ -69,12 +75,12 @@ func (this *BaseController) Prepare() {
 
 	this.Data["route"] = this.controller + "." + this.action
 	this.Data["action"] = this.action
+	this.defaultPsw = beego.AppConfig.String("defaultPsw")
 	this.currParam()
 }
 
 func (this *BaseController) currParam() {
 	this.auth()
-
 	this.Data["userId"] = this.userId
 	this.Data["userName"] = this.userName
 	this.Data["version"] = beego.AppConfig.String("version")
@@ -190,7 +196,8 @@ func (this *BaseController) display(tpl ...string) {
 func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	out := make(map[string]interface{})
 	out["status"] = msgNo
-	out["msg"] = msg
+	beego.Error("------msg:",msg)
+	out["message"] = msg
 	this.Data["json"] = out
 	this.ServeJSON()
 	this.StopRun()

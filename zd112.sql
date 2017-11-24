@@ -17,7 +17,7 @@ COMMIT;
 DROP TABLE IF EXISTS `zd_uc_role`;
 CREATE TABLE `zd_uc_role` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_name` VARCHAR(32) NOT NULL DEFAULT '0' COMMENT '角色名称',
+  `name` VARCHAR(32) NOT NULL DEFAULT '0' COMMENT '角色名称',
   `detail` VARCHAR(255) NOT NULL DEFAULT '0' COMMENT '备注',
   `create_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建者ID',
   `update_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '修改ID',
@@ -83,7 +83,7 @@ CREATE TABLE `zd_uc_admin`(
 DROP TABLE IF EXISTS `zd_set_group`;
 CREATE TABLE `zd_set_group`(
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增',
-  `group_name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '组名',
+  `name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '组名',
   `detail` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '说明',
   `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态:1:正常,0:删除',
   `create_id` INT(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
@@ -97,7 +97,7 @@ CREATE TABLE `zd_set_group`(
 DROP TABLE IF EXISTS `zd_set_evn`;
 CREATE TABLE `zd_set_evn`(
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `env_name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '环境名称',
+  `name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '环境名称',
   `env_host` VARCHAR(255) NOT NULL DEFAULT '0' COMMENT '主机',
   `detail` VARCHAR(255) NOT NULL DEFAULT '0' COMMENT '备注',
   `status` TINYINT(4) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态,1:正常,0:禁用',
@@ -106,7 +106,7 @@ CREATE TABLE `zd_set_evn`(
   `create_time` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_env_name` (`env_name`)
+  UNIQUE KEY `idx_env_name` (`name`)
 )ENGINE =InnoDB DEFAULT CHARSET =utf8mb4 COMMENT ='环境分组表';
 
 DROP TABLE IF EXISTS `zd_set_code`;
@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS `zd_api_src`;
 CREATE TABLE `zd_api_src`(
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `group_id` INT(11) NOT NULL DEFAULT '0' COMMENT '分组ID',
-  `src_name` VARCHAR(50) NOT NULL DEFAULT '0' COMMENT '接口名称',
+  `name` VARCHAR(50) NOT NULL DEFAULT '0' COMMENT '接口名称',
   `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '状态,1:审核通过,0:暂停使用,2:草稿,3:审核中',
   `audit_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '审核人ID',
   `create_id` INT(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建者ID',
@@ -167,7 +167,7 @@ CREATE TABLE `zd_api_detail`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `src_id` INT(11) NOT NULL DEFAULT '0' COMMENT '主表ID',
   `method` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '方法名称,1:GET,2:POST,3:PUT,4:PATCH,5:DELETE',
-  `api_name` VARCHAR(100) NOT NULL DEFAULT '0' COMMENT '接口名称',
+  `name` VARCHAR(100) NOT NULL DEFAULT '0' COMMENT '接口名称',
   `api_url` VARCHAR(100) NOT NULL DEFAULT '0' COMMENT '接口地址',
   `protocol_type` VARCHAR(20) NOT NULL DEFAULT '1' COMMENT '协议类型,1:http,2:https',
   `result` TEXT COMMENT '返回结果,正确或者错误',

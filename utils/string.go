@@ -1,21 +1,13 @@
 package utils
 
 import (
-	"crypto/md5"
 	"fmt"
 	"time"
 	"regexp"
 	"math/rand"
-	"encoding/hex"
 )
 
 var emailPattern = regexp.MustCompile("[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[a-zA-Z0-9](?:[\\w-]*[\\w])?")
-
-func Md5(str string) string {
-	hash := md5.New()
-	hash.Write([]byte(str))
-	return hex.EncodeToString(hash.Sum(nil))
-}
 
 func SizeFormat(size float64) string {
 	units := []string{"Byte", "KB", "MB", "GB", "TB"}

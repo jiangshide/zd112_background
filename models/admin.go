@@ -19,7 +19,7 @@ type Admin struct {
 	CreateId   int
 	UpdateId   int
 	CreateTime int64
-	UpdateTime int
+	UpdateTime int64
 }
 
 func (this *Admin) TableName() string {
