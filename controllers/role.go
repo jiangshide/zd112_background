@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/george518/PPGo_ApiAdmin/models"
 	"github.com/astaxie/beego"
 	"time"
+	"zd112/models"
 )
 
 type RoleController struct {
@@ -38,7 +38,7 @@ func (this *RoleController) Edit() {
 
 func (this *RoleController) AjaxSave() {
 	role := new(models.Role)
-	role.RoleName = this.getString("role_name", "角色名称不能为空!", 0)
+	role.Name = this.getString("role_name", "角色名称不能为空!", 0)
 	role.Detail = this.getString("detail", "", -1)
 	role.CreateTime = time.Now().Unix()
 	role.Status = 1
@@ -57,6 +57,7 @@ func (this *RoleController) AjaxDel() {
 }
 
 func (this *RoleController) Table() {
+	beego.Info("--------------list")
 	page, err := this.GetInt("page")
 	if err != nil {
 		page = 1
@@ -68,12 +69,13 @@ func (this *RoleController) Table() {
 	this.pageSize = limit
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
-	result, count := models.RoleGetList(page, this.pageSize, filters...)
+	result, count := models.RoleList(page, this.pageSize, filters...)
+	beego.Info("------------result:",result," | count:",count)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
 		row["id"] = v.Id
-		row["role_name"] = v.RoleName
+		row["role_name"] = v.Name
 		row["detail"] = v.Detail
 		row["create_time"] = beego.Date(time.Unix(v.CreateTime, 0), "Y-m-d H:i:s")
 		row["update_time"] = beego.Date(time.Unix(v.UpdateTime, 0), "Y-m-d H:i:s")

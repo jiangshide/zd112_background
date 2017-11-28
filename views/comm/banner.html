@@ -1,0 +1,39 @@
+<div>
+    <div class="layui-carousel" id="banner">
+        <div carousel-item>
+            <div><img
+                    src="static/mingzu/img/阿昌族_01.jpg"
+                    width="100%;"></div>
+            <div><img
+                    src="static/mingzu/img/白族_02.jpg"
+                    width="100%;"></div>
+            <div><img
+                    src="static/mingzu/img/保安族_03.jpg"
+                    width="100%;"></div>
+            <div><img
+                    src="static/mingzu/img/布朗族_04.jpg"
+                    width="100%;"></div>
+            <div><img
+                    src="static/mingzu/img/布依族_05.jpg"
+                    width="100%;"></div>
+            <div><img
+                    src="static/mingzu/img/藏族_06.jpg"
+                    width="100%;"></div>
+            <div><img
+                    src="static/mingzu/img/朝鲜族_07.jpg"
+                    width="100%;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('carousel', function () {
+        var carousel = layui.carousel;
+        carousel.render({
+            elem: '#banner'
+            , width: '100%' //设置容器宽度
+            // ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    })
+</script>

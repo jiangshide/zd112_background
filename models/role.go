@@ -8,7 +8,7 @@ type Role struct {
 	Id         int
 	Name       string
 	Detail     string
-	Status     string
+	Status     int
 	CreateId   int
 	UpdateId   int
 	CreateTime int64
@@ -41,4 +41,11 @@ func RoleList(page, pageSize int, filters ...interface{}) ([]*Role, int64) {
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
+}
+
+func RoleGetById(id int) (this *Role, err error) {
+	this = &Role{
+		Id: id,
+	}
+	return this, orm.NewOrm().Read(this)
 }

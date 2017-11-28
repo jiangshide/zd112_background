@@ -57,6 +57,10 @@ func AuthGetById(id int) (this *Auth, err error) {
 	return this, orm.NewOrm().Read(this)
 }
 
+func AuthDelById(id int)(int64,error){
+	return orm.NewOrm().QueryTable(TableName("uc_auth")).Filter("id",id).Delete()
+}
+
 func AuthGetListByIds(authIds string, userId int) ([]*Auth, error) {
 	list := make([]*Auth, 0)
 	var lists []orm.Params

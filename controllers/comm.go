@@ -21,6 +21,9 @@ type BaseController struct {
 	userId     int
 	userName   string
 	loginName  string
+	userIcon   string
+	isLogin    bool
+	logo       string
 	pageSize   int
 	allowUrl   string
 	user       *models.Admin
@@ -72,6 +75,7 @@ func (this *BaseController) Prepare() {
 	controller, action := this.GetControllerAndAction()
 	this.controller = strings.ToLower(controller[0:len(controller)-10])
 	this.action = strings.ToLower(action)
+	this.userIcon = "/static/mingzu/img/3.jpg"
 
 	this.Data["route"] = this.controller + "." + this.action
 	this.Data["action"] = this.action
@@ -83,6 +87,9 @@ func (this *BaseController) currParam() {
 	this.auth()
 	this.Data["userId"] = this.userId
 	this.Data["userName"] = this.userName
+	this.Data["userIcon"] = this.userIcon
+	this.Data["isLogin"] = this.isLogin
+	this.Data["logo"] = "/static/mingzu/img/11.jpg"
 	this.Data["version"] = beego.AppConfig.String("version")
 	this.Data["siteName"] = beego.AppConfig.String("site.name")
 }
@@ -95,10 +102,14 @@ func (this *BaseController) auth() {
 		userId, _ := strconv.Atoi(idstr)
 		if userId > 0 {
 			user, err := models.AdminGetById(userId)
+			beego.Info("----------user:",user)
 			if err == nil && psw == utils.Md5(this.getClientIp()+"|"+user.Password+user.Salt) {
 				this.userId = user.Id
+				beego.Info("------------userId:",this.userId)
 				this.loginName = user.Name
 				this.userName = user.RealName
+				this.userIcon = "/static/mingzu/img/1.jpg"
+				this.isLogin = true
 				this.user = user
 			}
 			if strings.Contains(this.controller, "backstage") {
@@ -196,7 +207,7 @@ func (this *BaseController) display(tpl ...string) {
 func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	out := make(map[string]interface{})
 	out["status"] = msgNo
-	beego.Error("------msg:",msg)
+	beego.Error("------msg:", msg)
 	out["message"] = msg
 	this.Data["json"] = out
 	this.ServeJSON()
