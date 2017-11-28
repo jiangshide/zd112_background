@@ -36,6 +36,10 @@ func init() {
 	beego.AutoRouter(&controllers.AuthController{})
 
 	beego.Router("/backstage/nation/list", &controllers.NationController{}, "*:List")
+	beego.Router("/backstage/nation/add", &controllers.NationController{}, "*:Add")
+	beego.Router("/backstage/nation/edit", &controllers.NationController{}, "*:Edit")
+	beego.Router("/backstage/nation/table", &controllers.NationController{}, "*:Table")
+	beego.Router("/backstage/nation/upload",&controllers.NationController{},"*:Upload")
 	beego.AutoRouter(&controllers.NationController{})
 
 }

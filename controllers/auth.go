@@ -38,7 +38,7 @@ func (this *AuthController) GetNodes() {
 }
 
 func (this *AuthController) GetNode() {
-	id := this.getInt("id")
+	id := this.getInt("id",0)
 	result, _ := models.AuthGetById(id)
 	row := make(map[string]interface{})
 	row["id"] = result.Id
@@ -53,15 +53,15 @@ func (this *AuthController) GetNode() {
 func (this *AuthController) AjaxSave() {
 	auth := new(models.Auth)
 	auth.UserId = this.userId
-	auth.Pid = this.getInt("pid")
+	auth.Pid = this.getInt("pid",0)
 	auth.Name = this.getString("name", "名称不能为空!", 1)
 	auth.Url = this.getString("url", "访问Action不能为空!", 1)
-	auth.Sort = this.getInt("sort")
-	auth.IsShow = this.getInt("is_show")
+	auth.Sort = this.getInt("sort",0)
+	auth.IsShow = this.getInt("is_show",0)
 	auth.Icon = this.getString("icon", "菜单图标不能为空!", 1)
 	auth.UpdateTime = time.Now().Unix()
 	auth.Status = 1
-	id := this.getInt("id")
+	id := this.getInt("id",0)
 	beego.Info("----------------update:~id:",id," | usetId:",this.userId)
 	if id == 0 {
 		auth.CreateTime = time.Now().Unix()
@@ -81,7 +81,7 @@ func (this *AuthController) AjaxSave() {
 }
 
 func (this *AuthController) AjaxDel() {
-	id := this.getInt("id")
+	id := this.getInt("id",0)
 	//auth, _ := models.AuthGetById(id)
 	//auth.Id = id
 	//auth.Status = 0

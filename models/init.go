@@ -14,8 +14,8 @@ func Init() {
 	dbPsw := beego.AppConfig.String("db.psw")
 	dbName := beego.AppConfig.String("db.name")
 	timeZone := beego.AppConfig.String("db.timezone")
-	maxConn,_ := beego.AppConfig.Int("maxConn")
-	maxIdle,_ := beego.AppConfig.Int("maxIdle")
+	maxConn, _ := beego.AppConfig.Int("maxConn")
+	maxIdle, _ := beego.AppConfig.Int("maxIdle")
 	if dbPort == "" {
 		dbPort = "3306"
 	}
@@ -23,8 +23,8 @@ func Init() {
 	if timeZone != "" {
 		dsn += "&loc=" + url.QueryEscape(timeZone)
 	}
-	orm.RegisterDataBase("default", "mysql", dsn,maxConn,maxIdle)
-	orm.RegisterModel(new(Admin),new(Role),new(RoleAuth),new(Auth))
+	orm.RegisterDataBase("default", "mysql", dsn, maxConn, maxIdle)
+	orm.RegisterModel(new(Admin), new(Role), new(RoleAuth), new(Auth), new(Nation))
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
 	}

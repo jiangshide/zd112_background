@@ -61,8 +61,8 @@ func (this *BaseController) getString(key, tips string, minSize int) string {
 	return value
 }
 
-func (this *BaseController) getInt(key string) int {
-	resInt, _ := this.GetInt(key, 0)
+func (this *BaseController) getInt(key string,defaultValue int) int {
+	resInt, _ := this.GetInt(key, defaultValue)
 	errorMsg := ""
 	if errorMsg != "" {
 		this.showTips(errorMsg)

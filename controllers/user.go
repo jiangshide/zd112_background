@@ -21,7 +21,7 @@ func (this *UserController) Admin() {
 		realName := this.getString("realname", "真实名称不能为空!", 1)
 		email := this.getString("email", "邮箱不能为空!", defaultMinSize)
 		phone := this.getString("phone", "电话号码不能为空!", defaultMinSize)
-		sex := this.getInt("radio")
+		sex := this.getInt("radio", 0)
 		motto := this.getString("motto", "请君赠言...", defaultMinSize)
 		admin := new(models.Admin)
 		admin.Name = userName
@@ -49,7 +49,7 @@ func (this *UserController) Reg() {
 		userName := this.getString("username", "账号不能为空!", defaultMinSize)
 		password := this.getString("password", "密码不能为空!", defaultMinSize)
 		email := this.getString("email", "邮箱不能为空!", defaultMinSize)
-		sex := this.getInt("radio")
+		sex := this.getInt("radio", 0)
 
 		admin := new(models.Admin)
 		admin.Name = userName
@@ -104,17 +104,17 @@ func (this *UserController) NoAuth() {
 	this.Ctx.WriteString("没有权限")
 }
 
-func(this *UserController)Edit(){
+func (this *UserController) Edit() {
 	beego.Info("---------------edit")
-	this.Data["pageTitle"]="资料修改"
-	id:=this.userId
-	Admin,_:=models.AdminGetById(id)
+	this.Data["pageTitle"] = "资料修改"
+	id := this.userId
+	Admin, _ := models.AdminGetById(id)
 	row := make(map[string]interface{})
-	row["id"]=Admin.Id
-	row["login_name"]=Admin.Name
-	row["real_name"]=Admin.RealName
-	row["phone"]=Admin.Phone
-	row["email"]=Admin.Email
-	this.Data["admin"]=row
+	row["id"] = Admin.Id
+	row["login_name"] = Admin.Name
+	row["real_name"] = Admin.RealName
+	row["phone"] = Admin.Phone
+	row["email"] = Admin.Email
+	this.Data["admin"] = row
 	this.display("backstage/user/edit")
 }

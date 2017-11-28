@@ -33,6 +33,13 @@ func NationList(page, pageSize int) ([]*Nation, int64) {
 	return list, total
 }
 
+func NationById(id int) (this *Nation, err error) {
+	this = &Nation{
+		Id: id,
+	}
+	return this, orm.NewOrm().Read(this)
+}
+
 func NationDel(id int) (int64, error) {
 	return orm.NewOrm().QueryTable("nation").Filter("id", id).Delete()
 }
