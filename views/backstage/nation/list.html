@@ -1,5 +1,5 @@
-<div class="layui-layout" style="padding-left:20px;">
-    <div class="layui-btn-group" style="margin-top:10px;">
+<div class="layui-layout layui-layout-admin" style="padding-left:20px;">
+    <div class="layui-btn-group demoTable" style="margin-top:10px;">
         <a class="layui-btn" data-type="tabAdd" href="/backstage/nation/add">新增</a>
     </div>
     <table class="layui-table"
@@ -9,36 +9,45 @@
         <tr>
             <th lay-data="{field:'id',width:80,fixed:true}">ID</th>
             <th lay-data="{field:'name',width:200}">名称</th>
-            <th lay-data="{field:'icon',width:150}">LOGO</th>
-            <th lay-data="{field:'create_id',width:200}">创建用户ID</th>
-            <th lay-data="{field:'update_id',width:200}">更新用户ID</th>
-            <th lay-data="{field:'create_time',width:200}">创建时间</th>
+            <th lay-data="{field:'icon', width:150,templet: '#img'}">图片</th>
+            <th lay-data="{field:'create_name',width:100}">创建人</th>
+            <th lay-data="{field:'update_name',width:100}">更新人</th>
+            <th lay-data="{field:'create_time',width:200,templet:'#create_time'}">创建时间</th>
             <th lay-data="{field:'update_time',width:200}">更新时间</th>
-            <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#barDemo'}">操作</th>
+            <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
         </tr>
         </thead>
     </table>
-    <script type="text/html" id="barDemo">
+    <script type="text/html" id="img">
+        <img src="{{.data.icon}}" width="50px" height="50px"/>{{.data.icon}}
+    </script>
+    <script type="text/html" id="bar">
         <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
     </script>
 </div>
+<style>.layui-table-cell {
+    height: 80px;
+    line-height: 80px;
+}
+
+.layui-table-cell img {
+    max-height: 70px;
+}</style>
 <script>
     var $;
     layui.config({
         base: "js/"
     }).use(['table', 'element', 'layer', 'jquery'], function () {
-        var table=layui.table;
+        var table = layui.table;
         var element = layui.element;
-        $=layui.jquery
-        table.on('checkbox("nation")',function (obj) {
-            console.log(obj);
-        });
-        table.on('tool(nation)',function (obj) {
+        $ = layui.jquery
+        table.on('tool(nation)', function (obj) {
             var data = obj.data;
-            if(obj.event === 'detail'){
-
-            }else if (obj.event === 'del'){
+            if (obj.event === 'detail') {
+            } else if (obj.event === 'del') {
+            } else if (obj.event === 'edit') {
+                window.location.href = "/backstage/nation/edit?id=" + data.id
             }
         });
     });

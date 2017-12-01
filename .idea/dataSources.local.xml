@@ -3,17 +3,9 @@
   <component name="dataSourceStorageLocal">
     <data-source name="ppgo_api_admin@localhost" uuid="7c2c1b56-82b2-421d-9df4-6c7cfaaf4bfb">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <secret-storage>master_key</secret-storage>
-      <first-sync>true</first-sync>
-      <user-name>root</user-name>
-      <introspection-schemas>*:ppgo_api_admin</introspection-schemas>
     </data-source>
     <data-source name="zd112@localhost" uuid="4ac49120-b95c-4826-aeec-243cde9bd39a">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <secret-storage>master_key</secret-storage>
-      <first-sync>true</first-sync>
-      <user-name>root</user-name>
-      <introspection-schemas>*:zd112</introspection-schemas>
     </data-source>
   </component>
 </project>

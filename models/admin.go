@@ -1,6 +1,9 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
+)
 
 type Admin struct {
 	Id         int
@@ -47,6 +50,7 @@ func AdminList(page, pageSize int, filters ...interface{}) ([]*Admin, int64) {
 	}
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
+	beego.Info("total:",total," | list:",list," | ")
 	return list, total
 }
 

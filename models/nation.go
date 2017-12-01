@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 type Nation struct {
 	Id         int
@@ -29,7 +31,7 @@ func NationList(page, pageSize int) ([]*Nation, int64) {
 	list := make([]*Nation, 0)
 	query := orm.NewOrm().QueryTable(TableName("nation"))
 	total, _ := query.Count()
-	query.OrderBy("-id").Limit(offSet, total).All(&list)
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
 }
 

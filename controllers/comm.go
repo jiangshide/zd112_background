@@ -221,6 +221,7 @@ func (this *BaseController) ajaxList(msg interface{}, msgNo int, count int64, da
 	out["count"] = count
 	out["data"] = data
 	this.Data["json"] = out
+	this.Data["data"]=data
 	this.ServeJSON()
 	this.StopRun()
 }
