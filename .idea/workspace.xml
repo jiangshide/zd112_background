@@ -3,49 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b319c84e-e2f1-4295-a011-dfe3ac5c4c1f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/controllers/admin.go" afterPath="$PROJECT_DIR$/controllers/admin.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/area.go" afterPath="$PROJECT_DIR$/controllers/area.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/comm.go" afterPath="$PROJECT_DIR$/controllers/comm.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/index.go" afterPath="$PROJECT_DIR$/controllers/index.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/nation.go" afterPath="$PROJECT_DIR$/controllers/nation.go" />
-      <change beforePath="$PROJECT_DIR$/models/Auth.go" afterPath="$PROJECT_DIR$/models/Auth.go" />
-      <change beforePath="$PROJECT_DIR$/models/area.go" afterPath="$PROJECT_DIR$/models/area.go" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" afterPath="$PROJECT_DIR$/models/init.go" />
-      <change beforePath="$PROJECT_DIR$/models/nation.go" afterPath="$PROJECT_DIR$/models/nation.go" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" afterPath="$PROJECT_DIR$/routers/router.go" />
-      <change beforePath="$PROJECT_DIR$/static/css/comm.css" afterPath="$PROJECT_DIR$/static/css/comm.css" />
-      <change beforePath="$PROJECT_DIR$/static/layui/css/layui.css" afterPath="$PROJECT_DIR$/static/layui/css/layui.css" />
-      <change beforePath="$PROJECT_DIR$/static/layui/css/layui.mobile.css" afterPath="$PROJECT_DIR$/static/layui/css/layui.mobile.css" />
-      <change beforePath="$PROJECT_DIR$/static/layui/css/modules/code.css" afterPath="$PROJECT_DIR$/static/layui/css/modules/code.css" />
-      <change beforePath="$PROJECT_DIR$/static/layui/css/modules/laydate/default/laydate.css" afterPath="$PROJECT_DIR$/static/layui/css/modules/laydate/default/laydate.css" />
-      <change beforePath="$PROJECT_DIR$/static/layui/css/modules/layer/default/layer.css" afterPath="$PROJECT_DIR$/static/layui/css/modules/layer/default/layer.css" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/carousel.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/carousel.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/code.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/code.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/element.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/element.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/flow.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/flow.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/form.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/form.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/jquery.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/jquery.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/laydate.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/laydate.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/layedit.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/layedit.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/layer.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/layer.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/laypage.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/laypage.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/laytpl.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/laytpl.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/mobile.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/mobile.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/table.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/table.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/tree.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/tree.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/upload.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/upload.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/util.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/util.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/layui.all.js" afterPath="$PROJECT_DIR$/static/layui/layui.all.js" />
-      <change beforePath="$PROJECT_DIR$/static/layui/layui.js" afterPath="$PROJECT_DIR$/static/layui/layui.js" />
-      <change beforePath="$PROJECT_DIR$/static/upload/bees.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/upload/login-bg.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/comm/layout.html" afterPath="$PROJECT_DIR$/views/backstage/comm/layout.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/nation/add.html" afterPath="$PROJECT_DIR$/views/backstage/nation/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/nation/list.html" afterPath="$PROJECT_DIR$/views/backstage/nation/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/comm/nav-top.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
-      <change beforePath="$PROJECT_DIR$/zd112" afterPath="$PROJECT_DIR$/zd112" />
-      <change beforePath="$PROJECT_DIR$/zd112.sql" afterPath="$PROJECT_DIR$/zd112.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -102,24 +59,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="zd112.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zd112.sql">
+      <file leaf-file-name="area.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/area.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="53" lean-forward="false" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
+            <state relative-caret-position="249">
+              <caret line="347" column="1" lean-forward="false" selection-start-line="347" selection-start-column="1" selection-end-line="347" selection-end-column="1" />
+              <folding>
+                <element signature="e#21#83#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="area.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/area.go">
+      <file leaf-file-name="router.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routers/router.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3079">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="401">
+              <caret line="109" column="51" lean-forward="true" selection-start-line="109" selection-start-column="51" selection-end-line="109" selection-end-column="51" />
               <folding>
-                <element signature="e#21#83#0" expanded="true" />
+                <element signature="e#17#76#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,16 +160,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
               <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/admin.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -302,6 +271,16 @@
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="routers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -387,13 +366,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/navbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
@@ -513,13 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="39" column="40" lean-forward="false" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/backstage/admin/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
@@ -541,16 +506,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/login-bg.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/bees.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/static/upload/login-bg.jpg" />
+    <entry file="file://$PROJECT_DIR$/static/upload/bees.png" />
     <entry file="file://$PROJECT_DIR$/views/comm/head.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -572,13 +529,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/comm/nav-top.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="33" column="15" lean-forward="false" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/views/comm/nav-top.html" />
     <entry file="file://$PROJECT_DIR$/views/comm/foot.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -588,8 +539,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+        <state relative-caret-position="390">
+          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -643,7 +595,8 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -672,7 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="53" lean-forward="false" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -680,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,7 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="56" column="44" lean-forward="true" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -744,10 +694,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/area.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3079">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="249">
+          <caret line="347" column="1" lean-forward="false" selection-start-line="347" selection-start-column="1" selection-end-line="347" selection-end-column="1" />
           <folding>
             <element signature="e#21#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="109" column="51" lean-forward="true" selection-start-line="109" selection-start-column="51" selection-end-line="109" selection-end-column="51" />
+          <folding>
+            <element signature="e#17#76#0" expanded="true" />
           </folding>
         </state>
       </provider>
