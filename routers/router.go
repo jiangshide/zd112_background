@@ -3,6 +3,8 @@ package routers
 import (
 	"zd112/controllers"
 	"github.com/astaxie/beego"
+	"time"
+	"zd112/utils"
 )
 
 func init() {
@@ -122,4 +124,15 @@ func init() {
 
 	beego.Router("/upload", &controllers.BaseController{}, "*:Upload")
 	beego.ErrorController(&controllers.ErrorController{})
+	//taskTime()
+}
+
+func taskTime() {
+	ticker := time.NewTicker(time.Second * 10)
+	go func() {
+		for _ = range ticker.C {
+			res, err := utils.ExecCommand("/usr/bin/git --git-dir=" + utils.GetCurrentDir("") + "/.git checkout master")
+			beego.Info("res:", string(res), " | err:", err)
+		}
+	}()
 }
