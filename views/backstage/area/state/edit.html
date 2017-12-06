@@ -16,10 +16,10 @@
         <div class="layui-form-item">
             <label class="layui-form-label">所属</label>
             <div class="layui-input-inline">
-                <select class="group_id" lay-verify="required" lay-search="" style="width:100%;">
+                <select name="group_id" lay-verify="required" lay-search="" style="width:100%;">
                     <option value="">请选择所属</option>
                 {{range .group}}
-                    <option value=".id">{{.name}}</option>
+                    <option value="{{.id}}" {{if .selected}}selected{{end}}>{{.name}}</option>
                 {{end}}
                 </select>
             </div>

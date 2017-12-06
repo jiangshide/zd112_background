@@ -3,7 +3,6 @@ package controllers
 import (
 	"zd112/models"
 	"time"
-	"github.com/astaxie/beego"
 )
 
 type AuthController struct {
@@ -17,7 +16,7 @@ func (this *AuthController) Index() {
 
 func (this *AuthController) List() {
 	this.pageTitle("权限因子列表")
-	this.Data["zTree"]=true
+	this.Data["zTree"] = true
 	this.display("backstage/auth/list")
 }
 
@@ -38,7 +37,7 @@ func (this *AuthController) GetNodes() {
 }
 
 func (this *AuthController) GetNode() {
-	id := this.getInt("id",0)
+	id := this.getInt("id", 0)
 	result, _ := models.AuthGetById(id)
 	row := make(map[string]interface{})
 	row["id"] = result.Id
@@ -53,16 +52,15 @@ func (this *AuthController) GetNode() {
 func (this *AuthController) AjaxSave() {
 	auth := new(models.Auth)
 	auth.UserId = this.userId
-	auth.Pid = this.getInt("pid",0)
+	auth.Pid = this.getInt("pid", 0)
 	auth.Name = this.getString("name", "名称不能为空!", 1)
 	auth.Url = this.getString("url", "访问Action不能为空!", 1)
-	auth.Sort = this.getInt("sort",0)
-	auth.IsShow = this.getInt("is_show",0)
+	auth.Sort = this.getInt("sort", 0)
+	auth.IsShow = this.getInt("is_show", 0)
 	auth.Icon = this.getString("icon", "菜单图标不能为空!", 1)
 	auth.UpdateTime = time.Now().Unix()
 	auth.Status = 1
-	id := this.getInt("id",0)
-	beego.Info("----------------update:~id:",id," | usetId:",this.userId)
+	id := this.getInt("id", 0)
 	if id == 0 {
 		auth.CreateTime = time.Now().Unix()
 		auth.CreateId = this.userId
@@ -81,7 +79,7 @@ func (this *AuthController) AjaxSave() {
 }
 
 func (this *AuthController) AjaxDel() {
-	id := this.getInt("id",0)
+	id := this.getInt("id", 0)
 	//auth, _ := models.AuthGetById(id)
 	//auth.Id = id
 	//auth.Status = 0
@@ -89,8 +87,8 @@ func (this *AuthController) AjaxDel() {
 	//	this.ajaxMsg(err.Error(), MSG_ERR)
 	//}
 	//this.ajaxMsg("", MSG_OK)
-	if _,err := models.AuthDelById(id);err != nil{
-		this.ajaxMsg(err.Error(),MSG_ERR)
+	if _, err := models.AuthDelById(id); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.ajaxMsg("",MSG_OK)
+	this.ajaxMsg("", MSG_OK)
 }

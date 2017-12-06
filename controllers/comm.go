@@ -215,6 +215,10 @@ func (this *BaseController) getBgAreaAction(action string) string {
 	return this.getBgAction("area/" + action)
 }
 
+func (this *BaseController) getBgWebAction(action string) string {
+	return this.getBgAction("web/" + action)
+}
+
 func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	out := make(map[string]interface{})
 	out["status"] = msgNo

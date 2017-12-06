@@ -3,7 +3,6 @@ package controllers
 import (
 	"zd112/models"
 	"time"
-	"github.com/astaxie/beego"
 )
 
 type ContinentController struct {
@@ -91,7 +90,7 @@ func (this *StateController) List() {
 
 func (this *StateController) Add() {
 	this.pageTitle("增加国名称")
-	this.parent()
+	this.parent("")
 	this.display(this.getBgAreaAction("state/add"))
 }
 
@@ -102,9 +101,12 @@ func (this *StateController) Edit() {
 	if err := state.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.parent()
 	row := make(map[string]interface{}, 0)
 	row["id"] = state.Id
+	continent := new(models.Continent)
+	continent.Id = state.ParentId
+	continent.Query()
+	this.parent(continent.Name)
 	row["name"] = state.Name
 	row["icon"] = state.Icon
 	this.Data["row"] = row
@@ -115,7 +117,7 @@ func (this *StateController) AjaxSave() {
 	state := new(models.State)
 	state.Id = this.getInt("id", 0)
 	if state.Id == 0 {
-		state.ParentId = this.getInt("group_id",0)
+		state.ParentId = this.getInt("group_id", 0)
 		state.Name = this.getString("name", "名称不能为空!", 1)
 		state.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		state.CreateId = this.userId
@@ -126,7 +128,7 @@ func (this *StateController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	state.Query()
-	state.ParentId = this.getInt("group_id",0)
+	state.ParentId = this.getInt("group_id", 0)
 	state.Name = this.getString("name", "名称不能为空!", 1)
 	state.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	state.UpdateId = this.userId
@@ -137,13 +139,18 @@ func (this *StateController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *StateController) parent() {
+func (this *StateController) parent(name string) {
 	result, count := models.ContinentList(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
 		row["id"] = v.Id
 		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
 		list[k] = row
 	}
 	this.Data["group"] = list
@@ -181,6 +188,7 @@ func (this *ProvinceController) List() {
 
 func (this *ProvinceController) Add() {
 	this.pageTitle("增加省名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("province/add"))
 }
 
@@ -192,6 +200,10 @@ func (this *ProvinceController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	state := new(models.State)
+	state.Id = province.ParentId
+	state.Query()
+	this.parent(state.Name)
 	row["id"] = province.Id
 	row["name"] = province.Name
 	row["icon"] = province.Icon
@@ -203,6 +215,7 @@ func (this *ProvinceController) AjaxSave() {
 	province := new(models.Province)
 	province.Id = this.getInt("id", 0)
 	if province.Id == 0 {
+		province.ParentId = this.getInt("group_id", 0)
 		province.Name = this.getString("name", "名称不能为空!", 1)
 		province.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		province.CreateId = this.userId
@@ -213,6 +226,7 @@ func (this *ProvinceController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	province.Query()
+	province.ParentId = this.getInt("group_id", 0)
 	province.Name = this.getString("name", "名称不能为空!", 1)
 	province.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	province.UpdateId = this.userId
@@ -221,6 +235,23 @@ func (this *ProvinceController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *ProvinceController) parent(name string) {
+	result, count := models.StateList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *ProvinceController) Table() {
@@ -255,6 +286,7 @@ func (this *CityController) List() {
 
 func (this *CityController) Add() {
 	this.pageTitle("增加城市名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("city/add"))
 }
 
@@ -266,6 +298,10 @@ func (this *CityController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	province := new(models.Province)
+	province.Id = city.ParentId
+	province.Query()
+	this.parent(province.Name)
 	row["id"] = city.Id
 	row["name"] = city.Name
 	row["icon"] = city.Icon
@@ -277,6 +313,7 @@ func (this *CityController) AjaxSave() {
 	city := new(models.City)
 	city.Id = this.getInt("id", 0)
 	if city.Id == 0 {
+		city.ParentId = this.getInt("group_id", 0)
 		city.Name = this.getString("name", "名称不能为空!", 1)
 		city.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		city.CreateId = this.userId
@@ -287,6 +324,7 @@ func (this *CityController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	city.Query()
+	city.ParentId = this.getInt("group_id", 0)
 	city.Name = this.getString("name", "名称不能为空!", 1)
 	city.Icon = this.getString("icon", "Icon不能为空！", defaultMinSize)
 	city.UpdateId = this.userId
@@ -295,6 +333,23 @@ func (this *CityController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *CityController) parent(name string) {
+	result, count := models.ProvinceList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *CityController) Table() {
@@ -329,6 +384,7 @@ func (this *RegionController) List() {
 
 func (this *RegionController) Add() {
 	this.pageTitle("增加地区名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("region/add"))
 }
 
@@ -340,6 +396,10 @@ func (this *RegionController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	city := new(models.City)
+	city.Id = region.ParentId
+	city.Query()
+	this.parent(region.Name)
 	row["id"] = region.Id
 	row["name"] = region.Name
 	row["icon"] = region.Icon
@@ -351,6 +411,7 @@ func (this *RegionController) AjaxSave() {
 	region := new(models.Region)
 	region.Id = this.getInt("id", 0)
 	if region.Id == 0 {
+		region.ParentId = this.getInt("group_id", 0)
 		region.Name = this.getString("name", "名称不能为空!", 1)
 		region.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		region.CreateId = this.userId
@@ -361,6 +422,7 @@ func (this *RegionController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	region.Query()
+	region.ParentId = this.getInt("group_id", 0)
 	region.Name = this.getString("name", "名称不能为空!", 1)
 	region.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	region.UpdateId = this.userId
@@ -369,6 +431,23 @@ func (this *RegionController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *RegionController) parent(name string) {
+	result, count := models.CityList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *RegionController) Table() {
@@ -403,6 +482,7 @@ func (this *CountyController) List() {
 
 func (this *CountyController) Add() {
 	this.pageTitle("增加县名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("county/add"))
 }
 
@@ -413,6 +493,10 @@ func (this *CountyController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	region := new(models.Region)
+	region.Id = county.ParentId
+	region.Query()
+	this.parent(region.Name)
 	row["id"] = county.Id
 	row["name"] = county.Name
 	row["icon"] = county.Icon
@@ -424,6 +508,7 @@ func (this *CountyController) AjaxSave() {
 	county := new(models.County)
 	county.Id = this.getInt("id", 0)
 	if county.Id == 0 {
+		county.ParentId = this.getInt("group_id", 0)
 		county.Name = this.getString("name", "名称不能为空!", 1)
 		county.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		county.CreateId = this.userId
@@ -434,6 +519,7 @@ func (this *CountyController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	county.Query()
+	county.ParentId = this.getInt("group_id", 0)
 	county.Name = this.getString("name", "名称不能为空!", 1)
 	county.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	county.UpdateId = this.userId
@@ -444,9 +530,25 @@ func (this *CountyController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
+func (this *CountyController) parent(name string) {
+	result, count := models.CityList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
+}
+
 func (this *CountyController) Table() {
 	result, count := models.CountyList(this.pageSize, this.offSet)
-	beego.Info("----------------result:", result, " | count:", count)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
@@ -477,6 +579,7 @@ func (this *TownController) List() {
 
 func (this *TownController) Add() {
 	this.pageTitle("增加镇名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("town/add"))
 }
 
@@ -488,6 +591,10 @@ func (this *TownController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	county := new(models.County)
+	county.Id = town.ParentId
+	county.Query()
+	this.parent(county.Name)
 	row["id"] = town.Id
 	row["name"] = town.Name
 	row["icon"] = town.Icon
@@ -499,6 +606,7 @@ func (this *TownController) AjaxSave() {
 	town := new(models.Town)
 	town.Id = this.getInt("id", 0)
 	if town.Id == 0 {
+		town.ParentId = this.getInt("group_id", 0)
 		town.Name = this.getString("name", "名称不能为空!", 1)
 		town.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		town.CreateId = this.userId
@@ -509,6 +617,7 @@ func (this *TownController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	town.Query()
+	town.ParentId = this.getInt("group_id", 0)
 	town.Name = this.getString("name", "名称不能为空!", 1)
 	town.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	town.UpdateId = this.userId
@@ -517,6 +626,23 @@ func (this *TownController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *TownController) parent(name string) {
+	result, count := models.CountyList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *TownController) Table() {
@@ -551,6 +677,7 @@ func (this *CountryController) List() {
 
 func (this *CountryController) Add() {
 	this.pageTitle("增加乡名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("country/add"))
 }
 
@@ -562,6 +689,10 @@ func (this *CountryController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	town := new(models.Town)
+	town.Id = country.ParentId
+	town.Query()
+	this.parent(town.Name)
 	row["id"] = country.Id
 	row["name"] = country.Name
 	row["icon"] = country.Icon
@@ -573,6 +704,7 @@ func (this *CountryController) AjaxSave() {
 	country := new(models.Country)
 	country.Id = this.getInt("id", 0)
 	if country.Id == 0 {
+		country.ParentId = this.getInt("group_id", 0)
 		country.Name = this.getString("name", "名称不能为空!", 1)
 		country.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		country.CreateId = this.userId
@@ -583,6 +715,7 @@ func (this *CountryController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	country.Query()
+	country.ParentId = this.getInt("group_id", 0)
 	country.Name = this.getString("name", "名称不能为空!", 1)
 	country.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	country.UpdateId = this.userId
@@ -591,6 +724,23 @@ func (this *CountryController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *CountryController) parent(name string) {
+	result, count := models.TownList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *CountryController) Table() {
@@ -625,6 +775,7 @@ func (this *VillageController) List() {
 
 func (this *VillageController) Add() {
 	this.pageTitle("增加村名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("village/add"))
 }
 
@@ -636,6 +787,10 @@ func (this *VillageController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	country := new(models.Country)
+	country.Id = village.ParentId
+	country.Query()
+	this.parent(country.Name)
 	row["id"] = village.Id
 	row["name"] = village.Name
 	row["icon"] = village.Icon
@@ -647,6 +802,7 @@ func (this *VillageController) AjaxSave() {
 	village := new(models.Village)
 	village.Id = this.getInt("id", 0)
 	if village.Id == 0 {
+		village.ParentId = this.getInt("group_id", 0)
 		village.Name = this.getString("name", "名称不能为空!", 1)
 		village.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		village.CreateId = this.userId
@@ -657,6 +813,7 @@ func (this *VillageController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	village.Query()
+	village.ParentId = this.getInt("group_id", 0)
 	village.Name = this.getString("name", "名称不能为空!", 1)
 	village.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	village.UpdateId = this.userId
@@ -665,6 +822,23 @@ func (this *VillageController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *VillageController) parent(name string) {
+	result, count := models.CountryList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *VillageController) Table() {
@@ -699,6 +873,7 @@ func (this *GroupController) List() {
 
 func (this *GroupController) Add() {
 	this.pageTitle("增加组名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("group/add"))
 }
 
@@ -710,6 +885,10 @@ func (this *GroupController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	village := new(models.Village)
+	village.Id = group.ParentId
+	village.Query()
+	this.parent(village.Name)
 	row["id"] = group.Id
 	row["name"] = group.Name
 	row["icon"] = group.Icon
@@ -721,6 +900,7 @@ func (this *GroupController) AjaxSave() {
 	group := new(models.Group)
 	group.Id = this.getInt("id", 0)
 	if group.Id == 0 {
+		group.ParentId = this.getInt("group_id", 0)
 		group.Name = this.getString("name", "名称不能为空!", 1)
 		group.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		group.CreateId = this.userId
@@ -731,6 +911,7 @@ func (this *GroupController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	group.Query()
+	group.ParentId = this.getInt("group_id", 0)
 	group.Name = this.getString("name", "名称不能为空!", 1)
 	group.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	group.UpdateId = this.userId
@@ -739,6 +920,23 @@ func (this *GroupController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *GroupController) parent(name string) {
+	result, count := models.VillageList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *GroupController) Table() {
@@ -773,6 +971,7 @@ func (this *TeamController) List() {
 
 func (this *TeamController) Add() {
 	this.pageTitle("增加队名称")
+	this.parent("")
 	this.display(this.getBgAreaAction("team/add"))
 }
 
@@ -784,6 +983,10 @@ func (this *TeamController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{}, 0)
+	group := new(models.Group)
+	group.Id = team.ParentId
+	group.Query()
+	this.parent(team.Name)
 	row["id"] = team.Id
 	row["name"] = team.Name
 	row["icon"] = team.Icon
@@ -795,6 +998,7 @@ func (this *TeamController) AjaxSave() {
 	team := new(models.Team)
 	team.Id = this.getInt("id", 0)
 	if team.Id == 0 {
+		team.ParentId = this.getInt("group_id", 0)
 		team.Name = this.getString("name", "名称不能为空!", 1)
 		team.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		team.CreateId = this.userId
@@ -805,6 +1009,7 @@ func (this *TeamController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	team.Query()
+	team.ParentId = this.getInt("group_id", 0)
 	team.Name = this.getString("name", "名称不能为空!", 1)
 	team.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	team.UpdateId = this.userId
@@ -813,6 +1018,23 @@ func (this *TeamController) AjaxSave() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *TeamController) parent(name string) {
+	result, count := models.GroupList(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Name == name {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["group"] = list
 }
 
 func (this *TeamController) Table() {

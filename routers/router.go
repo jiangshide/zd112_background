@@ -124,7 +124,7 @@ func init() {
 
 	beego.Router("/upload", &controllers.BaseController{}, "*:Upload")
 	beego.ErrorController(&controllers.ErrorController{})
-	taskTime()
+	//taskTime()
 }
 
 func taskTime() {

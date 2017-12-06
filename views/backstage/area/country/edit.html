@@ -14,6 +14,18 @@
             <div class="layui-form-mid layui-word-aux">*</div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">所属</label>
+            <div class="layui-input-inline">
+                <select name="group_id" lay-verify="required" lay-search="" style="width:100%;">
+                    <option value="">请选择所属</option>
+                {{range .group}}
+                    <option value="{{.id}}" {{if .selected}}selected{{end}}>{{.name}}</option>
+                {{end}}
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">*上级关联</div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">Icon</label>
             <div class="layui-upload-drag layui-input-inline" id="uploadFile">
                 <i class="layui-icon"></i>
