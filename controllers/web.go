@@ -16,7 +16,7 @@ func (this *BannerController) List() {
 
 func (this *BannerController) Add() {
 	this.pageTitle("增加焦点图名称")
-	this.display(this.getBgWebAction("banner/list"))
+	this.display(this.getBgWebAction("banner/add"))
 }
 
 func (this *BannerController) Table() {
