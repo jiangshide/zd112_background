@@ -2,37 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b319c84e-e2f1-4295-a011-dfe3ac5c4c1f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/web.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/models/web.go" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/web/banner/add.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/web/banner/edit.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/web/banner/list.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/controllers/area.go" afterPath="$PROJECT_DIR$/controllers/area.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/auth.go" afterPath="$PROJECT_DIR$/controllers/auth.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/comm.go" afterPath="$PROJECT_DIR$/controllers/comm.go" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" afterPath="$PROJECT_DIR$/models/init.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/web.go" afterPath="$PROJECT_DIR$/controllers/web.go" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" afterPath="$PROJECT_DIR$/routers/router.go" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/city/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/city/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/city/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/city/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/country/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/country/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/country/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/country/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/county/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/county/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/county/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/county/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/group/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/group/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/group/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/group/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/province/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/province/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/province/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/province/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/region/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/region/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/region/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/region/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/state/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/state/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/state/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/state/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/team/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/team/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/team/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/team/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/town/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/town/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/town/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/town/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/village/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/village/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/village/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/village/edit.html" />
-      <change beforePath="$PROJECT_DIR$/zd112" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/zd112.sql" afterPath="$PROJECT_DIR$/zd112.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -88,14 +63,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="web.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/web.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+            <state relative-caret-position="71">
+              <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
               <folding>
-                <element signature="e#21#42#0" expanded="true" />
+                <element signature="e#21#55#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1050">
+              <caret line="70" column="48" lean-forward="true" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="671">
+              <caret line="68" column="11" lean-forward="true" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routers/router.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="562">
+              <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,8 +122,8 @@
       <file leaf-file-name="comm.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/comm.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="218" column="44" lean-forward="false" selection-start-line="218" selection-start-column="44" selection-end-line="218" selection-end-column="44" />
+            <state relative-caret-position="-909">
+              <caret line="162" column="35" lean-forward="false" selection-start-line="162" selection-start-column="35" selection-end-line="162" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -163,9 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/comm/banner.html" />
-        <option value="$PROJECT_DIR$/views/backstage/auth/list.html" />
-        <option value="$PROJECT_DIR$/models/Auth.go" />
         <option value="$PROJECT_DIR$/static/js/calendar.js" />
         <option value="$PROJECT_DIR$/views/backstage/index.html" />
         <option value="$PROJECT_DIR$/static/css/canlendar.css" />
@@ -186,7 +202,6 @@
         <option value="$PROJECT_DIR$/models/role.go" />
         <option value="$PROJECT_DIR$/models/area.go" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/routers/router.go" />
         <option value="$PROJECT_DIR$/views/backstage/area/state/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/town/add.html" />
@@ -214,6 +229,10 @@
         <option value="$PROJECT_DIR$/models/web.go" />
         <option value="$PROJECT_DIR$/controllers/comm.go" />
         <option value="$PROJECT_DIR$/controllers/web.go" />
+        <option value="$PROJECT_DIR$/routers/router.go" />
+        <option value="$PROJECT_DIR$/views/backstage/web/banner/list.html" />
+        <option value="$PROJECT_DIR$/views/backstage/web/banner/edit.html" />
+        <option value="$PROJECT_DIR$/views/backstage/web/banner/add.html" />
       </list>
     </option>
   </component>
@@ -270,6 +289,47 @@
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+              <item name="area" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+              <item name="area" type="462c0819:PsiDirectoryNode" />
+              <item name="city" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="banner" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -290,16 +350,16 @@
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/comm" />
+      <recent name="$PROJECT_DIR$/views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/backstage/web/banner" />
       <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/static/js" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/utils" />
-      <recent name="$PROJECT_DIR$/static/file" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/comm" />
-      <recent name="$PROJECT_DIR$/views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -374,27 +434,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/backstage/nation/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/go/src/os/file.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="139" column="22" lean-forward="true" selection-start-line="139" selection-start-column="22" selection-end-line="139" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/string.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/upload/img/6e203172b1b10a832f49e7f800e487aa.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -719,14 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-934">
-          <caret line="33" column="29" lean-forward="false" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/72bc3017/4ac49120-b95c-4826-aeec-243cde9bd39a/zd112.zd_web_banner">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -772,19 +803,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/comm.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="218" column="44" lean-forward="false" selection-start-line="218" selection-start-column="44" selection-end-line="218" selection-end-column="44" />
+        <state relative-caret-position="-909">
+          <caret line="162" column="35" lean-forward="false" selection-start-line="162" selection-start-column="35" selection-end-line="162" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="128" column="9" lean-forward="false" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/web.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        <state relative-caret-position="71">
+          <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
           <folding>
-            <element signature="e#21#42#0" expanded="true" />
+            <element signature="e#21#55#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="68" column="11" lean-forward="true" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="70" column="48" lean-forward="true" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

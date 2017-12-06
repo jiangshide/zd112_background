@@ -122,6 +122,13 @@ func init() {
 	beego.Router("/backstage/area/team/ajaxsave", &controllers.TeamController{}, "*:AjaxSave")
 	beego.Router("/backstage/area/team/ajaxdel", &controllers.TeamController{}, "*:AjaxDel")
 
+	beego.Router("/backstage/web/banner", &controllers.BannerController{}, "*:List")
+	beego.Router("/backstage/web/banner/add", &controllers.BannerController{}, "*:Add")
+	beego.Router("/backstage/web/banner/edit", &controllers.BannerController{}, "*:Edit")
+	beego.Router("/backstage/web/banner/table", &controllers.BannerController{}, "*:Table")
+	beego.Router("/backstage/web/banner/ajaxsave", &controllers.BannerController{}, "*:AjaxSave")
+	beego.Router("/backstage/web/banner/ajaxdel", &controllers.BannerController{}, "*:AjaxDel")
+
 	beego.Router("/upload", &controllers.BaseController{}, "*:Upload")
 	beego.ErrorController(&controllers.ErrorController{})
 	//taskTime()
