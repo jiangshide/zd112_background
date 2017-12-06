@@ -14,3 +14,4 @@
 .glide/
 ./static/upload/*
 .idea
+.idea/workspace.xml
