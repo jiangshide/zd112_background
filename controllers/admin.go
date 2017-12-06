@@ -86,10 +86,7 @@ func (this AdminController) AjaxSave() {
 	}
 	admin, _ := models.AdminGetById(id)
 	admin.Id = id
-	admin.UpdateTime = time.Now().Unix()
-	admin.UpdateId = this.userId
 	this.getParam(admin)
-
 	resetPsw := this.getInt("reset_pwd", 0)
 	if resetPsw == 1 {
 		admin.Password = utils.Md5(this.defaultPsw + admin.Salt)
@@ -129,18 +126,9 @@ func (this AdminController) AjaxDel() {
 }
 
 func (this *AdminController) Table() {
-	page, err := this.GetInt("page")
-	if err != nil {
-		page = 1
-	}
-	limit, err := this.GetInt("limit")
-	if err != nil {
-		limit = 30
-	}
-	this.pageSize = limit
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
-	result, count := models.AdminList(page, this.pageSize, filters...)
+	result, count := models.AdminList(this.page, this.pageSize, filters...)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})

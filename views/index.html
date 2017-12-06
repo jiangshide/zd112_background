@@ -1,13 +1,14 @@
 {{template "comm/head.html"}}
-{{/*{{template "comm/nav-top.html" .}}*/}}
+{{/*{{template "comm/navigationbar.html" .}}*/}}
 {{/*{{template "comm/banner.html"}}*/}}
 {{/*{{template "comm/flow.html"}}*/}}
 <div>
 {{template "comm/top.html" .}}
 {{template "comm/banner.html"}}
-    <div id="nav">
-        nav
-    </div>
+    {{/*<div id="nav">*/}}
+        {{/*nav*/}}
+    {{/*</div>*/}}
+    {{template "comm/navigationbar.html"}}
     <div id="content">
         <div class="content-left">
             content
@@ -15,7 +16,10 @@
         <div class="content-right-sup">
             title
         </div>
-        <div class="content-right-sub">
+        <div class="content-right-recommend">
+            推荐
+        </div>
+        <div class="content-right-rank">
             排行榜
         </div>
     </div>

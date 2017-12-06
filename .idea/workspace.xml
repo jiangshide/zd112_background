@@ -2,37 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b319c84e-e2f1-4295-a011-dfe3ac5c4c1f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/area.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/models/area.go" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/conf/app.conf" afterPath="$PROJECT_DIR$/conf/app.conf" />
+      <change beforePath="$PROJECT_DIR$/controllers/admin.go" afterPath="$PROJECT_DIR$/controllers/admin.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/area.go" afterPath="$PROJECT_DIR$/controllers/area.go" />
       <change beforePath="$PROJECT_DIR$/controllers/comm.go" afterPath="$PROJECT_DIR$/controllers/comm.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/index.go" afterPath="$PROJECT_DIR$/controllers/index.go" />
       <change beforePath="$PROJECT_DIR$/controllers/nation.go" afterPath="$PROJECT_DIR$/controllers/nation.go" />
-      <change beforePath="$PROJECT_DIR$/models/admin.go" afterPath="$PROJECT_DIR$/models/admin.go" />
+      <change beforePath="$PROJECT_DIR$/models/Auth.go" afterPath="$PROJECT_DIR$/models/Auth.go" />
+      <change beforePath="$PROJECT_DIR$/models/area.go" afterPath="$PROJECT_DIR$/models/area.go" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" afterPath="$PROJECT_DIR$/models/init.go" />
       <change beforePath="$PROJECT_DIR$/models/nation.go" afterPath="$PROJECT_DIR$/models/nation.go" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/bootstrap/js/npm.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/admin/add.html" afterPath="$PROJECT_DIR$/views/backstage/admin/add.html" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" afterPath="$PROJECT_DIR$/routers/router.go" />
+      <change beforePath="$PROJECT_DIR$/static/css/comm.css" afterPath="$PROJECT_DIR$/static/css/comm.css" />
+      <change beforePath="$PROJECT_DIR$/static/layui/css/layui.css" afterPath="$PROJECT_DIR$/static/layui/css/layui.css" />
+      <change beforePath="$PROJECT_DIR$/static/layui/css/layui.mobile.css" afterPath="$PROJECT_DIR$/static/layui/css/layui.mobile.css" />
+      <change beforePath="$PROJECT_DIR$/static/layui/css/modules/code.css" afterPath="$PROJECT_DIR$/static/layui/css/modules/code.css" />
+      <change beforePath="$PROJECT_DIR$/static/layui/css/modules/laydate/default/laydate.css" afterPath="$PROJECT_DIR$/static/layui/css/modules/laydate/default/laydate.css" />
+      <change beforePath="$PROJECT_DIR$/static/layui/css/modules/layer/default/layer.css" afterPath="$PROJECT_DIR$/static/layui/css/modules/layer/default/layer.css" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/carousel.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/carousel.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/code.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/code.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/element.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/element.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/flow.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/flow.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/form.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/form.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/jquery.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/jquery.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/laydate.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/laydate.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/layedit.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/layedit.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/layer.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/layer.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/laypage.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/laypage.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/laytpl.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/laytpl.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/mobile.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/mobile.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/table.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/table.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/tree.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/tree.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/upload.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/upload.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/lay/modules/util.js" afterPath="$PROJECT_DIR$/static/layui/lay/modules/util.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/layui.all.js" afterPath="$PROJECT_DIR$/static/layui/layui.all.js" />
+      <change beforePath="$PROJECT_DIR$/static/layui/layui.js" afterPath="$PROJECT_DIR$/static/layui/layui.js" />
+      <change beforePath="$PROJECT_DIR$/static/upload/bees.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/login-bg.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/backstage/comm/layout.html" afterPath="$PROJECT_DIR$/views/backstage/comm/layout.html" />
       <change beforePath="$PROJECT_DIR$/views/backstage/nation/add.html" afterPath="$PROJECT_DIR$/views/backstage/nation/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/nation/edit.html" afterPath="$PROJECT_DIR$/views/backstage/nation/edit.html" />
       <change beforePath="$PROJECT_DIR$/views/backstage/nation/list.html" afterPath="$PROJECT_DIR$/views/backstage/nation/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/comm/head.html" afterPath="$PROJECT_DIR$/views/comm/head.html" />
+      <change beforePath="$PROJECT_DIR$/views/comm/nav-top.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
       <change beforePath="$PROJECT_DIR$/zd112" afterPath="$PROJECT_DIR$/zd112" />
       <change beforePath="$PROJECT_DIR$/zd112.sql" afterPath="$PROJECT_DIR$/zd112.sql" />
     </list>
@@ -101,23 +112,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="area.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="area.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/area.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-3079">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding>
+                <element signature="e#21#83#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="area.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="area.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/area.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+            <state relative-caret-position="1185">
+              <caret line="79" column="1" lean-forward="false" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
               <folding>
-                <element signature="e#16#53#0" expanded="true" />
+                <marker date="1512532671000" expanded="true" signature="8901:8903" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -126,8 +139,8 @@
       <file leaf-file-name="Auth.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Auth.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state relative-caret-position="-199">
+              <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -146,7 +159,7 @@
       <file leaf-file-name="nation.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/nation.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="116">
               <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
               <folding />
             </state>
@@ -262,9 +275,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-71" />
-    <option name="y" value="563" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
   </component>
@@ -294,8 +306,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -338,19 +350,19 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-71" y="563" width="1440" height="873" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21459228" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21745351" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18526466" sideWeight="0.5051414" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18526466" sideWeight="0.5051414" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -606,7 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="139" column="22" lean-forward="true" selection-start-line="139" selection-start-column="22" selection-end-line="139" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -640,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="719">
           <caret line="147" column="16" lean-forward="true" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -648,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="87" column="43" lean-forward="false" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,34 +700,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/nation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/init.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Auth.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/area.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -734,10 +718,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/area.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        <state relative-caret-position="1185">
+          <caret line="79" column="1" lean-forward="false" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
           <folding>
-            <element signature="e#16#53#0" expanded="true" />
+            <marker date="1512532671000" expanded="true" signature="8901:8903" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Auth.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-199">
+          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/nation.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/area.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3079">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#83#0" expanded="true" />
           </folding>
         </state>
       </provider>

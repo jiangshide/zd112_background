@@ -400,7 +400,7 @@ CREATE TABLE `zd_area_continent` (
 DROP TABLE IF EXISTS `zd_area_state`; #国家
 CREATE TABLE `zd_area_state` (
   `id`           INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `continent_id` INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id` INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属洲',
   `name`         VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
   COMMENT '国名',
@@ -423,7 +423,7 @@ CREATE TABLE `zd_area_state` (
 DROP TABLE IF EXISTS `zd_area_province`; #省
 CREATE TABLE `zd_area_province` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `state_id`    INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`    INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属国家',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '省名',
@@ -446,7 +446,7 @@ CREATE TABLE `zd_area_province` (
 DROP TABLE IF EXISTS `zd_area_city`; #市
 CREATE TABLE `zd_area_city` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `province_id` INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id` INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属省',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '市名',
@@ -469,7 +469,7 @@ CREATE TABLE `zd_area_city` (
 DROP TABLE IF EXISTS `zd_area_region`; #地区
 CREATE TABLE `zd_area_region` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `city_id`     INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`     INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属城市',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '地区名',
@@ -492,7 +492,7 @@ CREATE TABLE `zd_area_region` (
 DROP TABLE IF EXISTS `zd_area_county`; #县
 CREATE TABLE `zd_area_county` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `region_id`   INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`   INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属地区',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '县名',
@@ -515,7 +515,7 @@ CREATE TABLE `zd_area_county` (
 DROP TABLE IF EXISTS `zd_area_town`; #镇
 CREATE TABLE `zd_area_town` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `county_id`   INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`   INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属县',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '镇名',
@@ -538,7 +538,7 @@ CREATE TABLE `zd_area_town` (
 DROP TABLE IF EXISTS `zd_area_country`; #乡
 CREATE TABLE `zd_area_country` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `town_id`     INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`     INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属镇',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '乡名',
@@ -561,7 +561,7 @@ CREATE TABLE `zd_area_country` (
 DROP TABLE IF EXISTS `zd_area_village`; #村
 CREATE TABLE `zd_area_village` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `country_id`  INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`  INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属乡',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '村名',
@@ -584,7 +584,7 @@ CREATE TABLE `zd_area_village` (
 DROP TABLE IF EXISTS `zd_area_group`; #组
 CREATE TABLE `zd_area_group` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `village_id`  INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`  INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属村',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '组名',
@@ -607,7 +607,7 @@ CREATE TABLE `zd_area_group` (
 DROP TABLE IF EXISTS `zd_area_team`; #队
 CREATE TABLE `zd_area_team` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `group_id`    INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
+  `parent_id`    INT(11) UNSIGNED   NOT NULL      DEFAULT '0'
   COMMENT '所属组',
   `name`        VARCHAR(50)  NOT NULL      DEFAULT ''
   COMMENT '队名',

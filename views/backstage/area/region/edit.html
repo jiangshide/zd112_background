@@ -1,0 +1,74 @@
+<div class="layui-layout layui-layout-admin" style="padding-left:40px;margin-top: 20px;">
+    <div style="margin:10px 0px">
+        <blockquote class="layui-elem-quote">
+            描述:...
+        </blockquote>
+    </div>
+    <form class="layui-form" action="" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="名称"
+                       class="layui-input" value="{{.row.name}}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">*</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">Icon</label>
+            <div class="layui-upload-drag layui-input-inline" id="uploadFile">
+                <i class="layui-icon"></i>
+                <img class="layui-upload-img" id="img" style="width:150px;height:150px;" src="{{.row.icon}}">
+                <input type="hidden" name="icon" id="icon" lay-verify="required" autocomplete="off" placeholder="icon"
+                       class="layui-input" value="{{.row.icon}}">
+                <p>点击上传,或将文件拖拽到此处</p>
+            </div>
+            <div class="layui-form-mid layui-word-aux">*Logo</div>
+        </div>
+        <input type="hidden" id="id" name="id" value="{{.row.id}}">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="sub">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var $;
+    layui.config({
+        base: "js/"
+    }).use(['form', 'element', 'layer', 'jquery', 'upload'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var upload = layui.upload
+
+        upload.render({
+            elem: '#uploadFile'
+            , accept: 'file'
+            , url: '/upload'
+            , before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    $('#img').attr('src', result)
+                });
+            }
+            , done: function (res) {
+                $('#icon').attr('value', res.message)
+            }
+        });
+
+        form.on('submit(sub)', function (data) {
+            var form_data = $("form").serialize()
+            $.post('{{urlfor "RegionController.AjaxSave"}}', form_data, function (out) {
+                if (out.status == 0) {
+                    layer.msg("操作成功", {icon: 1}, function () {
+                        window.location.href = '{{urlfor "RegionController.List"}}'
+                    })
+                } else {
+                    layer.msg(out.message)
+                }
+            }, "json");
+            return false
+        });
+        form.render();
+    });
+</script>

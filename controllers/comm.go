@@ -7,6 +7,7 @@ import (
 	"zd112/utils"
 	"fmt"
 	"zd112/models"
+	"time"
 )
 
 const (
@@ -24,10 +25,13 @@ type BaseController struct {
 	userIcon   string
 	isLogin    bool
 	logo       string
+	page       int
 	pageSize   int
+	offSet     int
 	allowUrl   string
 	user       *models.Admin
 	defaultPsw string
+	upload     string
 }
 
 var defaultTips = "该项不能为空!"
@@ -61,7 +65,7 @@ func (this *BaseController) getString(key, tips string, minSize int) string {
 	return value
 }
 
-func (this *BaseController) getInt(key string,defaultValue int) int {
+func (this *BaseController) getInt(key string, defaultValue int) int {
 	resInt, _ := this.GetInt(key, defaultValue)
 	errorMsg := ""
 	if errorMsg != "" {
@@ -76,6 +80,10 @@ func (this *BaseController) Prepare() {
 	this.controller = strings.ToLower(controller[0:len(controller)-10])
 	this.action = strings.ToLower(action)
 	this.userIcon = "/static/mingzu/img/3.jpg"
+	this.upload = "/static/upload/"
+	this.page = this.getInt("page", 1)
+	this.pageSize = this.getInt("limit", 30)
+	this.offSet = (this.page - 1) * this.pageSize
 
 	this.Data["route"] = this.controller + "." + this.action
 	this.Data["action"] = this.action
@@ -102,10 +110,8 @@ func (this *BaseController) auth() {
 		userId, _ := strconv.Atoi(idstr)
 		if userId > 0 {
 			user, err := models.AdminGetById(userId)
-			beego.Info("----------user:",user)
 			if err == nil && psw == utils.Md5(this.getClientIp()+"|"+user.Password+user.Salt) {
 				this.userId = user.Id
-				beego.Info("------------userId:",this.userId)
 				this.loginName = user.Name
 				this.userName = user.RealName
 				this.userIcon = "/static/mingzu/img/1.jpg"
@@ -133,15 +139,12 @@ func (this *BaseController) auth() {
 func (this *BaseController) AdminAuth() {
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
-	beego.Info("-------userId:", this.userId)
 	if this.userId != 1 {
 		adminAuthIds, _ := models.RoleAuthGetByIds(this.user.RoleIds)
-		beego.Info("----adminAuthIds:", adminAuthIds)
 		adminAuthIdArr := strings.Split(adminAuthIds, ",")
 		filters = append(filters, "id__in", adminAuthIdArr)
 	}
 	result, _ := models.AuthList(1, 100, filters...)
-	beego.Info("result:", result)
 	list := make([]map[string]interface{}, len(result))
 	lists := make([]map[string]interface{}, len(result))
 	allow_url := ""
@@ -199,15 +202,22 @@ func (this *BaseController) display(tpl ...string) {
 		tplName = this.controller + "/" + this.action + ".html"
 	}
 	if strings.Contains(tplName, "backstage") {
-		this.Layout = "backstage/comm/layout.html"
+		this.Layout = this.getBgAction("comm/layout.html")
 	}
 	this.TplName = tplName
+}
+
+func (this *BaseController) getBgAction(action string) string {
+	return "backstage/" + action
+}
+
+func (this *BaseController) getBgAreaAction(action string) string {
+	return this.getBgAction("area/" + action)
 }
 
 func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	out := make(map[string]interface{})
 	out["status"] = msgNo
-	beego.Error("------msg:", msg)
 	out["message"] = msg
 	this.Data["json"] = out
 	this.ServeJSON()
@@ -221,7 +231,46 @@ func (this *BaseController) ajaxList(msg interface{}, msgNo int, count int64, da
 	out["count"] = count
 	out["data"] = data
 	this.Data["json"] = out
-	this.Data["data"]=data
+	this.Data["data"] = data
 	this.ServeJSON()
 	this.StopRun()
+}
+
+func (this *BaseController) parse(list []map[string]interface{}, row map[string]interface{}, id, k, createId, updateId int, count, createTime, updateTime int64) {
+	row["id"] = id
+	if createId != 0 {
+		if admin, err := models.AdminGetById(createId); err == nil {
+			row["create_name"] = admin.Name
+		} else {
+			row["create_name"] = createId
+		}
+	}
+	if updateId != 0 {
+		if admin, err := models.AdminGetById(updateId); err == nil {
+			row["update_name"] = admin.Name
+		} else {
+			row["update_name"] = updateId
+		}
+	}
+	if createTime != 0 {
+		row["create_time"] = beego.Date(time.Unix(createTime, 0), "Y-m-d H:i:s")
+	}
+	if updateTime != 0 {
+		row["update_time"] = beego.Date(time.Unix(updateTime, 0), "Y-m-d H:i:s")
+	}
+	list[k] = row
+}
+
+func (this *BaseController) Upload() {
+	f, fh, err := this.GetFile("file")
+	defer f.Close()
+	fileName := fh.Filename
+	sufix := "default"
+	if strings.Contains(fh.Filename, ".") {
+		sufix = fileName[strings.LastIndex(fileName, ".")+1:]
+	}
+	fileName = utils.Md5(this.userName+time.RubyDate+utils.GetRandomString(10)) + "_" + fmt.Sprint(time.Now().Unix()) + "." + sufix
+	err = this.SaveToFile("file", utils.GetCurrentDir(this.upload+sufix+"/")+fileName)
+	beego.Error(err)
+	this.ajaxMsg(this.upload+sufix+"/"+fileName, MSG_OK)
 }

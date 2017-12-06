@@ -50,9 +50,16 @@ body {
     float: right;
 }
 
-#content .content-right-sub {
+#content .content-right-recommend {
     width: 30%;
-    height: 40%;
+    height: 200px;
+    background:royalblue;
+    float: right;
+}
+
+#content .content-right-rank {
+    width: 30%;
+    height: 200px;
     background: purple;
     float: right;
 }

@@ -26,8 +26,7 @@ func NationAdd(this *Nation) (int64, error) {
 	return orm.NewOrm().Insert(this)
 }
 
-func NationList(page, pageSize int) ([]*Nation, int64) {
-	offSet := (page - 1) * pageSize
+func NationList(pageSize,offSet int) ([]*Nation, int64) {
 	list := make([]*Nation, 0)
 	query := orm.NewOrm().QueryTable(TableName("nation"))
 	total, _ := query.Count()
@@ -43,5 +42,5 @@ func NationById(id int) (this *Nation, err error) {
 }
 
 func NationDel(id int) (int64, error) {
-	return orm.NewOrm().QueryTable("nation").Filter("id", id).Delete()
+	return orm.NewOrm().QueryTable(TableName("nation")).Filter("id", id).Delete()
 }

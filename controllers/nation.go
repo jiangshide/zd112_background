@@ -17,21 +17,16 @@ type NationController struct {
 
 func (this *NationController) List() {
 	this.pageTitle("民族列表")
-	this.display("backstage/nation/list")
-	//this.download()
+	this.display(this.getBgAction("nation/list"))
 }
 
 func (this *NationController) Add() {
 	this.pageTitle("新增民族名称")
-	nation, err := models.NationList(1, 1000)
-	beego.Info("-----------nation:", nation, " | err:", err)
-	this.Data["nation"] = nation
-	this.display("backstage/nation/add")
+	this.display(this.getBgAction("nation/add"))
 }
 
 func (this *NationController) Edit() {
 	this.pageTitle("编辑民族名称")
-	beego.Info("------------------edit")
 	if nation, err := models.NationById(this.getInt("id", 0)); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	} else {
@@ -41,7 +36,7 @@ func (this *NationController) Edit() {
 		row["icon"] = nation.Icon
 		this.Data["row"] = row
 	}
-	this.display("backstage/nation/edit")
+	this.display(this.getBgAction("nation/edit"))
 }
 
 func (this *NationController) AjaxSave() {
@@ -50,7 +45,6 @@ func (this *NationController) AjaxSave() {
 		nation := new(models.Nation)
 		nation.Name = this.getString("name", "名称不能为空!", 1)
 		nation.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
-		beego.Info("--------------name:", nation.Name, " | icon:", nation.Icon)
 		nation.CreateId = this.userId
 		nation.CreateTime = time.Now().Unix()
 		if _, err := models.NationAdd(nation); err != nil {
@@ -59,7 +53,6 @@ func (this *NationController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	nation, _ := models.NationById(id)
-	beego.Info("--------nation:", nation, " | id:", id)
 	nation.Name = this.getString("name", "名称不能为空!", 1)
 	nation.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	nation.UpdateId = this.userId
@@ -70,50 +63,23 @@ func (this *NationController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *NationController) Upload() {
-	f, fh, err := this.GetFile("file")
-	defer f.Close()
-	path := "/static/upload/"
-	err = this.SaveToFile("file", utils.GetCurrentDir(path)+fh.Filename)
-	beego.Error(err, " | path:", path)
-	this.ajaxMsg(path+fh.Filename, MSG_OK)
-}
-
 func (this *NationController) Table() {
-	this.pageSize = this.getInt("limit", 30)
-	result, count := models.NationList(this.getInt("page", 1), this.pageSize)
+	result, count := models.NationList(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
-		row["id"] = v.Id
 		row["name"] = v.Name
 		row["icon"] = v.Icon
-		if v.CreateId != 0 {
-			if admin, err := models.AdminGetById(v.CreateId); err == nil {
-				row["create_name"] = admin.Name
-				beego.Info("-------------name:", admin)
-			} else {
-				beego.Error("-----------err:", err)
-				row["create_name"] = v.CreateId
-			}
-		}
-		if v.UpdateId != 0 {
-			if admin, err := models.AdminGetById(v.UpdateId); err == nil {
-				row["update_name"] = admin.Name
-			} else {
-				row["update_name"] = v.UpdateId
-			}
-		}
-		if v.CreateTime != 0 {
-			//row["create_time"] = beego.Date(time.Unix(v.CreateTime, 0), "Y-m-d H:i:s")
-			row["create_time"] = v.CreateTime
-		}
-		if v.UpdateTime != 0 {
-			row["update_time"] = beego.Date(time.Unix(v.UpdateTime, 0), "Y-m-d H:i:s")
-		}
-		list[k] = row
+		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
+}
+
+func (this *NationController) AjaxDel() {
+	if _, err := models.NationDel(this.getInt("id", 0)); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.ajaxMsg("", MSG_OK)
 }
 
 func (this *NationController) download() {

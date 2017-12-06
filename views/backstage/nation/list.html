@@ -19,33 +19,41 @@
         </thead>
     </table>
     <script type="text/html" id="img">
-        <img src="{{.data.icon}}" width="50px" height="50px"/>{{.data.icon}}
+        <img lay-data="{field:'icon'}" width="50px" height="50px"/>
     </script>
     <script type="text/html" id="bar">
         <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
     </script>
 </div>
-<style>.layui-table-cell {
-    height: 80px;
-    line-height: 80px;
-}
-
-.layui-table-cell img {
-    max-height: 70px;
-}</style>
 <script>
     var $;
     layui.config({
         base: "js/"
-    }).use(['table', 'element', 'layer', 'jquery'], function () {
+    }).use(['table', 'element', 'layer', 'jquery'], function (obj) {
         var table = layui.table;
         var element = layui.element;
         $ = layui.jquery
         table.on('tool(nation)', function (obj) {
             var data = obj.data;
             if (obj.event === 'detail') {
+
             } else if (obj.event === 'del') {
+                layer.confirm('[真删除[' + data.name + ']么', function (index) {
+                    var jsDate = {'id': data.id}
+                    $.post('{{urlfor "NationController.AjaxDel"}}', jsDate, function (out) {
+                        if (out.status == 0) {
+                            layer.alert('删除成功', {icon: 1}, function (index) {
+                                layer.close(index);
+                                window.location.reload();
+                            });
+                        } else {
+                            layer.msg(out.message);
+                        }
+                    }, "json");
+                    obj.del();
+                    layer.close(index)
+                });
             } else if (obj.event === 'edit') {
                 window.location.href = "/backstage/nation/edit?id=" + data.id
             }
