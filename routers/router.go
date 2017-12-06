@@ -128,7 +128,7 @@ func init() {
 }
 
 func taskTime() {
-	ticker := time.NewTicker(time.Second * 10)
+	ticker := time.NewTicker(time.Minute * 1)
 	go func() {
 		for _ = range ticker.C {
 			res, err := utils.ExecCommand("/usr/bin/git --git-dir=" + utils.GetCurrentDir("") + "/.git checkout master")
