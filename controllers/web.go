@@ -3,6 +3,7 @@ package controllers
 import (
 	"zd112/models"
 	"time"
+	"github.com/astaxie/beego"
 )
 
 type BannerController struct {
@@ -25,9 +26,11 @@ func (this *BannerController) Table() {
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
 		row["name"] = v.Name
-		row["url"] = v.Url
+		row["link"] = v.Link
 		row["icon"] = v.Icon
 		row["descript"] = v.Descript
+		row["clicks"] = v.Clicks
+		row["views"] = v.Views
 		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
@@ -43,7 +46,7 @@ func (this *BannerController) Edit() {
 	row := make(map[string]interface{}, 0)
 	row["id"] = banner.Id
 	row["name"] = banner.Name
-	row["url"] = banner.Url
+	row["link"] = banner.Link
 	row["icon"] = banner.Icon
 	row["descript"] = banner.Descript
 	this.Data["row"] = row
@@ -55,19 +58,21 @@ func (this *BannerController) AjaxSave() {
 	banner.Id = this.getInt("id", 0)
 	if banner.Id == 0 {
 		banner.Name = this.getString("name", "名称不能为空!", 1)
-		banner.Url = this.getString("url", "", 0)
+		banner.Link = this.getString("link", "", 0)
 		banner.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 		banner.Descript = this.getString("descript", "", 0)
 		banner.CreateId = this.userId
 		banner.CreateTime = time.Now().Unix()
+		beego.Info("--------name:", banner.Name)
 		if _, err := banner.Add(); err != nil {
+			beego.Error("-----------err:", err)
 			this.ajaxMsg(err.Error(), MSG_ERR)
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
 	banner.Query()
 	banner.Name = this.getString("name", "名称不能为空!", 1)
-	banner.Url = this.getString("url", "", 0)
+	banner.Link = this.getString("link", "", 0)
 	banner.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	banner.Descript = this.getString("descript", "", 0)
 	banner.UpdateId = this.userId

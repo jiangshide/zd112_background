@@ -129,6 +129,27 @@ func init() {
 	beego.Router("/backstage/web/banner/ajaxsave", &controllers.BannerController{}, "*:AjaxSave")
 	beego.Router("/backstage/web/banner/ajaxdel", &controllers.BannerController{}, "*:AjaxDel")
 
+	beego.Router("/backstage/tools/compress", &controllers.CompressController{}, "*:List")
+	beego.Router("/backstage/tools/compress/add", &controllers.CompressController{}, "*:Add")
+	beego.Router("/backstage/tools/compress/edit", &controllers.CompressController{}, "*:Edit")
+	beego.Router("/backstage/tools/compress/table", &controllers.CompressController{}, "*:Table")
+	beego.Router("/backstage/tools/compress/ajaxsave", &controllers.CompressController{}, "*:AjaxSave")
+	beego.Router("/backstage/tools/compress/ajaxdel", &controllers.CompressController{}, "*:AjaxDel")
+
+	beego.Router("/backstage/tools/formattype", &controllers.FormatTypeController{}, "*:List")
+	beego.Router("/backstage/tools/formattype/add", &controllers.FormatTypeController{}, "*:Add")
+	beego.Router("/backstage/tools/formattype/edit", &controllers.FormatTypeController{}, "*:Edit")
+	beego.Router("/backstage/tools/formattype/table", &controllers.FormatTypeController{}, "*:Table")
+	beego.Router("/backstage/tools/formattype/ajaxsave", &controllers.FormatTypeController{}, "*:AjaxSave")
+	beego.Router("/backstage/tools/formattype/ajaxdel", &controllers.FormatTypeController{}, "*:AjaxDel")
+
+	beego.Router("/backstage/tools/format", &controllers.FormatController{}, "*:List")
+	beego.Router("/backstage/tools/format/add", &controllers.FormatController{}, "*:Add")
+	beego.Router("/backstage/tools/format/edit", &controllers.FormatController{}, "*:Edit")
+	beego.Router("/backstage/tools/format/table", &controllers.FormatController{}, "*:Table")
+	beego.Router("/backstage/tools/format/ajaxsave", &controllers.FormatController{}, "*:AjaxSave")
+	beego.Router("/backstage/tools/format/ajaxdel", &controllers.FormatController{}, "*:AjaxDel")
+
 	beego.Router("/upload", &controllers.BaseController{}, "*:Upload")
 	beego.ErrorController(&controllers.ErrorController{})
 	//taskTime()

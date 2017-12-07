@@ -635,11 +635,13 @@ CREATE TABLE `zd_web_banner` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
   `name`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
   COMMENT '名称',
-  `url`         TEXT COMMENT '跳转新页面',
+  `link`        TEXT COMMENT '跳转新页面',
   `icon`        VARCHAR(100)       NOT NULL NULL DEFAULT ''
   COMMENT '图片展示',
   `descript`    VARCHAR(500)       NOT NULL      DEFAULT '0'
   COMMENT '描述',
+  `clicks`      INT                NOT NULL      DEFAULT '0'
+  COMMENT '点击次数',
   `create_id`   INT(11)            NOT NULL      DEFAULT '0'
   COMMENT '创建者ID',
   `update_id`   INT(11)            NOT NULL      DEFAULT '0'
@@ -648,6 +650,8 @@ CREATE TABLE `zd_web_banner` (
   COMMENT '创建时间',
   `update_time` INT(11)            NOT NULL      DEFAULT '0'
   COMMENT '更新时间',
+  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -663,6 +667,83 @@ CREATE TABLE `zd_web_banner` (
 
 #--------the tool---start-----#
 
+DROP TABLE IF EXISTS `zd_tools_format_type`; #文件格式类型
+CREATE TABLE `zd_tools_format_type` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '文件类型名称',
+  `descript`    TEXT COMMENT '文件类型描述',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='文件类型管理';
+
+DROP TABLE IF EXISTS `zd_tools_format`; #文件格式
+CREATE TABLE `zd_tools_format` (
+  `id`          INT(11) UNSIGNED     NOT NULL      AUTO_INCREMENT,
+  `parent_id`   INT(11) UNSIGNED     NOT NULL      DEFAULT '0'
+  COMMENT '所格式类型',
+  `name`        VARCHAR(50) UNIQUE   NOT NULL      DEFAULT ''
+  COMMENT '格式民称',
+  `descript`    TEXT COMMENT '格式描述',
+  `create_id`   INT(11)              NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)              NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)              NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)              NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='文件格式管理';
+
+DROP TABLE IF EXISTS `zd_tools_compress`; #压缩工具
+CREATE TABLE `zd_tools_compress` (
+  `id`          INT(11) UNSIGNED    NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(50)         NOT NULL      DEFAULT ''
+  COMMENT '文件名称',
+  `url`         TEXT COMMENT '下载地址',
+  `type`        TINYINT(1) UNSIGNED NOT NULL      DEFAULT '0'
+  COMMENT '0:图片,1:文件',
+  `format`      VARCHAR(10)         NOT NULL      DEFAULT ''
+  COMMENT '以文件后缀为准',
+  `descript`    VARCHAR(500)        NOT NULL      DEFAULT '0'
+  COMMENT '文件描述',
+  `size`        INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '文件原大小',
+  `resize`      INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '文件压缩后大小',
+  `compress`    INT                 NOT NULL      DEFAULT '0'
+  COMMENT '压缩次数',
+  `downs`       INT                 NOT NULL      DEFAULT '0'
+  COMMENT '下载次数',
+  `create_id`   INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)             NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='文件压缩管理';
 #--------the tool---end-----#
 
 

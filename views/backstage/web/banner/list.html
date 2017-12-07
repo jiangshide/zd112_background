@@ -7,19 +7,24 @@
            lay-filter="nation">
         <thead>
         <tr>
-            <th lay-data="{field:'id',width:80,fixed:true}">ID</th>
-            <th lay-data="{field:'name',width:200}">名称</th>
-            <th lay-data="{field:'icon', width:150,templet: '#img'}">图片</th>
-            <th lay-data="{field:'create_name',width:100}">创建人</th>
-            <th lay-data="{field:'update_name',width:100}">更新人</th>
-            <th lay-data="{field:'create_time',width:200,templet:'#create_time'}">创建时间</th>
-            <th lay-data="{field:'update_time',width:200}">更新时间</th>
+            <th lay-data="{field:'id',align:'center',width:'50',fixed:true}">ID</th>
+            <th lay-data="{field:'name',align:'center',width:'100'}">名称</th>
+            <th lay-data="{field:'icon',align:'center',width:'100',templet: '#img'}">图片</th>
+            <th lay-data="{field:'link',align:'center',width:'60'}">链接</th>
+            <th lay-data="{field:'descript',align:'center',width:'100'}">描述</th>
+            <th lay-data="{field:'clicks',align:'center',width:'100'}">点击次数</th>
+            <th lay-data="{field:'create_name',align:'center',width:'100'}">创建人</th>
+            <th lay-data="{field:'update_name',align:'center',width:'100'}">更新人</th>
+            <th lay-data="{field:'create_time',align:'center',width:'100',templet:'#create_time'}">创建时间</th>
+            <th lay-data="{field:'update_time',align:'center',width:'100'}">更新时间</th>
+            <th lay-data="{field:'views',align:'center',width:'100'}">展示次数</th>
             <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
         </tr>
         </thead>
     </table>
     <script id="img" type="text/html">
-        <img lay-data="<% d.icon %>" width="50px" height="50px"/><% d.icon %>
+        <img lay-data="<% d.icon %>" width="50px" height="50px"
+             src="/static/upload/jpg/8befa5a4cc29ba0dcec30a491e50c130_1512610540.jpg"/>
     </script>
     <script type="text/html" id="bar">
         <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>

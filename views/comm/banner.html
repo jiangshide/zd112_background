@@ -1,27 +1,11 @@
 <div>
     <div class="layui-carousel" id="banner">
         <div carousel-item>
-            <div><img
-                    src="static/mingzu/img/阿昌族_01.jpg"
-                    width="100%;"></div>
-            <div><img
-                    src="static/mingzu/img/白族_02.jpg"
-                    width="100%;"></div>
-            <div><img
-                    src="static/mingzu/img/保安族_03.jpg"
-                    width="100%;"></div>
-            <div><img
-                    src="static/mingzu/img/布朗族_04.jpg"
-                    width="100%;"></div>
-            <div><img
-                    src="static/mingzu/img/布依族_05.jpg"
-                    width="100%;"></div>
-            <div><img
-                    src="static/mingzu/img/藏族_06.jpg"
-                    width="100%;"></div>
-            <div><img
-                    src="static/mingzu/img/朝鲜族_07.jpg"
-                    width="100%;"></div>
+        {{range .row}}
+            <div><a href="{{.Link}}"><img
+                    src="{{.Icon}}"
+                    width="100%;" alt="{{.Descript}}"></a></div>
+        {{end}}
         </div>
     </div>
 </div>

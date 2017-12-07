@@ -263,6 +263,20 @@ func WriterFile(sourceFile, destFile string, isDeleteSourceFile bool) (errs erro
 	return errs
 }
 
+func FileSize(path string) int64 {
+	if fileInfo, err := os.Stat(GetCurrentDir("/") + path); err == nil {
+		return fileInfo.Size()
+	}
+	return 0
+}
+
+func AbsFileSize(path string) int64 {
+	if fileInfo, err := os.Stat(path); err == nil {
+		return fileInfo.Size()
+	}
+	return 0
+}
+
 /**
 追加文件内容
 */

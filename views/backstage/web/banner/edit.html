@@ -8,22 +8,26 @@
         <div class="layui-form-item">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="名称"
+                <input type="text" name="name" id="name" lay-verify="required" autocomplete="on" placeholder="名称"
                        class="layui-input" value="{{.row.name}}">
             </div>
             <div class="layui-form-mid layui-word-aux">*</div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">所属</label>
+            <label class="layui-form-label">链接</label>
             <div class="layui-input-inline">
-                <select name="group_id" lay-verify="required" lay-search="" style="width:100%;">
-                    <option value="">请选择所属</option>
-                {{range .group}}
-                    <option value="{{.id}}" {{if .selected}}selected{{end}}>{{.name}}</option>
-                {{end}}
-                </select>
+                <input type="text" name="link" id="link" autocomplete="on" placeholder="http://xxx" class="layui-input"
+                       value="{{.row.link}}">
             </div>
-            <div class="layui-form-mid layui-word-aux">*上级关联</div>
+            <div class="layui-form-mid layui-word-aux">跳转页面链接地址</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-inline">
+                <textarea placeholder="请输入内容" name="descript" va id="descript"
+                          class="layui-textarea">{{.row.descript}}</textarea>
+            </div>
+            <div class="layui-form-mid layui-word-aux">备注</div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">Icon</label>

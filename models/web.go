@@ -5,13 +5,15 @@ import "github.com/astaxie/beego/orm"
 type Banner struct {
 	Id         int
 	Name       string
-	Url        string
+	Link       string
 	Icon       string
 	Descript   string
+	Clicks      int
 	CreateId   int
 	UpdateId   int
 	CreateTime int64
 	UpdateTime int64
+	Views      int
 }
 
 func (this *Banner) TableName() string {
