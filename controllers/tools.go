@@ -3,7 +3,6 @@ package controllers
 import (
 	"zd112/models"
 	"os"
-	"zd112/utils"
 	"github.com/astaxie/beego"
 	"time"
 	"bufio"
@@ -256,6 +255,12 @@ func (this *CompressController) Edit() {
 	row := make(map[string]interface{}, 0)
 	row["id"] = compress.Id
 	row["name"] = compress.Name
+	row["file"]=compress.Url
+	row["format"] = compress.Format
+	row["size"] = compress.Size
+	row["resize"] = compress.ReSize
+	row["compress"] = compress.Compress
+	row["downs"] = compress.Downs
 	row["descript"] = compress.Descript
 	this.Data["row"] = row
 	this.display(this.getBgToolAction("compress/edit"))
@@ -264,19 +269,35 @@ func (this *CompressController) Edit() {
 func (this *CompressController) AjaxSave() {
 	compress := new(models.Compress)
 	compress.Id = this.getInt("id", 0)
-	if compress.Id == 0 {
-		compress.Name = this.getString("name", "名称不能为空!", 1)
-		compress.File = this.getString("file", "上传文件URL为空!", defaultMinSize)
-		compress.Descript = this.getString("descript", "", 0)
-		size, sufix := utils.FileSize(compress.File)
-		format := new(models.Format)
-		format.Name = sufix
-		format.Query()
-		compress.Type = format.Id
-		compress.Format = sufix
-		compress.Size = size
-
+	compress.Name = this.getString("name", "名称不能为空!", 1)
+	compress.Url = this.getString("file", "上传文件URL为空!", defaultMinSize)
+	compress.Descript = this.getString("descript", "", 0)
+	compress.Size = this.getInt64("size", 0)
+	compress.ReSize = this.getInt64("resize", 0)
+	compress.Compress = this.getInt("compress", 0)
+	if compress.ReSize > 0 {
+		compress.Compress = 1
 	}
+	if compress.Id == 0 {
+		id, reSize, sufix := this.getFileFormat(compress.Url)
+		compress.Type = id
+		compress.Format = sufix
+		compress.ReSize = reSize
+		compress.CreateId = this.userId
+		compress.CreateTime = time.Now().Unix()
+		if _, err := compress.Add(); err != nil {
+			this.ajaxMsg(err.Error(), MSG_ERR)
+		}
+		this.ajaxMsg("", MSG_OK)
+	}
+
+	compress.Downs = this.getInt("downs", 0)
+	compress.UpdateId = this.userId
+	compress.UpdateTime = time.Now().Unix()
+	if _, err := compress.Update(); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.ajaxMsg("", MSG_OK)
 }
 
 func (this *CompressController) Table() {
@@ -286,7 +307,14 @@ func (this *CompressController) Table() {
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
 		row["name"] = v.Name
-		row["file"] = v.File
+		row["file"] = v.Url
+		row["parent"] = this.getFileType(v.Url)
+		row["format"] = v.Format
+		row["size"] = v.Size
+		row["resize"] = v.ReSize
+		row["compress"] = v.Compress
+		row["downs"] = v.Downs
+		row["descript"] = v.Descript
 		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)

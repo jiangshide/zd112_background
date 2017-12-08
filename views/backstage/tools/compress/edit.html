@@ -13,6 +13,12 @@
             </div>
             <div class="layui-form-mid layui-word-aux">*</div>
         </div>
+        <input type="hidden" name="format" value="{{.format}}">
+        <input type="hidden" name="size" value="{{.row.size}}">
+        <input type="hidden" name="resize" value="{{.row.resize}}">
+        <input type="hidden" name="compress" value="{{.row.compress}}">
+        <input type="hidden" name="downs" value="{{.row.downs}}">
+        <input type="hidden" name="downs" value="{{.row.downs}}">
     {{template "comm/upload_edit.html" .}}
     </form>
 </div>

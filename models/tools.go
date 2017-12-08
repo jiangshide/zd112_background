@@ -88,12 +88,12 @@ func (this *Format) List(pageSize, offSet int) ([]*Format, int64) {
 type Compress struct {
 	Id         int
 	Name       string
-	File       string
+	Url       string
 	Type       int
 	Format     string
 	Descript   string
 	Size       int64
-	ReSize     int
+	ReSize     int64
 	Compress   int
 	Downs      int
 	CreateId   int

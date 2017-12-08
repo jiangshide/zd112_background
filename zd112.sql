@@ -723,7 +723,7 @@ CREATE TABLE `zd_tools_compress` (
   COMMENT '文件描述',
   `size`        INT(11)             NOT NULL      DEFAULT '0'
   COMMENT '文件原大小',
-  `resize`      INT(11)             NOT NULL      DEFAULT '0'
+  `re_size`      INT(11)             NOT NULL      DEFAULT '0'
   COMMENT '文件压缩后大小',
   `compress`    INT                 NOT NULL      DEFAULT '0'
   COMMENT '压缩次数',

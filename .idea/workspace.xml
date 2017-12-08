@@ -2,62 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b319c84e-e2f1-4295-a011-dfe3ac5c4c1f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/comm/upload.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/comm/upload_edit.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/controllers/area.go" afterPath="$PROJECT_DIR$/controllers/area.go" />
       <change beforePath="$PROJECT_DIR$/controllers/comm.go" afterPath="$PROJECT_DIR$/controllers/comm.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/index.go" afterPath="$PROJECT_DIR$/controllers/index.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/nation.go" afterPath="$PROJECT_DIR$/controllers/nation.go" />
       <change beforePath="$PROJECT_DIR$/controllers/tools.go" afterPath="$PROJECT_DIR$/controllers/tools.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/web.go" afterPath="$PROJECT_DIR$/controllers/web.go" />
-      <change beforePath="$PROJECT_DIR$/models/area.go" afterPath="$PROJECT_DIR$/models/area.go" />
-      <change beforePath="$PROJECT_DIR$/models/nation.go" afterPath="$PROJECT_DIR$/models/nation.go" />
       <change beforePath="$PROJECT_DIR$/models/tools.go" afterPath="$PROJECT_DIR$/models/tools.go" />
-      <change beforePath="$PROJECT_DIR$/models/web.go" afterPath="$PROJECT_DIR$/models/web.go" />
       <change beforePath="$PROJECT_DIR$/utils/filehelp.go" afterPath="$PROJECT_DIR$/utils/filehelp.go" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/city/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/city/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/city/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/city/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/city/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/city/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/continent/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/continent/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/continent/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/continent/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/continent/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/continent/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/country/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/country/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/country/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/country/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/country/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/country/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/county/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/county/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/county/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/county/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/county/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/county/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/group/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/group/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/group/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/group/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/group/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/group/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/province/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/province/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/province/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/province/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/province/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/province/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/region/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/region/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/region/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/region/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/region/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/region/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/state/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/state/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/state/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/state/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/state/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/state/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/team/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/team/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/team/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/team/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/team/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/team/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/town/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/town/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/town/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/town/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/town/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/town/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/village/add.html" afterPath="$PROJECT_DIR$/views/backstage/area/village/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/village/edit.html" afterPath="$PROJECT_DIR$/views/backstage/area/village/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/area/village/list.html" afterPath="$PROJECT_DIR$/views/backstage/area/village/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/nation/add.html" afterPath="$PROJECT_DIR$/views/backstage/nation/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/nation/edit.html" afterPath="$PROJECT_DIR$/views/backstage/nation/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/tools/compress/add.html" afterPath="$PROJECT_DIR$/views/backstage/tools/compress/add.html" />
       <change beforePath="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" afterPath="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" />
       <change beforePath="$PROJECT_DIR$/views/backstage/tools/compress/list.html" afterPath="$PROJECT_DIR$/views/backstage/tools/compress/list.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/web/banner/add.html" afterPath="$PROJECT_DIR$/views/backstage/web/banner/add.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/web/banner/edit.html" afterPath="$PROJECT_DIR$/views/backstage/web/banner/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/web/banner/list.html" afterPath="$PROJECT_DIR$/views/backstage/web/banner/list.html" />
-      <change beforePath="$PROJECT_DIR$/zd112" afterPath="$PROJECT_DIR$/zd112" />
+      <change beforePath="$PROJECT_DIR$/zd112.sql" afterPath="$PROJECT_DIR$/zd112.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -102,7 +54,72 @@
     <favorites_list name="zd112" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="tools.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/tools.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="261" column="39" lean-forward="true" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filehelp.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/filehelp.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tools.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/tools.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1635">
+              <caret line="109" column="44" lean-forward="false" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="comm.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/comm.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="17" column="55" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -121,12 +138,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/backstage/area/continent/add.html" />
-        <option value="$PROJECT_DIR$/views/comm/upload.html" />
         <option value="$PROJECT_DIR$/views/backstage/web/banner/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/web/banner/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/tools/compress/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/city/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/city/edit.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/country/add.html" />
@@ -147,7 +160,6 @@
         <option value="$PROJECT_DIR$/views/backstage/area/town/edit.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/edit.html" />
-        <option value="$PROJECT_DIR$/controllers/comm.go" />
         <option value="$PROJECT_DIR$/views/backstage/area/city/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/continent/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/country/list.html" />
@@ -160,18 +172,23 @@
         <option value="$PROJECT_DIR$/views/backstage/area/town/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/web/banner/list.html" />
-        <option value="$PROJECT_DIR$/views/backstage/tools/compress/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/nation/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/nation/edit.html" />
         <option value="$PROJECT_DIR$/models/nation.go" />
         <option value="$PROJECT_DIR$/controllers/nation.go" />
-        <option value="$PROJECT_DIR$/models/tools.go" />
-        <option value="$PROJECT_DIR$/controllers/tools.go" />
         <option value="$PROJECT_DIR$/models/web.go" />
         <option value="$PROJECT_DIR$/controllers/web.go" />
         <option value="$PROJECT_DIR$/models/area.go" />
         <option value="$PROJECT_DIR$/controllers/area.go" />
         <option value="$PROJECT_DIR$/controllers/index.go" />
+        <option value="$PROJECT_DIR$/views/backstage/tools/compress/list.html" />
+        <option value="$PROJECT_DIR$/models/tools.go" />
+        <option value="$PROJECT_DIR$/controllers/comm.go" />
+        <option value="$PROJECT_DIR$/views/backstage/tools/compress/add.html" />
+        <option value="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" />
+        <option value="$PROJECT_DIR$/utils/filehelp.go" />
+        <option value="$PROJECT_DIR$/zd112.sql" />
+        <option value="$PROJECT_DIR$/controllers/tools.go" />
       </list>
     </option>
   </component>
@@ -221,13 +238,39 @@
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="upload" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backstage" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+              <item name="compress" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zd112" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="comm" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -278,8 +321,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2639485" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2639485" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -334,54 +378,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="48" lean-forward="true" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/county/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/country/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/backstage/area/country/add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
@@ -638,22 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/comm.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="305" column="38" lean-forward="false" selection-start-line="305" selection-start-column="38" selection-end-line="305" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/backstage/nation/add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -678,30 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="92" column="34" lean-forward="false" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/tools.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3203">
-          <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/area.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15810">
-          <caret line="1057" column="30" lean-forward="true" selection-start-line="1057" selection-start-column="30" selection-end-line="1057" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/area.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -738,14 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/tools.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/web.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -766,6 +714,106 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="76" column="37" lean-forward="false" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/area.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/area.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5814">
+          <caret line="1057" column="30" lean-forward="true" selection-start-line="1057" selection-start-column="30" selection-end-line="1057" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/controller.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="473" column="43" lean-forward="false" selection-start-line="473" selection-start-column="43" selection-end-line="473" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/comm.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/filehelp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zd112.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1352">
+          <caret line="727" column="35" lean-forward="false" selection-start-line="727" selection-start-column="35" selection-end-line="727" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="109" column="44" lean-forward="false" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/comm/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="17" column="55" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="261" column="39" lean-forward="true" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
           <folding />
         </state>
       </provider>

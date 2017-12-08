@@ -8,13 +8,19 @@
         <thead>
         <tr>
             <th lay-data="{field:'id',width:80,fixed:true}">ID</th>
-            <th lay-data="{field:'name',width:200}">名称</th>
-            <th lay-data="{field:'file', width:150,templet: '#img'}">图片</th>
-
+            <th lay-data="{field:'name',width:100}">名称</th>
+            <th lay-data="{field:'file', width:100,templet: '#img'}">图片</th>
+            <th lay-data="{field:'parent',width:100}">类型</th>
+            <th lay-data="{field:'format',width:100}">格式</th>
+            <th lay-data="{field:'size',width:100}">原大小</th>
+            <th lay-data="{field:'resize',widh:100}">大小</th>
+            <th lay-data="{field:'compress',width:100}">次数</th>
+            <th lay-data="{field:'downs',width:100}">次数</th>
+            <th lay-data="{field:'descript',width:100}">描述</th>
             <th lay-data="{field:'create_name',width:100}">创建人</th>
             <th lay-data="{field:'update_name',width:100}">更新人</th>
-            <th lay-data="{field:'create_time',width:200,templet:'#create_time'}">创建时间</th>
-            <th lay-data="{field:'update_time',width:200}">更新时间</th>
+            <th lay-data="{field:'create_time',width:100,templet:'#create_time'}">创建时间</th>
+            <th lay-data="{field:'update_time',width:100}">更新时间</th>
             <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
         </tr>
         </thead>

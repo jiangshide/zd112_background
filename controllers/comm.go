@@ -67,10 +67,17 @@ func (this *BaseController) getString(key, tips string, minSize int) string {
 }
 
 func (this *BaseController) getInt(key string, defaultValue int) int {
-	resInt, _ := this.GetInt(key, defaultValue)
-	errorMsg := ""
-	if errorMsg != "" {
-		this.showTips(errorMsg)
+	resInt, err := this.GetInt(key, defaultValue)
+	if err != nil {
+		this.showTips(err)
+	}
+	return resInt
+}
+
+func (this *BaseController) getInt64(key string, defaultValue int64) int64 {
+	resInt, err := this.GetInt64(key, defaultValue)
+	if err != nil {
+		this.showTips(err)
 	}
 	return resInt
 }
@@ -240,7 +247,7 @@ func (this *BaseController) ajaxMsgFile(msg interface{}, size, resize int64, msg
 	out["message"] = msg
 	out["size"] = size
 	out["resize"] = resize
-	this.Data["json"]=out
+	this.Data["json"] = out
 	this.ServeJSON()
 	this.StopRun()
 }
@@ -292,18 +299,29 @@ func (this *BaseController) Upload() {
 	}
 	fileName = utils.Md5(this.userName+time.RubyDate+utils.GetRandomString(10)) + "_" + fmt.Sprint(time.Now().Unix()) + "." + sufix
 	toFilePath := this.upload + sufix + "/" + fileName
+	var size, resize int64
+	if err = this.SaveToFile("file", utils.GetCurrentDir(toFilePath)); err == nil && this.getFileType(fileName) == "图片" {
+		size, resize = this.compress(toFilePath)
+	}
+	this.ajaxMsgFile(toFilePath, size, resize, MSG_OK)
+}
+
+func (this *BaseController) getFileFormat(name string) (int, int64, string) {
+	size, sufix := utils.FileSize(name)
 	format := new(models.Format)
-	format.Name = fileName[strings.LastIndex(fileName, ".")+1:]
+	format.Name = name
+	format.Query()
+	return format.Id, size, sufix
+}
+
+func (this *BaseController) getFileType(name string) string {
+	format := new(models.Format)
+	format.Name = name[strings.LastIndex(name, ".")+1:]
 	format.Query();
 	formatType := new(models.FormatType)
 	formatType.Id = format.ParentId
 	formatType.Query()
-	name := formatType.Name
-	var size, resize int64
-	if err = this.SaveToFile("file", utils.GetCurrentDir(toFilePath)); err == nil && name == "图片" {
-		size, resize = this.compress(toFilePath)
-	}
-	this.ajaxMsgFile(toFilePath, size, resize, MSG_OK)
+	return formatType.Name
 }
 
 func (this *BaseController) compress(path string) (int64, int64) {
@@ -323,7 +341,7 @@ func (this *BaseController) compress(path string) (int64, int64) {
 	return size, resize
 }
 
-func (this *BaseController) setFileSize(row map[string]interface{},file string){
-	size,_:=utils.FileSize(file)
-	row["size"]=size
+func (this *BaseController) setFileSize(row map[string]interface{}, file string) {
+	size, _ := utils.FileSize(file)
+	row["size"] = size
 }

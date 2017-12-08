@@ -59,7 +59,6 @@ func GetCurrentDir(path string) string {
 		if err := Exist(path); err != nil {
 			os.MkdirAll(path, os.ModePerm)
 		}
-		beego.Info(path, " | ", fileName)
 		return path + fileName
 	} else {
 		return strings.Replace(dir, "\\", "/", -1)
