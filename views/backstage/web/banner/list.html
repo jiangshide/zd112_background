@@ -9,7 +9,7 @@
         <tr>
             <th lay-data="{field:'id',align:'center',width:'50',fixed:true}">ID</th>
             <th lay-data="{field:'name',align:'center',width:'100'}">名称</th>
-            <th lay-data="{field:'icon',align:'center',width:'100',templet: '#img'}">图片</th>
+            <th lay-data="{field:'file',align:'center',width:'100',templet: '#img'}">图片</th>
             <th lay-data="{field:'link',align:'center',width:'60'}">链接</th>
             <th lay-data="{field:'descript',align:'center',width:'100'}">描述</th>
             <th lay-data="{field:'clicks',align:'center',width:'100'}">点击次数</th>
@@ -23,8 +23,7 @@
         </thead>
     </table>
     <script id="img" type="text/html">
-        <img lay-data="<% d.icon %>" width="50px" height="50px"
-             src="/static/upload/jpg/8befa5a4cc29ba0dcec30a491e50c130_1512610540.jpg"/>
+        <img lay-data="<% d.file %>" width="50px" height="50px"/>
     </script>
     <script type="text/html" id="bar">
         <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>

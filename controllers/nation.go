@@ -27,34 +27,33 @@ func (this *NationController) Add() {
 
 func (this *NationController) Edit() {
 	this.pageTitle("编辑民族名称")
-	if nation, err := models.NationById(this.getInt("id", 0)); err != nil {
+	nation := new(models.Nation)
+	nation.Id = this.getInt("id", 0)
+	if err := nation.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
-	} else {
-		row := make(map[string]interface{})
-		row["id"] = nation.Id
-		row["name"] = nation.Name
-		row["icon"] = nation.Icon
-		this.Data["row"] = row
 	}
+	row := make(map[string]interface{})
+	row["id"] = nation.Id
+	row["name"] = nation.Name
+	row["file"] = nation.Icon
+	this.setFileSize(row, nation.Icon)
+	this.Data["row"] = row
 	this.display(this.getBgAction("nation/edit"))
 }
 
 func (this *NationController) AjaxSave() {
-	id := this.getInt("id", 0)
-	if id == 0 {
-		nation := new(models.Nation)
-		nation.Name = this.getString("name", "名称不能为空!", 1)
-		nation.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
+	nation := new(models.Nation)
+	nation.Id = this.getInt("id", 0)
+	nation.Name = this.getString("name", "名称不能为空!", 1)
+	nation.Icon = this.getString("file", "File不能为空!", defaultMinSize)
+	if nation.Id == 0 {
 		nation.CreateId = this.userId
 		nation.CreateTime = time.Now().Unix()
-		if _, err := models.NationAdd(nation); err != nil {
+		if _, err := nation.Add(); err != nil {
 			this.ajaxMsg(err.Error(), MSG_ERR)
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	nation, _ := models.NationById(id)
-	nation.Name = this.getString("name", "名称不能为空!", 1)
-	nation.Icon = this.getString("icon", "Icon不能为空!", defaultMinSize)
 	nation.UpdateId = this.userId
 	nation.UpdateTime = time.Now().Unix()
 	if _, err := nation.Update(); err != nil {
@@ -64,19 +63,22 @@ func (this *NationController) AjaxSave() {
 }
 
 func (this *NationController) Table() {
-	result, count := models.NationList(this.pageSize, this.offSet)
+	nation := new(models.Nation)
+	result, count := nation.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
 		row["name"] = v.Name
-		row["icon"] = v.Icon
+		row["file"] = v.Icon
 		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *NationController) AjaxDel() {
-	if _, err := models.NationDel(this.getInt("id", 0)); err != nil {
+	nation := new(models.Nation)
+	nation.Id = this.getInt("id", 0)
+	if _, err := nation.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -112,7 +114,7 @@ func (this *NationController) download() {
 			nation.Icon = dir + fileName
 			nation.CreateId = this.userId
 			nation.CreateTime = time.Now().Unix()
-			if _, err := models.NationAdd(nation); err != nil {
+			if _, err := nation.Add(); err != nil {
 				beego.Error("---------add:name:", v, err)
 			}
 		} else {

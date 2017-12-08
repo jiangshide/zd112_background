@@ -1,15 +1,16 @@
 <div class="layui-layout layui-layout-admin" style="padding-left:20px;">
     <div class="layui-btn-group demoTable" style="margin-top:10px;">
-        <a class="layui-btn" data-type="tabAdd" href="/backstage/area/city/add">新增</a>
+        <a class="layui-btn" data-type="tabAdd" href="/backstage/tools/compress/add">新增</a>
     </div>
     <table class="layui-table"
-           lay-data="{width:'full-10',height:'full-105',url:'/backstage/area/city/table',page:true,id:'idTest'}"
+           lay-data="{width:'full-10',height:'full-105',url:'/backstage/tools/compress/table',page:true,id:'idTest'}"
            lay-filter="nation">
         <thead>
         <tr>
             <th lay-data="{field:'id',width:80,fixed:true}">ID</th>
             <th lay-data="{field:'name',width:200}">名称</th>
-            <th lay-data="{field:'icon', width:150,templet: '#img'}">图片</th>
+            <th lay-data="{field:'file', width:150,templet: '#img'}">图片</th>
+
             <th lay-data="{field:'create_name',width:100}">创建人</th>
             <th lay-data="{field:'update_name',width:100}">更新人</th>
             <th lay-data="{field:'create_time',width:200,templet:'#create_time'}">创建时间</th>
@@ -19,7 +20,7 @@
         </thead>
     </table>
     <script id="img" type="text/html">
-        <img lay-data="<% d.icon %>" width="50px" height="50px"/><% d.icon %>
+        <img lay-data="<% d.file %>" width="50px" height="50px"/>
     </script>
     <script type="text/html" id="bar">
         <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
@@ -43,7 +44,7 @@
             } else if (obj.event === 'del') {
                 layer.confirm('真的删除[' + data.name + ']么', function (index) {
                     var jsData = {'id': data.id};
-                    $.post('{{urlfor "CityController.AjaxDel"}}', jsData, function (out) {
+                    $.post('{{urlfor "CompressController.AjaxDel"}}', jsData, function (out) {
                         if (out.status == 0) {
                             layer.alert('删除成功', function (index) {
                                 layer.close(index);
@@ -57,7 +58,7 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                window.location.href = "/backstage/area/city/edit?id=" + data.id
+                window.location.href = "/backstage/tools/compress/edit?id=" + data.id
             }
         });
     });

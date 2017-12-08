@@ -29,12 +29,15 @@ func (this *Continent) Update() (int64, error) {
 }
 
 func (this *Continent) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func ContinentList(pageSize, offSet int) ([]*Continent, int64) {
+func (this *Continent) List(pageSize, offSet int) ([]*Continent, int64) {
 	list := make([]*Continent, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_continent"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -68,12 +71,15 @@ func (this *State) Update() (int64, error) {
 }
 
 func (this *State) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func StateList(pageSize, offSet int) ([]*State, int64) {
+func (this *State) List(pageSize, offSet int) ([]*State, int64) {
 	list := make([]*State, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_state"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -107,12 +113,15 @@ func (this *Province) Update() (int64, error) {
 }
 
 func (this *Province) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func ProvinceList(pageSize, offSet int) ([]*Province, int64) {
+func (this *Province) List(pageSize, offSet int) ([]*Province, int64) {
 	list := make([]*Province, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_province"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -146,12 +155,15 @@ func (this *City) Update() (int64, error) {
 }
 
 func (this *City) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func CityList(pageSize, offSet int) ([]*City, int64) {
+func (this *City) List(pageSize, offSet int) ([]*City, int64) {
 	list := make([]*City, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_city"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -185,12 +197,15 @@ func (this *Region) Update() (int64, error) {
 }
 
 func (this *Region) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func RegionList(pageSize, offSet int) ([]*Region, int64) {
+func (this *Region) List(pageSize, offSet int) ([]*Region, int64) {
 	list := make([]*Region, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_region"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -224,12 +239,15 @@ func (this *County) Update() (int64, error) {
 }
 
 func (this *County) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func CountyList(pageSize, offSet int) ([]*County, int64) {
+func (this *County) List(pageSize, offSet int) ([]*County, int64) {
 	list := make([]*County, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_county"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -263,12 +281,15 @@ func (this *Town) Update() (int64, error) {
 }
 
 func (this *Town) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func TownList(pageSize, offSet int) ([]*Town, int64) {
+func (this *Town) List(pageSize, offSet int) ([]*Town, int64) {
 	list := make([]*Town, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_town"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -302,12 +323,15 @@ func (this *Country) Update() (int64, error) {
 }
 
 func (this *Country) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func CountryList(pageSize, offSet int) ([]*Country, int64) {
+func (this *Country) List(pageSize, offSet int) ([]*Country, int64) {
 	list := make([]*Country, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_country"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -341,12 +365,15 @@ func (this *Village) Update() (int64, error) {
 }
 
 func (this *Village) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func VillageList(pageSize, offSet int) ([]*Village, int64) {
+func (this *Village) List(pageSize, offSet int) ([]*Village, int64) {
 	list := make([]*Village, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_village"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -380,12 +407,15 @@ func (this *Group) Update() (int64, error) {
 }
 
 func (this *Group) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func GroupList(pageSize, offSet int) ([]*Group, int64) {
+func (this *Group) List(pageSize, offSet int) ([]*Group, int64) {
 	list := make([]*Group, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_group"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -419,12 +449,15 @@ func (this *Team) Update() (int64, error) {
 }
 
 func (this *Team) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func TeamList(pageSize, offSet int) ([]*Team, int64) {
+func (this *Team) List(pageSize, offSet int) ([]*Team, int64) {
 	list := make([]*Team, 0)
-	query := orm.NewOrm().QueryTable(TableName("area_team"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total

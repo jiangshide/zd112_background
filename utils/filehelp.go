@@ -44,6 +44,11 @@ func GetAbsDir(path string) string {
 }
 
 func GetCurrentDir(path string) string {
+	fileName := ""
+	if strings.Contains(path, ".") {
+		fileName = path[strings.LastIndex(path, "/"):]
+		path = path[:strings.LastIndex(path, "/")]
+	}
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		log.Fatal(err)
@@ -54,7 +59,8 @@ func GetCurrentDir(path string) string {
 		if err := Exist(path); err != nil {
 			os.MkdirAll(path, os.ModePerm)
 		}
-		return path
+		beego.Info(path, " | ", fileName)
+		return path + fileName
 	} else {
 		return strings.Replace(dir, "\\", "/", -1)
 	}
@@ -263,18 +269,31 @@ func WriterFile(sourceFile, destFile string, isDeleteSourceFile bool) (errs erro
 	return errs
 }
 
-func FileSize(path string) int64 {
-	if fileInfo, err := os.Stat(GetCurrentDir("/") + path); err == nil {
-		return fileInfo.Size()
+func FileSize(path string) (int64, string) {
+	sufix := "default"
+	if strings.Contains(path, ".") {
+		sufix = strings.Split(path, ".")[1]
 	}
-	return 0
+	if !strings.Contains(path, GetCurrentDir("")) {
+		path = GetCurrentDir(path)
+	}
+	if fileInfo, err := os.Stat(path); err == nil {
+		return fileInfo.Size(), sufix
+	} else {
+		beego.Error(err)
+	}
+	return 0, sufix
 }
 
-func AbsFileSize(path string) int64 {
-	if fileInfo, err := os.Stat(path); err == nil {
-		return fileInfo.Size()
+func AbsFileSize(path string) (int64, string) {
+	sufix := "default"
+	if strings.Contains(path, ".") {
+		sufix = strings.Split(path, ".")[1]
 	}
-	return 0
+	if fileInfo, err := os.Stat(path); err == nil {
+		return fileInfo.Size(), sufix
+	}
+	return 0, sufix
 }
 
 /**

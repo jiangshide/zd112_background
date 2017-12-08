@@ -8,7 +8,7 @@ type Banner struct {
 	Link       string
 	Icon       string
 	Descript   string
-	Clicks      int
+	Clicks     int
 	CreateId   int
 	UpdateId   int
 	CreateTime int64
@@ -33,12 +33,15 @@ func (this *Banner) Update() (int64, error) {
 }
 
 func (this *Banner) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func BannerList(pageSize, offSet int) ([]*Banner, int64) {
+func (this *Banner) List(pageSize, offSet int) ([]*Banner, int64) {
 	list := make([]*Banner, 0)
-	query := orm.NewOrm().QueryTable(TableName("web_banner"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total

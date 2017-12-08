@@ -61,7 +61,8 @@ func (this *FormatTypeController) AjaxSave() {
 }
 
 func (this *FormatTypeController) Table() {
-	result, count := models.FormatTypeList(this.pageSize, this.offSet)
+	formatType := new(models.FormatType)
+	result, count := formatType.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
@@ -134,7 +135,8 @@ func (this *FormatController) AjaxSave() {
 }
 
 func (this *FormatController) parent(id int) {
-	result, count := models.FormatTypeList(-1, -1)
+	formatType := new(models.FormatType)
+	result, count := formatType.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
@@ -151,7 +153,8 @@ func (this *FormatController) parent(id int) {
 }
 
 func (this *FormatController) Table() {
-	result, count := models.FormatList(this.pageSize, this.offSet)
+	format := new(models.Format)
+	result, count := format.List(this.pageSize, this.offSet)
 	if count == 0 {
 		this.Export()
 	}
@@ -198,7 +201,7 @@ func (this *FormatController) Export() {
 				this.addDb("音频", lineStr[1])
 			} else if lineStr[0] == "picture" {
 				this.addDb("图片", lineStr[1])
-			} else if lineStr[0] == "doc" {
+			} else if lineStr[0] == "text" {
 				this.addDb("文字", lineStr[1])
 			}
 		}
@@ -235,8 +238,6 @@ type CompressController struct {
 
 func (this *CompressController) List() {
 	this.pageTitle("压缩文件列表")
-	fileInfo, err := os.Stat(utils.GetCurrentDir("/static/upload/img/") + "0c6178babfc520f3154053143551260b.jpg")
-	beego.Info("----------fileInfo:", fileInfo, " | err:", err)
 	this.display(this.getBgToolAction("compress/list"))
 }
 
@@ -265,17 +266,27 @@ func (this *CompressController) AjaxSave() {
 	compress.Id = this.getInt("id", 0)
 	if compress.Id == 0 {
 		compress.Name = this.getString("name", "名称不能为空!", 1)
-		compress.Url = this.getString("url", "上传文件URL为空!", defaultMinSize)
-		compress.Size = utils.FileSize(compress.Url)
+		compress.File = this.getString("file", "上传文件URL为空!", defaultMinSize)
+		compress.Descript = this.getString("descript", "", 0)
+		size, sufix := utils.FileSize(compress.File)
+		format := new(models.Format)
+		format.Name = sufix
+		format.Query()
+		compress.Type = format.Id
+		compress.Format = sufix
+		compress.Size = size
+
 	}
 }
 
 func (this *CompressController) Table() {
-	result, count := models.CompressList(this.pageSize, this.offSet)
+	compress := new(models.Compress)
+	result, count := compress.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
 		row["name"] = v.Name
+		row["file"] = v.File
 		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)

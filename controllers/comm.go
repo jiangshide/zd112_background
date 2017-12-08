@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"zd112/models"
 	"time"
+	"github.com/jiangshide/tinify-go/tinify"
 )
 
 const (
@@ -89,6 +90,7 @@ func (this *BaseController) Prepare() {
 	this.Data["action"] = this.action
 	this.defaultPsw = beego.AppConfig.String("defaultPsw")
 	this.currParam()
+	Tinify.SetKey("nDuD_n78YCCvgJ7F5CZ_gvbrpU4iRtoZ")
 }
 
 func (this *BaseController) currParam() {
@@ -232,6 +234,17 @@ func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	this.StopRun()
 }
 
+func (this *BaseController) ajaxMsgFile(msg interface{}, size, resize int64, msgNo int) {
+	out := make(map[string]interface{})
+	out["status"] = msgNo
+	out["message"] = msg
+	out["size"] = size
+	out["resize"] = resize
+	this.Data["json"]=out
+	this.ServeJSON()
+	this.StopRun()
+}
+
 func (this *BaseController) ajaxList(msg interface{}, msgNo int, count int64, data interface{}) {
 	out := make(map[string]interface{})
 	out["code"] = msgNo
@@ -278,7 +291,39 @@ func (this *BaseController) Upload() {
 		sufix = fileName[strings.LastIndex(fileName, ".")+1:]
 	}
 	fileName = utils.Md5(this.userName+time.RubyDate+utils.GetRandomString(10)) + "_" + fmt.Sprint(time.Now().Unix()) + "." + sufix
-	err = this.SaveToFile("file", utils.GetCurrentDir(this.upload+sufix+"/")+fileName)
-	beego.Error(err)
-	this.ajaxMsg(this.upload+sufix+"/"+fileName, MSG_OK)
+	toFilePath := this.upload + sufix + "/" + fileName
+	format := new(models.Format)
+	format.Name = fileName[strings.LastIndex(fileName, ".")+1:]
+	format.Query();
+	formatType := new(models.FormatType)
+	formatType.Id = format.ParentId
+	formatType.Query()
+	name := formatType.Name
+	var size, resize int64
+	if err = this.SaveToFile("file", utils.GetCurrentDir(toFilePath)); err == nil && name == "图片" {
+		size, resize = this.compress(toFilePath)
+	}
+	this.ajaxMsgFile(toFilePath, size, resize, MSG_OK)
+}
+
+func (this *BaseController) compress(path string) (int64, int64) {
+	path = utils.GetCurrentDir(path)
+	size, _ := utils.FileSize(path)
+	src, err := Tinify.FromFile(path)
+	var resize int64
+	if err == nil {
+		if err = src.ToFile(path); err == nil {
+			res, _ := utils.FileSize(path)
+			resize = res
+		}
+	}
+	if err != nil {
+		beego.Error("compress:", err)
+	}
+	return size, resize
+}
+
+func (this *BaseController) setFileSize(row map[string]interface{},file string){
+	size,_:=utils.FileSize(file)
+	row["size"]=size
 }

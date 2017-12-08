@@ -29,12 +29,15 @@ func (this *FormatType) Update() (int64, error) {
 }
 
 func (this *FormatType) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func FormatTypeList(pageSize, offSet int) ([]*FormatType, int64) {
+func (this *FormatType) List(pageSize, offSet int) ([]*FormatType, int64) {
 	list := make([]*FormatType, 0)
-	query := orm.NewOrm().QueryTable(TableName("tools_format_type"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -68,12 +71,15 @@ func (this *Format) Update() (int64, error) {
 }
 
 func (this *Format) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func FormatList(pageSize, offSet int) ([]*Format, int64) {
+func (this *Format) List(pageSize, offSet int) ([]*Format, int64) {
 	list := make([]*Format, 0)
-	query := orm.NewOrm().QueryTable(TableName("tools_format"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
@@ -82,7 +88,7 @@ func FormatList(pageSize, offSet int) ([]*Format, int64) {
 type Compress struct {
 	Id         int
 	Name       string
-	Url        string
+	File       string
 	Type       int
 	Format     string
 	Descript   string
@@ -114,12 +120,15 @@ func (this *Compress) Update() (int64, error) {
 }
 
 func (this *Compress) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+	}
 	return orm.NewOrm().Read(this)
 }
 
-func CompressList(pageSize, offSet int) ([]*Compress, int64) {
+func (this *Compress) List(pageSize, offSet int) ([]*Compress, int64) {
 	list := make([]*Compress, 0)
-	query := orm.NewOrm().QueryTable(TableName("tools_compress"))
+	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total

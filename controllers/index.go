@@ -10,7 +10,8 @@ type IndexController struct {
 
 func (this *IndexController) Get() {
 	this.Data["img"] = "/static/mingzu/img/1.jpg"
-	result, _ := models.BannerList(this.pageSize, this.offSet)
+	banner := new(models.Banner)
+	result, _ := banner.List(this.pageSize, this.offSet)
 	this.Data["row"] = result
 	this.display("index")
 }
