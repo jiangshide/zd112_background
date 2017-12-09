@@ -37,10 +37,10 @@ func (this *ContinentController) Edit() {
 
 func (this *ContinentController) AjaxSave() {
 	continent := new(models.Continent)
+	continent.Name = this.getString("name", "名称不能为空!", 1)
+	continent.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 	continent.Id = this.getInt("id", 0)
 	if continent.Id == 0 {
-		continent.Name = this.getString("name", "名称不能为空!", 1)
-		continent.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 		continent.CreateId = this.userId
 		continent.CreateTime = time.Now().Unix()
 		if _, err := continent.Add(); err != nil {
@@ -48,8 +48,6 @@ func (this *ContinentController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	continent.Name = this.getString("name", "名称不能为空!", 1)
-	continent.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 	continent.UpdateId = this.userId
 	continent.UpdateTime = time.Now().Unix()
 	if _, err := continent.Update(); err != nil {
@@ -114,11 +112,11 @@ func (this *StateController) Edit() {
 
 func (this *StateController) AjaxSave() {
 	state := new(models.State)
+	state.Name = this.getString("name", "名称不能为空!", 1)
+	state.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 	state.Id = this.getInt("id", 0)
 	if state.Id == 0 {
 		state.ParentId = this.getInt("group_id", 0)
-		state.Name = this.getString("name", "名称不能为空!", 1)
-		state.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 		state.CreateId = this.userId
 		state.CreateTime = time.Now().Unix()
 		if _, err := state.Add(); err != nil {
@@ -127,8 +125,6 @@ func (this *StateController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	state.ParentId = this.getInt("group_id", 0)
-	state.Name = this.getString("name", "名称不能为空!", 1)
-	state.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 	state.UpdateId = this.userId
 	state.UpdateTime = time.Now().Unix()
 	if _, err := state.Update(); err != nil {
@@ -216,11 +212,11 @@ func (this *ProvinceController) Edit() {
 
 func (this *ProvinceController) AjaxSave() {
 	province := new(models.Province)
+	province.Name = this.getString("name", "名称不能为空!", 1)
+	province.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	province.Id = this.getInt("id", 0)
 	if province.Id == 0 {
 		province.ParentId = this.getInt("group_id", 0)
-		province.Name = this.getString("name", "名称不能为空!", 1)
-		province.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		province.CreateId = this.userId
 		province.CreateTime = time.Now().Unix()
 		if _, err := province.Add(); err != nil {
@@ -229,8 +225,6 @@ func (this *ProvinceController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	province.ParentId = this.getInt("group_id", 0)
-	province.Name = this.getString("name", "名称不能为空!", 1)
-	province.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	province.UpdateId = this.userId
 	province.UpdateTime = time.Now().Unix()
 	if _, err := province.Update(); err != nil {
@@ -318,11 +312,11 @@ func (this *CityController) Edit() {
 
 func (this *CityController) AjaxSave() {
 	city := new(models.City)
+	city.Name = this.getString("name", "名称不能为空!", 1)
+	city.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	city.Id = this.getInt("id", 0)
 	if city.Id == 0 {
 		city.ParentId = this.getInt("group_id", 0)
-		city.Name = this.getString("name", "名称不能为空!", 1)
-		city.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		city.CreateId = this.userId
 		city.CreateTime = time.Now().Unix()
 		if _, err := city.Add(); err != nil {
@@ -331,8 +325,6 @@ func (this *CityController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	city.ParentId = this.getInt("group_id", 0)
-	city.Name = this.getString("name", "名称不能为空!", 1)
-	city.Icon = this.getString("file", "File不能为空！", defaultMinSize)
 	city.UpdateId = this.userId
 	city.UpdateTime = time.Now().Unix()
 	if _, err := city.Update(); err != nil {
@@ -420,11 +412,11 @@ func (this *RegionController) Edit() {
 
 func (this *RegionController) AjaxSave() {
 	region := new(models.Region)
+	region.Name = this.getString("name", "名称不能为空!", 1)
+	region.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	region.Id = this.getInt("id", 0)
 	if region.Id == 0 {
 		region.ParentId = this.getInt("group_id", 0)
-		region.Name = this.getString("name", "名称不能为空!", 1)
-		region.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		region.CreateId = this.userId
 		region.CreateTime = time.Now().Unix()
 		if _, err := region.Add(); err != nil {
@@ -433,8 +425,6 @@ func (this *RegionController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	region.ParentId = this.getInt("group_id", 0)
-	region.Name = this.getString("name", "名称不能为空!", 1)
-	region.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	region.UpdateId = this.userId
 	region.UpdateTime = time.Now().Unix()
 	if _, err := region.Update(); err != nil {
@@ -521,11 +511,11 @@ func (this *CountyController) Edit() {
 
 func (this *CountyController) AjaxSave() {
 	county := new(models.County)
+	county.Name = this.getString("name", "名称不能为空!", 1)
+	county.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	county.Id = this.getInt("id", 0)
 	if county.Id == 0 {
 		county.ParentId = this.getInt("group_id", 0)
-		county.Name = this.getString("name", "名称不能为空!", 1)
-		county.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		county.CreateId = this.userId
 		county.CreateTime = time.Now().Unix()
 		if _, err := county.Add(); err != nil {
@@ -534,8 +524,6 @@ func (this *CountyController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	county.ParentId = this.getInt("group_id", 0)
-	county.Name = this.getString("name", "名称不能为空!", 1)
-	county.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	county.UpdateId = this.userId
 	county.UpdateTime = time.Now().Unix()
 	if _, err := county.Update(); err != nil {
@@ -623,11 +611,11 @@ func (this *TownController) Edit() {
 
 func (this *TownController) AjaxSave() {
 	town := new(models.Town)
+	town.Name = this.getString("name", "名称不能为空!", 1)
+	town.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	town.Id = this.getInt("id", 0)
 	if town.Id == 0 {
 		town.ParentId = this.getInt("group_id", 0)
-		town.Name = this.getString("name", "名称不能为空!", 1)
-		town.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		town.CreateId = this.userId
 		town.CreateTime = time.Now().Unix()
 		if _, err := town.Add(); err != nil {
@@ -636,8 +624,6 @@ func (this *TownController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	town.ParentId = this.getInt("group_id", 0)
-	town.Name = this.getString("name", "名称不能为空!", 1)
-	town.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	town.UpdateId = this.userId
 	town.UpdateTime = time.Now().Unix()
 	if _, err := town.Update(); err != nil {
@@ -725,11 +711,11 @@ func (this *CountryController) Edit() {
 
 func (this *CountryController) AjaxSave() {
 	country := new(models.Country)
+	country.Name = this.getString("name", "名称不能为空!", 1)
+	country.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	country.Id = this.getInt("id", 0)
 	if country.Id == 0 {
 		country.ParentId = this.getInt("group_id", 0)
-		country.Name = this.getString("name", "名称不能为空!", 1)
-		country.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		country.CreateId = this.userId
 		country.CreateTime = time.Now().Unix()
 		if _, err := country.Add(); err != nil {
@@ -738,8 +724,6 @@ func (this *CountryController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	country.ParentId = this.getInt("group_id", 0)
-	country.Name = this.getString("name", "名称不能为空!", 1)
-	country.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	country.UpdateId = this.userId
 	country.UpdateTime = time.Now().Unix()
 	if _, err := country.Update(); err != nil {
@@ -827,11 +811,11 @@ func (this *VillageController) Edit() {
 
 func (this *VillageController) AjaxSave() {
 	village := new(models.Village)
+	village.Name = this.getString("name", "名称不能为空!", 1)
+	village.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	village.Id = this.getInt("id", 0)
 	if village.Id == 0 {
 		village.ParentId = this.getInt("group_id", 0)
-		village.Name = this.getString("name", "名称不能为空!", 1)
-		village.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		village.CreateId = this.userId
 		village.CreateTime = time.Now().Unix()
 		if _, err := village.Add(); err != nil {
@@ -840,8 +824,6 @@ func (this *VillageController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	village.ParentId = this.getInt("group_id", 0)
-	village.Name = this.getString("name", "名称不能为空!", 1)
-	village.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	village.UpdateId = this.userId
 	village.UpdateTime = time.Now().Unix()
 	if _, err := village.Update(); err != nil {
@@ -929,11 +911,11 @@ func (this *GroupController) Edit() {
 
 func (this *GroupController) AjaxSave() {
 	group := new(models.Group)
+	group.Name = this.getString("name", "名称不能为空!", 1)
+	group.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	group.Id = this.getInt("id", 0)
 	if group.Id == 0 {
 		group.ParentId = this.getInt("group_id", 0)
-		group.Name = this.getString("name", "名称不能为空!", 1)
-		group.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		group.CreateId = this.userId
 		group.CreateTime = time.Now().Unix()
 		if _, err := group.Add(); err != nil {
@@ -942,8 +924,6 @@ func (this *GroupController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	group.ParentId = this.getInt("group_id", 0)
-	group.Name = this.getString("name", "名称不能为空!", 1)
-	group.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	group.UpdateId = this.userId
 	group.UpdateTime = time.Now().Unix()
 	if _, err := group.Update(); err != nil {
@@ -1032,10 +1012,10 @@ func (this *TeamController) Edit() {
 func (this *TeamController) AjaxSave() {
 	team := new(models.Team)
 	team.Id = this.getInt("id", 0)
+	team.Name = this.getString("name", "名称不能为空!", 1)
+	team.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	if team.Id == 0 {
 		team.ParentId = this.getInt("group_id", 0)
-		team.Name = this.getString("name", "名称不能为空!", 1)
-		team.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 		team.CreateId = this.userId
 		team.CreateTime = time.Now().Unix()
 		if _, err := team.Add(); err != nil {
@@ -1044,8 +1024,6 @@ func (this *TeamController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	team.ParentId = this.getInt("group_id", 0)
-	team.Name = this.getString("name", "名称不能为空!", 1)
-	team.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	team.UpdateId = this.userId
 	team.UpdateTime = time.Now().Unix()
 	if _, err := team.Update(); err != nil {

@@ -3,13 +3,162 @@
   <component name="ChangeListManager">
     <list default="true" id="b319c84e-e2f1-4295-a011-dfe3ac5c4c1f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/controllers/comm.go" afterPath="$PROJECT_DIR$/controllers/comm.go" />
-      <change beforePath="$PROJECT_DIR$/controllers/tools.go" afterPath="$PROJECT_DIR$/controllers/tools.go" />
-      <change beforePath="$PROJECT_DIR$/models/tools.go" afterPath="$PROJECT_DIR$/models/tools.go" />
-      <change beforePath="$PROJECT_DIR$/utils/filehelp.go" afterPath="$PROJECT_DIR$/utils/filehelp.go" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" afterPath="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" />
-      <change beforePath="$PROJECT_DIR$/views/backstage/tools/compress/list.html" afterPath="$PROJECT_DIR$/views/backstage/tools/compress/list.html" />
-      <change beforePath="$PROJECT_DIR$/zd112.sql" afterPath="$PROJECT_DIR$/zd112.sql" />
+      <change beforePath="$PROJECT_DIR$/controllers/area.go" afterPath="$PROJECT_DIR$/controllers/area.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/index.go" afterPath="$PROJECT_DIR$/controllers/index.go" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/001cca129549444d424bfa3d528f4d74.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/01788ffff5dc2173c5907bb037fbf8e8.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/01a2dfd9e53c7c34abc3a85d5a4d35ae.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/01e5500c79e1d97947bf0ee1365c0858.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/043e3ff3658772f9d352b3d56262ac7c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/04c38cf385c8abd53b6842df5e18c272.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/05124f6b6d25bae3228a2c25d9cce5b9.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/07069875e0b7bd68022e24774b0c4dca.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/08e2992ddec648df934a5db2eb9de1ac.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/098b644d4766f5c5265371a0d16b957c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/0c6178babfc520f3154053143551260b.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/0f56e7a3f612154edb58969fa15ea815.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/113cdcdec1fb0955791341bb315179d6.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/13446dbfb9f726ab611b0f528076e985.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/13a8ef6fcfb817197deedbdd9ee0a72d.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/18f107c3b05bdf2793c48b479f329914.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/198520a4dc9a8e027075f135c730e71c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/1d6a4a726e636d036b0905dbab5c610c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/1d7b05829510cb1125218f11ca714130.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/1f2c585705ae27829f5a02dc6a609515.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/1fc98f55a64c6ef6f21a02e9022dfb80.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/215264613e784ebc4493afd72f710c18.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/2c4376f2622ce88886a36749acdd436b.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/2f7cb37ff9c05b4d6d3fedc789ae9284.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/36f2f61f3cc8ef4da0aaaa4746166460.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3b0fc408d7d6c8d662011d2424ddd004.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3b893a759d9eca61b52094e44e3add7c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3c90ac2109fc60dd05cbd6a5762acabf.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3d70efc8460fe3fc8e211ece04b48adf.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3ef820d7dcd0382b20a65989bbf17cc4.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3f4274841885d431c54c518c21502214.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/3fe8ddb04353b0a76e0aa08436631104.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/4138e4310c568175f4ef84f861cd5f8d.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/4276cbd377f5a9015ae69ffb90c250d7.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/47d5ab9ff041ada9a753ea4c2e78a012.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/4aa1e2207a90b1a6698d4b173acb5860.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/4c02c8e0960ab8ab29bc8779595ba336.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/4ee726f0c777ee5df1271d6a9d28e73f.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/4f5f9f7f12074583dbee53339d45a6d6.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/502c5feca471ace086b431e2ff3539ee.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/54728b95cf4f94216c5436fac9584402.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/5813658cf74a18cdbe745a7a81892830.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/5b45e72079f144de753a73f84b8a9171.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/5b63bd0c55ba788a28f961586acec792.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/5c5a739ea752dfd58bd0fa2e723f1538.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/5e33f33d61748be897a1f1769594f2cb.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/612c52ca82d586de0c1eb87e6c926aa1.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/614489e11cfe52ed57b3fe7d4de22a17.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/61951e54085017852ce8990bc84ec7e9.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/61e30ee471b30cf7709a06767c1ef483.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/64eb032b301848e4409228c3dcc5ca12.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/65f1c7dbb90a8c7c7eb2b739fb2907d6.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/67ea573f3cc281c7a408313b266f4959.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/697b01a0c3a21960b9a56176b1f2cb5c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/698af781f1a7c2ceb821a6729c7ec1f2.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/6a3aaaf558ff1bb83d136e525539031f.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/6e203172b1b10a832f49e7f800e487aa.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/71acd17ef91189c0e0030ee5166c420e.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/747ed816d2286151e9911b27b2d9b972.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/74be11217d7936b7116868599fa48806.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/7accc01951dc7142239ba00b48b19cc9.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/7b1a16ec409e2bdbb6b0343d5edcfeed.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/7c1c486c7c475c76d75130abe0840c15.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/7c306f1b9051818a6bf53e687003e5ea.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/8078bcde76b66133874d7c59c11c6d5f.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/849f614147ef3aabeef696912f3e7376.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/895636a8a452d5f19a79bb55b627e60a.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/8cb4f0889580ec7e4a527a352237772e.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/8ecec961ee5e60610bc4b5ea03c96e8a.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/90988b13924c6abb18a2cd8259472cf6.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/9188ee023306e2d5b8923c54bc721812.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/9251b1a157bdffea643d27ca8bd9a8da.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/9283a9b1c46cd05694bea8c79c03e564.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/93229cc017d2b2c89f832adafe655a8a.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/96706b0faeb5411c2847496ca991e402.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/9d2a362ca7d7fca5a2a090f3906cc794.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/9e1a8652850acfcf0409b79368fe98af.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/9e30b0c1698cb291db738522b2616552.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/a28d9f53a561f36b4d973b266c2ff5d9.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/a36d95942796b1ede0b5032cb58b90f2.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/a60869eec63e84925fa4296413ea852a.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/a84c2b0aec79cedf300d51cac0a6321d.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/aae92384871153617f6dc2d361ab3214.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/ab77ba517ffe8e016316cbf83266d68a.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/ae90992346cad02e18075a3116cd57e9.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/af4f4249abc2b8733b375acf7206114b.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/b2f433af8a864b2e58619707dcb0f1d4.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/b42ceb084276b03f2cad64a7ca1a7dae.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/b59fb7885259225a6f354ebb5c540eda.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/b806ee675b153c1c55964f8d56773bd0.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/b871b354c91b5cac4c24f49982657790.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/be45e822d32a385a68711d09d884eefc.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/c0e6291f694c418de8c55dc171c92351.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/c3d125c08a35027a19644dca9bbba598.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/c3d5e632cb63094bfca83ba495cb9fdb.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/cbf109f5edfe3a569648a2d5a248ab88.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/cd17c5e412d2e2678ffc3d08944fd5ae.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/ced203d2785986c42983fd74fa099b8b.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/da6fd3e096782a03306711f6f9d3ce9d.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/dc21d2244d57da21b4b8b45892fb782c.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/de551057cda9575e072fcb13f445c9ed.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/e0152b45668dbaa391bd7da0d4cbf03d.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/e20e66b23234ee7c0bed843fede41858.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/e3011d8ed0db68fe4474399a23f0a2f8.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/e6a53264115153f2b3dabcfb8cc33f65.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/edd6bfc005381e63e3b94f74a4ab17c9.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/ee017da4b58cad24ccbb9f27405a29aa.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/f0ba330349b722fa964d3cb0729118be.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/f1e5b6df6871b0d58f417f510de0f75b.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/f82c328095cad09a97b71fd742415a50.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/fdfa0213473313cda4148e3345264e37.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/fe3ea6602bd00c8227c5faa2875d21fc.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/img/ffe807fc5a4d18ae9cb0f55764ef3c78.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/025be2ec53c6d96ad4788eff66ea5d81_1512444711.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/025f7b3aa8878a145caf855fc475e535_1512528219.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/03918f2d0f16dfbf29ed8d261f209e9d_1512454200.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/0a02940cd29b6f0987c40c09fba53b75_1512451854.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/0a3b4409df458091462e09f74ee10a20_1512371171.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/0b4270e36fc4a104a33ad379710bdad4_1512542983.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/0bb1295684427b638f0c673dd6f1978d_1512371788.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/1db9e1b87f52ed597e3d86958ab39022_1512543243.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/1fe78ea06f8b0b0e0273ecc5b1e3bedc_1512528666.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/2095450aa11b16a95bf2d1dbee9a5d97_1512435671.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/21259ba4e6874855c63368e7017f9d55_1512542813.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/33352cdfc4f9fc8b8a1027b9aac43cce_1512541878.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/35c1c28fba24032b08cfe7554e178ba4_1512528539.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/4adbe0a508f3e837b2040f9b0d056ae1_1512528613.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/50c152dfa31d3d0d7c4bb6f6d2d04db4_1512528488.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/54b6888d11bdd7b257a7372fe69e60b9_1512444910.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/54bb954450f4bee90e2e8065becd5e67_1512542595.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/595aab7ef0554e07faed7c779912f986_1512546676.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/6390834d098464e958b80b9eb7a00118_1512437349.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/64037602a88ba74ae4e0a0f3a210c138_1512546615.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/6ecfde934aaf363fa7134d1bd7196e81_1512465326.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/89881143e9c857f4277d789b6129b52c_1512528602.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/8bb063c999f2a265b70dc17755746f96_1512371505.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/95ba5a4bbfa47f0c8e11d3e401c73b9b_1512450093.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/96219f0fbe4a2d955b5e31e28e23c640_1512550226.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/973110e814954df8519301c893f05ac6_1512465685.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/989d28e1fd197b4b44abe22f82fa938d_1512451837.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/9cb21dbbceb516817fae813efbf87cfa_1512542124.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/a50067ef81c54fe2263e0130fbefb57f_1512528725.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/b2d08849bbe631d1c168c1525a4fef20_1512528513.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/b995cd894454c32c0a4f0944fdd1792e_1512542499.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/c458ddd909d03e1fcfaf5c95ff8cf098_1512528636.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/cabdad9d9e91925ca1af1c72a3ac9b6e_1512544000.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/d3df7ed83e7340e951f339ecde09f195_1512454184.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/dc7d7b8d209ecf33af301ad385a40ac3_1512450120.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/e1a513b0c08bb8f771f1c9407da5bbe6_1512528704.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/e4193f76d1974a14840e2ba8e1cde927_1512445347.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/e44a96d1c46c2c0e6dba367c7983af37_1512528649.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/f113155991af225064d18bf163f4f72f_1512528194.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/f12367300e8eb6418fb4f9326da7146a_1512450109.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/upload/jpg/ffefc55ac79514c9b1e6a9041242fc5c_1512450064.jpg" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,12 +203,12 @@
     <favorites_list name="zd112" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="tools.go" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="tools.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/tools.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="261" column="39" lean-forward="true" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+            <state relative-caret-position="431">
+              <caret line="316" column="36" lean-forward="false" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -68,7 +217,7 @@
       <file leaf-file-name="filehelp.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/filehelp.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
+            <state relative-caret-position="975">
               <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
               <folding />
             </state>
@@ -85,24 +234,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comm.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/comm.go">
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+            <state relative-caret-position="330">
+              <caret line="22" column="64" lean-forward="false" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
+      <file leaf-file-name="index.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/index.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="area.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/area.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3295">
+              <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="58" lean-forward="false" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="banner.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/comm/banner.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -110,11 +287,19 @@
       <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="17" column="55" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="20" column="65" lean-forward="false" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/backstage/area/city/list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="76" lean-forward="false" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -160,7 +345,6 @@
         <option value="$PROJECT_DIR$/views/backstage/area/town/edit.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/city/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/continent/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/country/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/county/list.html" />
@@ -179,8 +363,6 @@
         <option value="$PROJECT_DIR$/models/web.go" />
         <option value="$PROJECT_DIR$/controllers/web.go" />
         <option value="$PROJECT_DIR$/models/area.go" />
-        <option value="$PROJECT_DIR$/controllers/area.go" />
-        <option value="$PROJECT_DIR$/controllers/index.go" />
         <option value="$PROJECT_DIR$/views/backstage/tools/compress/list.html" />
         <option value="$PROJECT_DIR$/models/tools.go" />
         <option value="$PROJECT_DIR$/controllers/comm.go" />
@@ -189,6 +371,9 @@
         <option value="$PROJECT_DIR$/utils/filehelp.go" />
         <option value="$PROJECT_DIR$/zd112.sql" />
         <option value="$PROJECT_DIR$/controllers/tools.go" />
+        <option value="$PROJECT_DIR$/views/backstage/area/city/list.html" />
+        <option value="$PROJECT_DIR$/controllers/index.go" />
+        <option value="$PROJECT_DIR$/controllers/area.go" />
       </list>
     </option>
   </component>
@@ -218,6 +403,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -233,38 +419,12 @@
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="backstage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="backstage" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="backstage" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-              <item name="compress" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
@@ -277,7 +437,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -321,13 +480,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2639485" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26752505" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -339,6 +496,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -378,27 +536,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/country/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/county/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/backstage/area/group/add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -406,7 +547,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="38" column="48" lean-forward="false" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -414,7 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -422,7 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -430,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -438,7 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
           <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -446,7 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -454,7 +589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
           <caret line="40" column="29" lean-forward="false" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -462,7 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -470,7 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="38" column="35" lean-forward="false" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -478,7 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -486,7 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -494,7 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -502,7 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -514,23 +642,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/city/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-154">
           <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -538,9 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -548,9 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -558,9 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -568,9 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -578,9 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -588,9 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -598,9 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -608,9 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -618,9 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -628,9 +716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="63" lean-forward="false" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -638,9 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -648,9 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -666,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-409">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -674,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -682,7 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,7 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,14 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/index.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -726,19 +793,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/area.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5814">
-          <caret line="1057" column="30" lean-forward="true" selection-start-line="1057" selection-start-column="30" selection-end-line="1057" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/controller.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="473" column="43" lean-forward="false" selection-start-line="473" selection-start-column="43" selection-end-line="473" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,13 +804,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/comm.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
+        <state relative-caret-position="1530">
           <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
           <folding />
         </state>
@@ -760,7 +817,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/filehelp.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
+        <state relative-caret-position="975">
           <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
           <folding />
         </state>
@@ -770,7 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1352">
           <caret line="727" column="35" lean-forward="false" selection-start-line="727" selection-start-column="35" selection-end-line="727" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,34 +842,69 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="316" column="36" lean-forward="false" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/area/city/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="76" lean-forward="false" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="65" lean-forward="false" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="330">
+          <caret line="22" column="64" lean-forward="false" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
+    <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="17" column="55" lean-forward="true" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="25" column="58" lean-forward="false" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/tools.go">
+    <entry file="file://$PROJECT_DIR$/views/comm/banner.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="261" column="39" lean-forward="true" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+        <state relative-caret-position="75">
+          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/index.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/area.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3295">
+          <caret line="47" column="9" lean-forward="false" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
           <folding />
         </state>
       </provider>
