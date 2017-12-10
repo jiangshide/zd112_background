@@ -112,10 +112,10 @@ func (this *FormatController) Edit() {
 
 func (this *FormatController) AjaxSave() {
 	format := new(models.Format)
+	format.ParentId = this.getInt("group_id", 0)
+	format.Name = this.getString("name", "名称不能为空!", 1)
 	format.Id = this.getInt("id", 0)
 	if format.Id == 0 {
-		format.ParentId = this.getInt("group_id", 0)
-		format.Name = this.getString("name", "名称不能为空!", 1)
 		format.CreateId = this.userId
 		format.UpdateTime = time.Now().Unix()
 		if _, err := format.Add(); err != nil {
@@ -123,8 +123,6 @@ func (this *FormatController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	format.ParentId = this.getInt("group_id", 0)
-	format.Name = this.getString("name", "名称不能为空!", 1)
 	format.UpdateId = this.userId
 	format.UpdateTime = time.Now().Unix()
 	if _, err := format.Update(); err != nil {
