@@ -48,6 +48,13 @@ func AuthList(page, pageSize int, filters ...interface{}) ([]*Auth, int64) {
 	return list, total
 }
 
+func (this *Auth) List(pageSize, offSet int) (list []*Auth, total int64) {
+	query := orm.NewOrm().QueryTable(this.TableName())
+	total, _ = query.Count()
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
+	return
+}
+
 func AuthGetById(id int) (this *Auth, err error) {
 	this = &Auth{
 		Id: id,

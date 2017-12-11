@@ -232,6 +232,10 @@ func (this *BaseController) getBgToolAction(action string) string {
 	return this.getBgAction("tools/" + action)
 }
 
+func (this *BaseController) getBgAppAction(action string) string {
+	return this.getBgAction("app/" + action)
+}
+
 func (this *BaseController) ajaxMsg(msg interface{}, msgNo int) {
 	out := make(map[string]interface{})
 	out["status"] = msgNo

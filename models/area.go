@@ -30,17 +30,16 @@ func (this *Continent) Update() (int64, error) {
 
 func (this *Continent) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Continent) List(pageSize, offSet int) ([]*Continent, int64) {
-	list := make([]*Continent, 0)
+func (this *Continent) List(pageSize, offSet int) (list []*Continent, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type State struct {
@@ -72,17 +71,16 @@ func (this *State) Update() (int64, error) {
 
 func (this *State) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *State) List(pageSize, offSet int) ([]*State, int64) {
-	list := make([]*State, 0)
+func (this *State) List(pageSize, offSet int) (list []*State, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Province struct {
@@ -114,17 +112,16 @@ func (this *Province) Update() (int64, error) {
 
 func (this *Province) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Province) List(pageSize, offSet int) ([]*Province, int64) {
-	list := make([]*Province, 0)
+func (this *Province) List(pageSize, offSet int) (list []*Province, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type City struct {
@@ -156,17 +153,16 @@ func (this *City) Update() (int64, error) {
 
 func (this *City) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *City) List(pageSize, offSet int) ([]*City, int64) {
-	list := make([]*City, 0)
+func (this *City) List(pageSize, offSet int) (list []*City, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Region struct {
@@ -198,17 +194,16 @@ func (this *Region) Update() (int64, error) {
 
 func (this *Region) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Region) List(pageSize, offSet int) ([]*Region, int64) {
-	list := make([]*Region, 0)
+func (this *Region) List(pageSize, offSet int) (list []*Region, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type County struct {
@@ -240,17 +235,16 @@ func (this *County) Update() (int64, error) {
 
 func (this *County) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *County) List(pageSize, offSet int) ([]*County, int64) {
-	list := make([]*County, 0)
+func (this *County) List(pageSize, offSet int) (list []*County, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Town struct {
@@ -282,17 +276,16 @@ func (this *Town) Update() (int64, error) {
 
 func (this *Town) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Town) List(pageSize, offSet int) ([]*Town, int64) {
-	list := make([]*Town, 0)
+func (this *Town) List(pageSize, offSet int) (list []*Town, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Country struct {
@@ -324,17 +317,16 @@ func (this *Country) Update() (int64, error) {
 
 func (this *Country) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Country) List(pageSize, offSet int) ([]*Country, int64) {
-	list := make([]*Country, 0)
+func (this *Country) List(pageSize, offSet int) (list []*Country, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Village struct {
@@ -366,17 +358,16 @@ func (this *Village) Update() (int64, error) {
 
 func (this *Village) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Village) List(pageSize, offSet int) ([]*Village, int64) {
-	list := make([]*Village, 0)
+func (this *Village) List(pageSize, offSet int) (list []*Village, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Group struct {
@@ -408,17 +399,16 @@ func (this *Group) Update() (int64, error) {
 
 func (this *Group) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Group) List(pageSize, offSet int) ([]*Group, int64) {
-	list := make([]*Group, 0)
+func (this *Group) List(pageSize, offSet int) (list []*Group, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
 
 type Team struct {
@@ -450,15 +440,14 @@ func (this *Team) Update() (int64, error) {
 
 func (this *Team) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Team) List(pageSize, offSet int) ([]*Team, int64) {
-	list := make([]*Team, 0)
+func (this *Team) List(pageSize, offSet int) (list []*Team, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }

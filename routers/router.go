@@ -5,10 +5,10 @@ import (
 	"github.com/astaxie/beego"
 	"time"
 	"zd112/utils"
+	"strings"
 )
 
 func init() {
-
 	beego.Router("/", &controllers.IndexController{})
 	beego.Router("/login", &controllers.UserController{}, "*:Login")
 	beego.Router("/reg", &controllers.UserController{}, "*:Reg")
@@ -37,130 +37,63 @@ func init() {
 	//beego.Router("/backstage/auth/table",&controllers.AuthController{},"*:Table")
 	beego.AutoRouter(&controllers.AuthController{})
 
-	beego.Router("/backstage/nation/list", &controllers.NationController{}, "*:List")
-	beego.Router("/backstage/nation/add", &controllers.NationController{}, "*:Add")
-	beego.Router("/backstage/nation/edit", &controllers.NationController{}, "*:Edit")
-	beego.Router("/backstage/nation/table", &controllers.NationController{}, "*:Table")
-	beego.Router("/backstage/nation/upload", &controllers.NationController{}, "*:Upload")
-	beego.Router("/backstage/nation/ajaxdel", &controllers.NationController{}, "*:AjaxDel")
-	beego.AutoRouter(&controllers.NationController{})
-
-	beego.Router("/backstage/area/continent", &controllers.ContinentController{}, "*:List")
-	beego.Router("/backstage/area/continent/add", &controllers.ContinentController{}, "*:Add")
-	beego.Router("/backstage/area/continent/edit", &controllers.ContinentController{}, "*:Edit")
-	beego.Router("/backstage/area/continent/table", &controllers.ContinentController{}, "*:Table")
-	beego.Router("/backstage/area/continent/ajaxsave", &controllers.ContinentController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/continent/ajaxdel", &controllers.ContinentController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/state", &controllers.StateController{}, "*:List")
-	beego.Router("/backstage/area/state/add", &controllers.StateController{}, "*:Add")
-	beego.Router("/backstage/area/state/table", &controllers.StateController{}, "*:Table")
-	beego.Router("/backstage/area/state/edit", &controllers.StateController{}, "*:Edit")
-	beego.Router("/backstage/area/state/ajaxsave", &controllers.StateController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/state/ajaxdel", &controllers.StateController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/province", &controllers.ProvinceController{}, "*:List")
-	beego.Router("/backstage/area/province/add", &controllers.ProvinceController{}, "*:Add")
-	beego.Router("/backstage/area/province/edit", &controllers.ProvinceController{}, "*:Edit")
-	beego.Router("/backstage/area/province/table", &controllers.ProvinceController{}, "*:Table")
-	beego.Router("/backstage/area/province/ajaxsave", &controllers.ProvinceController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/province/ajaxdel", &controllers.ProvinceController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/city", &controllers.CityController{}, "*:List")
-	beego.Router("/backstage/area/city/add", &controllers.CityController{}, "*:Add")
-	beego.Router("/backstage/area/city/edit", &controllers.CityController{}, "*:Edit")
-	beego.Router("/backstage/area/city/table", &controllers.CityController{}, "*:Table")
-	beego.Router("/backstage/area/city/ajaxsave", &controllers.CityController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/city/ajaxdel", &controllers.CityController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/region", &controllers.RegionController{}, "*:List")
-	beego.Router("/backstage/area/region/add", &controllers.RegionController{}, "*:Add")
-	beego.Router("/backstage/area/region/edit", &controllers.RegionController{}, "*:Edit")
-	beego.Router("/backstage/area/region/table", &controllers.RegionController{}, "*:Table")
-	beego.Router("/backstage/area/region/ajaxsave", &controllers.RegionController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/region/ajaxdel", &controllers.RegionController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/county", &controllers.CountyController{}, "*:List")
-	beego.Router("/backstage/area/county/add", &controllers.CountyController{}, "*:Add")
-	beego.Router("/backstage/area/county/edit", &controllers.CountyController{}, "*:Edit")
-	beego.Router("/backstage/area/county/table", &controllers.CountyController{}, "*:Table")
-	beego.Router("/backstage/area/county/ajaxsave", &controllers.CountyController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/county/ajaxdel", &controllers.CountyController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/town", &controllers.TownController{}, "*:List")
-	beego.Router("/backstage/area/town/add", &controllers.TownController{}, "*:Add")
-	beego.Router("/backstage/area/town/edit", &controllers.TownController{}, "*:Edit")
-	beego.Router("/backstage/area/town/table", &controllers.TownController{}, "*:Table")
-	beego.Router("/backstage/area/town/ajaxsave", &controllers.TownController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/town/ajaxdel", &controllers.TownController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/country", &controllers.CountryController{}, "*:List")
-	beego.Router("/backstage/area/country/add", &controllers.CountryController{}, "*:Add")
-	beego.Router("/backstage/area/country/edit", &controllers.CountryController{}, "*:Edit")
-	beego.Router("/backstage/area/country/table", &controllers.CountryController{}, "*:Table")
-	beego.Router("/backstage/area/country/ajaxsave", &controllers.CountryController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/country/ajaxdel", &controllers.CountryController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/village", &controllers.VillageController{}, "*:List")
-	beego.Router("/backstage/area/village/add", &controllers.VillageController{}, "*:Add")
-	beego.Router("/backstage/area/village/edit", &controllers.VillageController{}, "*:Edit")
-	beego.Router("/backstage/area/village/table", &controllers.VillageController{}, "*:Table")
-	beego.Router("/backstage/area/village/ajaxsave", &controllers.VillageController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/village/ajaxdel", &controllers.VillageController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/group", &controllers.GroupController{}, "*:List")
-	beego.Router("/backstage/area/group/add", &controllers.GroupController{}, "*:Add")
-	beego.Router("/backstage/area/group/edit", &controllers.GroupController{}, "*:Edit")
-	beego.Router("/backstage/area/group/table", &controllers.GroupController{}, "*:Table")
-	beego.Router("/backstage/area/group/ajaxsave", &controllers.GroupController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/group/ajaxdel", &controllers.GroupController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/area/team", &controllers.TeamController{}, "*:List")
-	beego.Router("/backstage/area/team/add", &controllers.TeamController{}, "*:Add")
-	beego.Router("/backstage/area/team/edit", &controllers.TeamController{}, "*:Edit")
-	beego.Router("/backstage/area/team/table", &controllers.TeamController{}, "*:Table")
-	beego.Router("/backstage/area/team/ajaxsave", &controllers.TeamController{}, "*:AjaxSave")
-	beego.Router("/backstage/area/team/ajaxdel", &controllers.TeamController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/web/banner", &controllers.BannerController{}, "*:List")
-	beego.Router("/backstage/web/banner/add", &controllers.BannerController{}, "*:Add")
-	beego.Router("/backstage/web/banner/edit", &controllers.BannerController{}, "*:Edit")
-	beego.Router("/backstage/web/banner/table", &controllers.BannerController{}, "*:Table")
-	beego.Router("/backstage/web/banner/ajaxsave", &controllers.BannerController{}, "*:AjaxSave")
-	beego.Router("/backstage/web/banner/ajaxdel", &controllers.BannerController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/tools/compress", &controllers.CompressController{}, "*:List")
-	beego.Router("/backstage/tools/compress/add", &controllers.CompressController{}, "*:Add")
-	beego.Router("/backstage/tools/compress/edit", &controllers.CompressController{}, "*:Edit")
-	beego.Router("/backstage/tools/compress/table", &controllers.CompressController{}, "*:Table")
-	beego.Router("/backstage/tools/compress/ajaxsave", &controllers.CompressController{}, "*:AjaxSave")
-	beego.Router("/backstage/tools/compress/ajaxdel", &controllers.CompressController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/tools/formattype", &controllers.FormatTypeController{}, "*:List")
-	beego.Router("/backstage/tools/formattype/add", &controllers.FormatTypeController{}, "*:Add")
-	beego.Router("/backstage/tools/formattype/edit", &controllers.FormatTypeController{}, "*:Edit")
-	beego.Router("/backstage/tools/formattype/table", &controllers.FormatTypeController{}, "*:Table")
-	beego.Router("/backstage/tools/formattype/ajaxsave", &controllers.FormatTypeController{}, "*:AjaxSave")
-	beego.Router("/backstage/tools/formattype/ajaxdel", &controllers.FormatTypeController{}, "*:AjaxDel")
-
-	beego.Router("/backstage/tools/format", &controllers.FormatController{}, "*:List")
-	beego.Router("/backstage/tools/format/add", &controllers.FormatController{}, "*:Add")
-	beego.Router("/backstage/tools/format/edit", &controllers.FormatController{}, "*:Edit")
-	beego.Router("/backstage/tools/format/table", &controllers.FormatController{}, "*:Table")
-	beego.Router("/backstage/tools/format/ajaxsave", &controllers.FormatController{}, "*:AjaxSave")
-	beego.Router("/backstage/tools/format/ajaxdel", &controllers.FormatController{}, "*:AjaxDel")
+	commRouter()
 
 	beego.Router("/upload", &controllers.BaseController{}, "*:Upload")
 	beego.ErrorController(&controllers.ErrorController{})
-	//taskTime()
+}
+
+func commRouter() {
+	actionStr := "list,add,edit,table,ajaxSave,ajaxDel"
+	router := make(map[string]beego.ControllerInterface, 0)
+	router["nation:"+actionStr] = &controllers.NationController{}
+	router["area/continent:"+actionStr] = &controllers.ContinentController{}
+	router["area/state:"+actionStr] = &controllers.StateController{}
+	router["area/province:"+actionStr] = &controllers.ProvinceController{}
+	router["area/city:"+actionStr] = &controllers.CityController{}
+	router["area/region:"+actionStr] = &controllers.RegionController{}
+	router["area/county:"+actionStr] = &controllers.CountyController{}
+	router["area/town:"+actionStr] = &controllers.TownController{}
+	router["area/country:"+actionStr] = &controllers.CountryController{}
+	router["area/village:"+actionStr] = &controllers.VillageController{}
+	router["area/group:"+actionStr] = &controllers.GroupController{}
+	router["area/team:"+actionStr] = &controllers.TeamController{}
+	router["web/banner:"+actionStr] = &controllers.BannerController{}
+	router["tools/compress:"+actionStr] = &controllers.CompressController{}
+	router["tools/formattype:"+actionStr] = &controllers.FormatTypeController{}
+	router["tools/format:"+actionStr] = &controllers.FormatController{}
+	router["app/channel:"+actionStr] = &controllers.ChannelController{}
+	router["app/application:"+actionStr] = &controllers.ApplicationController{}
+	router["app/pkg:"+actionStr] = &controllers.PkgController{}
+	router["app/version:"+actionStr] = &controllers.VersionController{}
+	router["app/code:"+actionStr] = &controllers.CodeController{}
+	router["app/env:"+actionStr] = &controllers.EnvController{}
+	router["app/build:"+actionStr] = &controllers.BuildController{}
+	router["app/type:"+actionStr] = &controllers.TypeController{}
+	router["app/app:"+actionStr] = &controllers.AppController{}
+	for k, v := range router {
+		kArr := strings.Split(k, ":")
+		path := "/backstage/" + kArr[0]
+		actions := strings.Split(kArr[1], ",")
+		for _, action := range actions {
+			rootPath := path
+			if action != "list" {
+				rootPath += "/" + strings.ToLower(action)
+			}
+			action = "*:" + utils.StrFirstToUpper(action)
+			beego.Info("rootPath:", rootPath, " | action:", action, " | v:", v)
+			beego.Router(rootPath, v, action)
+		}
+	}
+
 }
 
 func taskTime() {
-	ticker := time.NewTicker(time.Minute * 1)
+	ticker := time.NewTicker(time.Second * 5)
 	go func() {
 		for _ = range ticker.C {
-			res, err := utils.ExecCommand("/usr/bin/git --git-dir=" + utils.GetCurrentDir("") + "/.git checkout master")
-			beego.Info("res:", string(res), " | err:", err)
+			//res, err := utils.ExecCommand("/usr/bin/git --git-dir=" + utils.GetCurrentDir("") + "/.git checkout master")
+			//beego.Info("res:", string(res), " | err:", err)
 		}
 	}()
 }

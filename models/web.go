@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 type Banner struct {
 	Id         int
@@ -34,15 +36,14 @@ func (this *Banner) Update() (int64, error) {
 
 func (this *Banner) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Banner) List(pageSize, offSet int) ([]*Banner, int64) {
-	list := make([]*Banner, 0)
+func (this *Banner) List(pageSize, offSet int) (list []*Banner, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }

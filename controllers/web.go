@@ -4,6 +4,8 @@ import (
 	"zd112/models"
 	"time"
 	"zd112/utils"
+	"github.com/astaxie/beego"
+	"strings"
 )
 
 type BannerController struct {
@@ -12,7 +14,28 @@ type BannerController struct {
 
 func (this *BannerController) List() {
 	this.pageTitle("焦点图列表")
+	commRouter()
 	this.display(this.getBgWebAction("banner/list"))
+}
+
+func commRouter() {
+	actionStr := "list,add,edit,table,ajaxSave,ajaxDel"
+	rout := make(map[string]interface{}, 0)
+	rout["nation:"+actionStr] = &NationController{}
+	rout["area/continent:"+actionStr] = &ContinentController{}
+	rout["area/state:"+actionStr] = &StateController{}
+	rout["area/province:"+actionStr] = &ProvinceController{}
+	for k, v := range rout {
+		kArr := strings.Split(k, ":")
+		path := "/backstage/" + kArr[0]
+		actions := strings.Split(kArr[1], ",")
+		for _, action := range actions {
+			rootPath := path + "/" + strings.ToLower(action)
+			action = "*:" + utils.StrFirstToUpper(action)
+			beego.Info("rootPath:", rootPath, " | action:", action, " | v:", v)
+		}
+	}
+
 }
 
 func (this *BannerController) Add() {
@@ -58,12 +81,13 @@ func (this *BannerController) Edit() {
 
 func (this *BannerController) AjaxSave() {
 	banner := new(models.Banner)
+	banner.Name = this.getString("name", "名称不能为空!", 1)
+	banner.Link = this.getString("link", "", 0)
+	banner.Icon = this.getString("file", "File不能为空!", defaultMinSize)
+	banner.Descript = this.getString("descript", "", 0)
 	banner.Id = this.getInt("id", 0)
 	if banner.Id == 0 {
-		banner.Name = this.getString("name", "名称不能为空!", 1)
-		banner.Link = this.getString("link", "", 0)
-		banner.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-		banner.Descript = this.getString("descript", "", 0)
+
 		banner.CreateId = this.userId
 		banner.CreateTime = time.Now().Unix()
 		if _, err := banner.Add(); err != nil {
@@ -72,10 +96,6 @@ func (this *BannerController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	banner.Query()
-	banner.Name = this.getString("name", "名称不能为空!", 1)
-	banner.Link = this.getString("link", "", 0)
-	banner.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	banner.Descript = this.getString("descript", "", 0)
 	banner.UpdateId = this.userId
 	banner.UpdateTime = time.Now().Unix()
 	if _, err := banner.Update(); err != nil {

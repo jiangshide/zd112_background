@@ -723,7 +723,7 @@ CREATE TABLE `zd_tools_compress` (
   COMMENT '文件描述',
   `size`        INT(11)             NOT NULL      DEFAULT '0'
   COMMENT '文件原大小',
-  `re_size`      INT(11)             NOT NULL      DEFAULT '0'
+  `re_size`     INT(11)             NOT NULL      DEFAULT '0'
   COMMENT '文件压缩后大小',
   `compress`    INT                 NOT NULL      DEFAULT '0'
   COMMENT '压缩次数',
@@ -746,6 +746,247 @@ CREATE TABLE `zd_tools_compress` (
   COMMENT ='文件压缩管理';
 #--------the tool---end-----#
 
+#--------the app---start-----#
+DROP TABLE IF EXISTS `zd_app_channel`; #应用渠道名称
+CREATE TABLE `zd_app_channer` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(20) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '渠道名称',
+  `friend_id`   VARCHAR(30) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '关联ID',
+  `drescript`   TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='APP渠道管理';
+
+DROP TABLE IF EXISTS `zd_app_application`; #应用名称
+CREATE TABLE `zd_app_application` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(20) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '应用名称',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用名称管理';
+
+DROP TABLE IF EXISTS `zd_app_pkg`; #应用包管理
+CREATE TABLE `zd_app_pkg` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `NAME`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '应用包',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用包管理';
+
+DROP TABLE IF EXISTS `zd_app_version`; #应用版本管理
+CREATE TABLE `zd_app_version` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(20)      NOT NULL      DEFAULT ''
+  COMMENT '应用版本',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用版本管理';
+
+DROP TABLE IF EXISTS `zd_app_code`; #应用版本号管理
+CREATE TABLE `zd_app_code` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `code`        INT              NOT NULL      DEFAULT '0'
+  COMMENT '应用版本号',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用版本号管理';
+
+DROP TABLE IF EXISTS `zd_app_env`; #应用环境管理
+CREATE TABLE `zd_app_env` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(20)      NOT NULL      DEFAULT ''
+  COMMENT '应用环境',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用环境管理';
+
+DROP TABLE IF EXISTS `zd_app_build`; #构建类型
+CREATE TABLE `zd_app_build` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(10)      NOT NULL      DEFAULT ''
+  COMMENT '构建类型:debug...',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用构建类型管理';
+
+DROP TABLE IF EXISTS `zd_app_type`; #应用平台类型
+CREATE TABLE `zd_app_type` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(30)      NOT NULL      DEFAULT ''
+  COMMENT '应用平台类型,如:android',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='应用类型管理';
+
+DROP TABLE IF EXISTS `zd_app`; #渠道包管理
+CREATE TABLE `zd_app` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `test_id`     INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '测试ID',
+  `type`        VARCHAR(30)        NOT NULL      DEFAULT ''
+  COMMENT '应用平台类型,如:android',
+  `application` VARCHAR(20)        NOT NULL      DEFAULT ''
+  COMMENT '应用名称',
+  `pkg`         VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '应用包',
+  `version`     VARCHAR(20)        NOT NULL      DEFAULT ''
+  COMMENT '应用版本',
+  `code`        INT                NOT NULL      DEFAULT '0'
+  COMMENT '应用版本号',
+  `env`         VARCHAR(20)        NOT NULL      DEFAULT ''
+  COMMENT '应用环境',
+  `build`       VARCHAR(10)        NOT NULL      DEFAULT ''
+  COMMENT '构建类型:debug...',
+  `channel`     VARCHAR(20) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '渠道名称',
+  `friend_id`   VARCHAR(30) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '关联ID',
+  `descript`    TEXT
+  COMMENT '描述',
+  `status`      TINYINT(4)         NOT NULL      DEFAULT '0'
+  COMMENT '当前状态:0~无,-1~打包失败,1~打包中,2~打包成功,-3~测试失败,3~测试中,4~测试完成',
+  `times`       INT                NOT NULL      DEFAULT '0'
+  COMMENT '打包次数',
+  `url`         VARCHAR(100)       NOT NULL      DEFAULT ''
+  COMMENT '下载地址',
+  `downs`       INT                NOT NULL      DEFAULT '0'
+  COMMENT '下载次数',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='Android应用包管理';
+
+#--------the app---end-----#
+
+#--------the app---start-----#
+
+#--------the app---end-----#
 
 #--------the other---start-----#
 

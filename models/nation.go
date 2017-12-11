@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
 )
 
 type Nation struct {
@@ -32,15 +33,15 @@ func (this *Nation) Update() (int64, error) {
 
 func (this *Nation) Query() error {
 	if this.Id == 0 {
-		return orm.NewOrm().QueryTable(this.TableName()).Filter("name", this.Name).One(this)
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Nation) List(pageSize, offSet int) ([]*Nation, int64) {
-	list := make([]*Nation, 0)
+func (this *Nation) List(pageSize, offSet int) (list []*Nation, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ := query.Count()
+	total, _ = query.Count()
+	beego.Info("---------paegSize:",pageSize," | offSet:",offSet)
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return list, total
+	return
 }
