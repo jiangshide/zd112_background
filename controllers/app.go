@@ -9,6 +9,13 @@ type ChannelController struct {
 	BaseController
 }
 
+func (this *BaseController) row(row map[string]interface{}, id int, name, descript string) {
+	row["id"] = id
+	row["name"] = name
+	row["descript"] = descript
+	this.Data["row"] = row
+}
+
 func (this *ChannelController) List() {
 	this.pageTitle("渠道列表")
 	this.display(this.getBgAppAction("channel/list"))
@@ -26,7 +33,9 @@ func (this *ChannelController) Edit() {
 	if err := channel.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = channel
+	row := make(map[string]interface{})
+	row["friend_id"] = channel.FriendId
+	this.row(row, channel.Id, channel.Name, channel.Descript)
 	this.display(this.getBgAppAction("channel/edit"))
 }
 
@@ -96,7 +105,8 @@ func (this ApplicationController) Edit() {
 	if err := application.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = application
+	row := make(map[string]interface{})
+	this.row(row, application.Id, application.Name, application.Descript)
 	this.display(this.getBgAppAction("application/edit"))
 }
 
@@ -164,7 +174,8 @@ func (this PkgController) Edit() {
 	if err := pkg.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = pkg
+	row := make(map[string]interface{})
+	this.row(row, pkg.Id, pkg.Name, pkg.Descript)
 	this.display(this.getBgAppAction("pkg/edit"))
 }
 
@@ -232,7 +243,8 @@ func (this *VersionController) Edit() {
 	if err := version.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = version
+	row := make(map[string]interface{})
+	this.row(row, version.Id, version.Name, version.Descript)
 	this.display(this.getBgAppAction("version/edit"))
 }
 
@@ -300,7 +312,11 @@ func (this *CodeController) Edit() {
 	if err := code.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = code
+	row := make(map[string]interface{})
+	row["id"] = code.Id
+	row["code"] = code.Code
+	row["descript"] = code.Descript
+	this.Data["row"] = row
 	this.display(this.getBgAppAction("code/edit"))
 }
 
@@ -368,7 +384,8 @@ func (this *EnvController) Edit() {
 	if err := env.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = env
+	row := make(map[string]interface{})
+	this.row(row, env.Id, env.Name, env.Descript)
 	this.display(this.getBgAppAction("env/edit"))
 }
 
@@ -436,7 +453,8 @@ func (this *BuildController) Edit() {
 	if err := build.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = build
+	row := make(map[string]interface{})
+	this.row(row, build.Id, build.Name, build.Descript)
 	this.display(this.getBgAppAction("build/edit"))
 }
 
@@ -503,7 +521,8 @@ func (this *TypeController) Edit() {
 	if err := types.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = types
+	row := make(map[string]interface{})
+	this.row(row, types.Id, types.Name, types.Descript)
 	this.display(this.getBgAppAction("type/edit"))
 }
 
@@ -569,7 +588,26 @@ func (this *AppController) Edit() {
 	if err := app.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.Data["row"] = app
+	row := make(map[string]interface{})
+	row["id"] = app.Id
+	row["project_id"] = app.ProjectId
+	row["test_id"] = app.TestId
+	row["icon"] = app.Icon
+	row["type"] = app.Type
+	row["application"] = app.Application
+	row["pkg"] = app.Pkg
+	row["version"] = app.Version
+	row["code"] = app.Code
+	row["env"] = app.Env
+	row["build"] = app.Build
+	row["channel"] = app.Channel
+	row["friend_id"] = app.FriendId
+	row["descript"] = app.Descript
+	row["status"] = app.Status
+	row["times"] = app.Times
+	row["url"] = app.Url
+	row["downs"] = app.Downs
+	this.Data["row"] = row
 	this.display(this.getBgAppAction("app/edit"))
 }
 
@@ -577,6 +615,7 @@ func (this *AppController) AjaxSave() {
 	app := new(models.App)
 	app.Id = this.getInt("id", 0)
 	app.TestId = this.getInt("test_id", 0)
+	app.Icon = this.getString("icon", "Logo不能为空!", 1)
 	app.Type = this.getString("type", "构建平台不能为空", 1)
 	app.Application = this.getString("application", "应用名称不能为空!", 1)
 	app.Pkg = this.getString("pkg", "应用包名不能为空!", 1)
@@ -614,6 +653,7 @@ func (this *AppController) Table() {
 	for k, v := range result {
 		row := make(map[string]interface{})
 		row["test_id"] = v.TestId
+		row["icon"] = v.Icon
 		row["type"] = v.Type
 		row["application"] = v.Application
 		row["pkg"] = v.Pkg

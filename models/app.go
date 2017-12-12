@@ -335,7 +335,9 @@ func (this *Type) List(pageSize, offSet int) (list []*Type, total int64) {
 
 type App struct {
 	Id          int
+	ProjectId   int
 	TestId      int
+	Icon        string
 	Type        string
 	Application string
 	Pkg         string

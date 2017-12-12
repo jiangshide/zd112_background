@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b319c84e-e2f1-4295-a011-dfe3ac5c4c1f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/app.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/models/app.go" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/api.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/test.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/api.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/models/test.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/test/environment/add.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/test/environment/edit.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/test/environment/list.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/test/project/add.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/test/project/edit.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/views/backstage/test/project/list.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4ac49120-b95c-4826-aeec-243cde9bd39a.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/4ac49120-b95c-4826-aeec-243cde9bd39a.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/conf/app.conf" afterPath="$PROJECT_DIR$/conf/app.conf" />
-      <change beforePath="$PROJECT_DIR$/controllers/tools.go" afterPath="$PROJECT_DIR$/controllers/tools.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/app.go" afterPath="$PROJECT_DIR$/controllers/app.go" />
+      <change beforePath="$PROJECT_DIR$/controllers/comm.go" afterPath="$PROJECT_DIR$/controllers/comm.go" />
+      <change beforePath="$PROJECT_DIR$/models/app.go" afterPath="$PROJECT_DIR$/models/app.go" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" afterPath="$PROJECT_DIR$/models/init.go" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" afterPath="$PROJECT_DIR$/routers/router.go" />
+      <change beforePath="$PROJECT_DIR$/views/comm/upload_edit.html" afterPath="$PROJECT_DIR$/views/comm/upload_edit.html" />
+      <change beforePath="$PROJECT_DIR$/zd112.sql" afterPath="$PROJECT_DIR$/zd112.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,37 +66,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.html">
+      <file leaf-file-name="app.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/app.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="-109">
+              <caret line="633" column="20" lean-forward="false" selection-start-line="633" selection-start-column="20" selection-end-line="633" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.conf" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/conf/app.conf">
+      <file leaf-file-name="test.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="15" lean-forward="false" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+            <state relative-caret-position="345">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="f5e549fc1156883e32c3791a6e6f3541_1512867551.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/upload/png/f5e549fc1156883e32c3791a6e6f3541_1512867551.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3c76b1c579e04ac984ed3f6bce395aa9_1512867367.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/upload/png/3c76b1c579e04ac984ed3f6bce395aa9_1512867367.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -106,22 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/backstage/area/country/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/country/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/county/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/county/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/group/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/group/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/province/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/province/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/region/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/region/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/state/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/state/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/team/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/team/edit.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/town/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/area/town/edit.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/village/edit.html" />
         <option value="$PROJECT_DIR$/views/backstage/area/continent/list.html" />
@@ -137,26 +120,42 @@
         <option value="$PROJECT_DIR$/views/backstage/web/banner/list.html" />
         <option value="$PROJECT_DIR$/views/backstage/nation/add.html" />
         <option value="$PROJECT_DIR$/views/backstage/nation/edit.html" />
-        <option value="$PROJECT_DIR$/models/nation.go" />
         <option value="$PROJECT_DIR$/controllers/nation.go" />
-        <option value="$PROJECT_DIR$/models/web.go" />
-        <option value="$PROJECT_DIR$/controllers/web.go" />
-        <option value="$PROJECT_DIR$/models/area.go" />
         <option value="$PROJECT_DIR$/views/backstage/tools/compress/list.html" />
-        <option value="$PROJECT_DIR$/models/tools.go" />
-        <option value="$PROJECT_DIR$/controllers/comm.go" />
         <option value="$PROJECT_DIR$/views/backstage/tools/compress/add.html" />
-        <option value="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" />
         <option value="$PROJECT_DIR$/utils/filehelp.go" />
-        <option value="$PROJECT_DIR$/zd112.sql" />
         <option value="$PROJECT_DIR$/views/backstage/area/city/list.html" />
         <option value="$PROJECT_DIR$/controllers/index.go" />
         <option value="$PROJECT_DIR$/controllers/area.go" />
-        <option value="$PROJECT_DIR$/controllers/tools.go" />
         <option value="$PROJECT_DIR$/conf/app.conf" />
-        <option value="$PROJECT_DIR$/controllers/app.go" />
+        <option value="$PROJECT_DIR$/utils/string.go" />
+        <option value="$PROJECT_DIR$/models/web.go" />
+        <option value="$PROJECT_DIR$/models/tools.go" />
+        <option value="$PROJECT_DIR$/models/area.go" />
+        <option value="$PROJECT_DIR$/controllers/auth.go" />
+        <option value="$PROJECT_DIR$/models/Auth.go" />
+        <option value="$PROJECT_DIR$/models/nation.go" />
+        <option value="$PROJECT_DIR$/models/api.go" />
+        <option value="$PROJECT_DIR$/controllers/api.go" />
+        <option value="$PROJECT_DIR$/controllers/comm.go" />
+        <option value="$PROJECT_DIR$/routers/router.go" />
+        <option value="$PROJECT_DIR$/controllers/web.go" />
+        <option value="$PROJECT_DIR$/views/backstage/test/environment/add.html" />
+        <option value="$PROJECT_DIR$/models/init.go" />
+        <option value="$PROJECT_DIR$/views/backstage/test/environment/edit.html" />
+        <option value="$PROJECT_DIR$/views/backstage/test/environment/list.html" />
         <option value="$PROJECT_DIR$/models/app.go" />
+        <option value="$PROJECT_DIR$/views/backstage/test/project/edit.html" />
+        <option value="$PROJECT_DIR$/views/backstage/test/project/list.html" />
+        <option value="$PROJECT_DIR$/views/backstage/test/project/add.html" />
+        <option value="$PROJECT_DIR$/zd112.sql" />
+        <option value="$PROJECT_DIR$/models/test.go" />
+        <option value="$PROJECT_DIR$/controllers/tools.go" />
+        <option value="$PROJECT_DIR$/views/backstage/tools/compress/edit.html" />
         <option value="$PROJECT_DIR$/views/comm/upload.html" />
+        <option value="$PROJECT_DIR$/views/comm/upload_edit.html" />
+        <option value="$PROJECT_DIR$/controllers/app.go" />
+        <option value="$PROJECT_DIR$/controllers/test.go" />
       </list>
     </option>
   </component>
@@ -186,7 +185,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,47 +195,19 @@
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
               <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="routers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="upload" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="upload" type="462c0819:PsiDirectoryNode" />
-              <item name="png" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zd112" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zd112" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,23 +215,23 @@
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="SearchEverywhereHistoryKey" value="home&#9;null&#9;null&#10;test&#9;null&#9;null&#10;role_name&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="Env&#9;null&#9;null&#10;home&#9;null&#9;null&#10;test&#9;null&#9;null&#10;role_name&#9;null&#9;null" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/comm" />
-      <recent name="$PROJECT_DIR$/views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/backstage/test/project" />
+      <recent name="$PROJECT_DIR$/views/backstage/test/environment" />
       <recent name="$PROJECT_DIR$/views/comm" />
       <recent name="$PROJECT_DIR$/views/backstage/tools/format/type" />
       <recent name="$PROJECT_DIR$/views/backstage/tools/format" />
-      <recent name="$PROJECT_DIR$/views/backstage/tools/compress" />
-      <recent name="$PROJECT_DIR$/views/backstage/web/banner" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/comm" />
+      <recent name="$PROJECT_DIR$/views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -281,44 +251,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27110156" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19527897" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18526466" sideWeight="0.5051414" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18526466" sideWeight="0.5051414" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2639485" sideWeight="0.49485862" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18526466" sideWeight="0.5051414" order="2" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -337,500 +289,107 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/list.html">
+    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/orm/types.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/country/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/county/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/group/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/province/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/region/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/state/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/team/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/town/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/village/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/web/banner/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="63" lean-forward="false" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/nation/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/nation/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Auth.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-409">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/nation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        <state relative-caret-position="251">
+          <caret line="136" column="40" lean-forward="true" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/role.go">
+    <entry file="file://$PROJECT_DIR$/utils/string.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="109">
+          <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/role_auth.go">
+    <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/app.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/web.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/area.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="907">
-          <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
+        <state relative-caret-position="354">
+          <caret line="204" column="40" lean-forward="false" selection-start-line="204" selection-start-column="40" selection-end-line="204" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/controller.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="473" column="43" lean-forward="false" selection-start-line="473" selection-start-column="43" selection-end-line="473" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/tools.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="109" column="44" lean-forward="false" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="44" />
+        <state relative-caret-position="1108">
+          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/area/city/list.html">
+    <entry file="file://$PROJECT_DIR$/static/zTree3/api/en/zTreeObj.updateNode.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="76" lean-forward="false" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
+        <state relative-caret-position="210">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/auth/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="120" column="45" lean-forward="false" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/area/city/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="44" column="45" lean-forward="false" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
+    <entry file="file://$PROJECT_DIR$/views/backstage/area/city/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="65" lean-forward="false" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
+        <state relative-caret-position="227">
+          <caret line="44" column="45" lean-forward="false" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/tools.go">
+    <entry file="file://$PROJECT_DIR$/views/backstage/admin/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="125" column="33" lean-forward="false" selection-start-line="125" selection-start-column="33" selection-end-line="125" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="167">
+          <caret line="87" column="46" lean-forward="false" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/add.html">
+    <entry file="file://$PROJECT_DIR$/controllers/auth.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="64" lean-forward="false" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+          <caret line="25" column="57" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zd112.sql">
+    <entry file="file://$PROJECT_DIR$/models/web.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-87">
-          <caret line="704" column="17" lean-forward="false" selection-start-line="704" selection-start-column="17" selection-end-line="704" selection-end-column="17" />
+        <state relative-caret-position="480">
+          <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zd1121.sql">
+    <entry file="file://$PROJECT_DIR$/models/nation.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="819" column="2" lean-forward="true" selection-start-line="819" selection-start-column="2" selection-end-line="819" selection-end-column="2" />
-          <folding>
-            <marker date="1512864056000" expanded="true" signature="184:248" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="250:316" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="318:382" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="384:410" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="412:454" ph="/*!40103 SET... " />
-            <marker date="1512864056000" expanded="true" signature="456:490" ph="/*!40103 SET... " />
-            <marker date="1512864056000" expanded="true" signature="492:559" ph="/*!40014 SET... " />
-            <marker date="1512864056000" expanded="true" signature="561:643" ph="/*!40014 SET... " />
-            <marker date="1512864056000" expanded="true" signature="645:719" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="721:776" ph="/*!40111 SET... " />
-            <marker date="1512864056000" expanded="true" signature="831:867" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="869:930" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="932:975" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="977:2111" ph="CREATE TABLE... zd_api_detail" />
-            <marker date="1512864056000" expanded="true" signature="2113:2168" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="2255:2307" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="2309:2360" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="2429:2464" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="2466:2527" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="2529:2572" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="2574:3498" ph="CREATE TABLE... zd_api_param" />
-            <marker date="1512864056000" expanded="true" signature="3500:3555" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="3640:3691" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="3693:3743" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="3810:3843" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="3845:3906" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="3908:3951" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="3953:4763" ph="CREATE TABLE... zd_api_src" />
-            <marker date="1512864056000" expanded="true" signature="4765:4820" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="4901:4950" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="4952:5000" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="5069:5104" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="5106:5167" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="5169:5212" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="5214:5797" ph="CREATE TABLE... zd_area_city" />
-            <marker date="1512864056000" expanded="true" signature="5799:5854" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="5939:5990" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="5992:6123" ph="INSERT INTO `zd_area_city`... " />
-            <marker date="1512864056000" expanded="true" signature="6125:6175" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="6249:6289" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="6291:6352" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="6354:6397" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="6399:6951" ph="CREATE TABLE... zd_area_continent" />
-            <marker date="1512864056000" expanded="true" signature="6953:7008" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="7103:7159" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="7161:7294" ph="INSERT INTO `zd_area_continent`... " />
-            <marker date="1512864056000" expanded="true" signature="7296:7351" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="7423:7461" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="7463:7524" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="7526:7569" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="7571:8140" ph="CREATE TABLE... zd_area_country" />
-            <marker date="1512864056000" expanded="true" signature="8142:8197" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="8288:8342" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="8344:8397" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="8468:8505" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="8507:8568" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="8570:8613" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="8615:9184" ph="CREATE TABLE... zd_area_county" />
-            <marker date="1512864056000" expanded="true" signature="9186:9241" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="9330:9383" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="9385:9437" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="9507:9543" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="9545:9606" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="9608:9651" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="9653:10220" ph="CREATE TABLE... zd_area_group" />
-            <marker date="1512864056000" expanded="true" signature="10222:10277" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="10364:10416" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="10418:10469" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="10542:10581" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="10583:10644" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="10646:10689" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="10691:11279" ph="CREATE TABLE... zd_area_province" />
-            <marker date="1512864056000" expanded="true" signature="11281:11336" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="11429:11484" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="11486:11631" ph="INSERT INTO `zd_area_province`... " />
-            <marker date="1512864056000" expanded="true" signature="11633:11687" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="11758:11795" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="11797:11858" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="11860:11903" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="11905:12493" ph="CREATE TABLE... zd_area_region" />
-            <marker date="1512864056000" expanded="true" signature="12495:12550" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="12639:12692" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="12694:12830" ph="INSERT INTO `zd_area_region`... " />
-            <marker date="1512864056000" expanded="true" signature="12832:12884" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="12954:12990" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="12992:13053" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="13055:13098" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="13100:13715" ph="CREATE TABLE... zd_area_state" />
-            <marker date="1512864056000" expanded="true" signature="13717:13772" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="13859:13911" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="13913:14163" ph="INSERT INTO `zd_area_state`... " />
-            <marker date="1512864056000" expanded="true" signature="14165:14216" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="14285:14320" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="14322:14383" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="14385:14428" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="14430:14996" ph="CREATE TABLE... zd_area_team" />
-            <marker date="1512864056000" expanded="true" signature="14998:15053" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="15138:15189" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="15191:15241" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="15310:15345" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="15347:15408" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="15410:15453" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="15455:16021" ph="CREATE TABLE... zd_area_town" />
-            <marker date="1512864056000" expanded="true" signature="16023:16078" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="16163:16214" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="16216:16266" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="16338:16376" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="16378:16439" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="16441:16484" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="16486:17055" ph="CREATE TABLE... zd_area_village" />
-            <marker date="1512864056000" expanded="true" signature="17057:17112" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="17203:17257" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="17259:17312" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="17378:17410" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="17412:17473" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="17475:17518" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="17520:18074" ph="CREATE TABLE... zd_nation" />
-            <marker date="1512864056000" expanded="true" signature="18076:18131" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="18210:18258" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="18260:23099" ph="INSERT INTO `zd_nation`... " />
-            <marker date="1512864056000" expanded="true" signature="23101:23148" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="23216:23250" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="23252:23313" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="23315:23358" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="23360:24083" ph="CREATE TABLE... zd_set_code" />
-            <marker date="1512864056000" expanded="true" signature="24085:24140" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="24223:24273" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="24275:24324" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="24391:24424" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="24426:24487" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="24489:24532" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="24534:25256" ph="CREATE TABLE... zd_set_evn" />
-            <marker date="1512864056000" expanded="true" signature="25258:25313" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="25394:25443" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="25445:25493" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="25562:25597" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="25599:25660" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="25662:25705" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="25707:26326" ph="CREATE TABLE... zd_set_group" />
-            <marker date="1512864056000" expanded="true" signature="26328:26383" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="26468:26519" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="26521:26571" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="26645:26685" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="26687:26748" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="26750:26793" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="26795:27784" ph="CREATE TABLE... zd_tools_compress" />
-            <marker date="1512864056000" expanded="true" signature="27786:27841" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="27936:27992" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="27994:28158" ph="INSERT INTO `zd_tools_compress`... " />
-            <marker date="1512864056000" expanded="true" signature="28160:28215" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="28287:28325" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="28327:28388" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="28390:28433" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="28435:29045" ph="CREATE TABLE... zd_tools_format" />
-            <marker date="1512864056000" expanded="true" signature="29047:29102" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="29193:29247" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="29249:33325" ph="INSERT INTO `zd_tools_format`... " />
-            <marker date="1512864056000" expanded="true" signature="33327:33380" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="33457:33500" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="33502:33563" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="33565:33608" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="33610:34158" ph="CREATE TABLE... zd_tools_format_type" />
-            <marker date="1512864056000" expanded="true" signature="34160:34215" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="34316:34375" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="34377:34534" ph="INSERT INTO `zd_tools_format_type`... " />
-            <marker date="1512864056000" expanded="true" signature="34536:34594" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="34662:34696" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="34698:34759" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="34761:34804" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="34806:36011" ph="CREATE TABLE... zd_uc_admin" />
-            <marker date="1512864056000" expanded="true" signature="36013:36068" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="36151:36201" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="36203:36580" ph="INSERT INTO `zd_uc_admin`... " />
-            <marker date="1512864056000" expanded="true" signature="36582:36631" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="36698:36731" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="36733:36794" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="36796:36839" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="36841:37834" ph="CREATE TABLE... zd_uc_auth" />
-            <marker date="1512864056000" expanded="true" signature="37836:37891" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="37972:38021" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="38023:42793" ph="INSERT INTO `zd_uc_auth`... " />
-            <marker date="1512864056000" expanded="true" signature="42795:42843" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="42910:42943" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="42945:43006" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="43008:43051" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="43053:43702" ph="CREATE TABLE... zd_uc_role" />
-            <marker date="1512864056000" expanded="true" signature="43704:43759" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="43840:43889" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="43891:44023" ph="INSERT INTO `zd_uc_role`... " />
-            <marker date="1512864056000" expanded="true" signature="44025:44073" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="44145:44183" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="44185:44246" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="44248:44291" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="44293:44553" ph="CREATE TABLE... zd_uc_role_auth" />
-            <marker date="1512864056000" expanded="true" signature="44555:44610" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="44701:44755" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="44757:44875" ph="INSERT INTO `zd_uc_role_auth`... " />
-            <marker date="1512864056000" expanded="true" signature="44877:44930" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="45000:45036" ph="DROP TABLE I... " />
-            <marker date="1512864056000" expanded="true" signature="45038:45099" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="45101:45144" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="45146:45902" ph="CREATE TABLE... zd_web_banner" />
-            <marker date="1512864056000" expanded="true" signature="45904:45959" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="46046:46098" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="46100:46832" ph="INSERT INTO `zd_web_banner`... " />
-            <marker date="1512864056000" expanded="true" signature="46834:46885" ph="/*!40000 ALT... " />
-            <marker date="1512864056000" expanded="true" signature="46902:46942" ph="/*!40103 SET... " />
-            <marker date="1512864056000" expanded="true" signature="46945:46983" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="46985:47043" ph="/*!40014 SET... " />
-            <marker date="1512864056000" expanded="true" signature="47045:47093" ph="/*!40014 SET... " />
-            <marker date="1512864056000" expanded="true" signature="47095:47157" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="47159:47223" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="47225:47287" ph="/*!40101 SET... " />
-            <marker date="1512864056000" expanded="true" signature="47289:47329" ph="/*!40111 SET... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+        <state relative-caret-position="495">
+          <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/area.go">
+    <entry file="file://$PROJECT_DIR$/models/Auth.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4365">
-          <caret line="294" column="0" lean-forward="false" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+        <state relative-caret-position="855">
+          <caret line="59" column="15" lean-forward="false" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/backstage.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/comm.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/error.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/index.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/nation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/web.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="76" column="37" lean-forward="false" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/app.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/app.go">
+    <entry file="file://$PROJECT_DIR$/models/api.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
@@ -838,93 +397,309 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/admin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/area.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4322">
+          <caret line="90" column="4" lean-forward="false" selection-start-line="90" selection-start-column="4" selection-end-line="93" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/72bc3017/4ac49120-b95c-4826-aeec-243cde9bd39a/zd112.zd_uc_auth">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="75" column="30" lean-forward="true" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/filehelp.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="273" column="43" lean-forward="true" selection-start-line="273" selection-start-column="43" selection-end-line="273" selection-end-column="43" />
+        <state relative-caret-position="423">
+          <caret line="488" column="8" lean-forward="true" selection-start-line="488" selection-start-column="8" selection-end-line="488" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/comm/banner.html">
+    <entry file="file://$PROJECT_DIR$/controllers/web.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        <state relative-caret-position="185">
+          <caret line="23" column="51" lean-forward="true" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/comm/foot.html">
+    <entry file="file://$PROJECT_DIR$/../task/models/app.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6900">
+          <caret line="466" column="23" lean-forward="true" selection-start-line="466" selection-start-column="23" selection-end-line="466" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/index.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/nation.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/role.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/comm/navigationbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/comm/top.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/comm/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/app.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="15" lean-forward="false" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+        <state relative-caret-position="330">
+          <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/png/f5e549fc1156883e32c3791a6e6f3541_1512867551.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/models/init.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/png/3c76b1c579e04ac984ed3f6bce395aa9_1512867367.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/views/backstage/test/environment/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="52" column="14" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="52" selection-end-column="14" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/png/6e8e4901dfedb3f2b7f740f1a73740a7_1512867474.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/views/backstage/test/environment/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="763">
+          <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/png/170d7bb013717bb1d81cc801fbf34f1f_1512867502.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/views/backstage/test/environment/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="50" column="43" lean-forward="false" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload/png/b06af8f81801d443ba5e4040a8208de3_1512866718.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/models/app.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="341" column="22" lean-forward="false" selection-start-line="341" selection-start-column="22" selection-end-line="341" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/test/project/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/test/project/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login/reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="45" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/test/project/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zd112.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="1044" column="18" lean-forward="false" selection-start-line="1044" selection-start-column="18" selection-end-line="1044" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/area/continent/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/comm.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4264">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-452">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/comm/upload_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/comm/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="94" lean-forward="false" selection-start-line="4" selection-start-column="94" selection-end-line="4" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="56" lean-forward="false" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/backstage/tools/compress/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="290" column="0" lean-forward="false" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-259">
+          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/area.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="106" column="28" lean-forward="true" selection-start-line="106" selection-start-column="28" selection-end-line="106" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/app.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-109">
+          <caret line="633" column="20" lean-forward="false" selection-start-line="633" selection-start-column="20" selection-end-line="633" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

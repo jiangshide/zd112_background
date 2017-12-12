@@ -70,7 +70,9 @@ func commRouter() {
 	router["app/env:"+actionStr] = &controllers.EnvController{}
 	router["app/build:"+actionStr] = &controllers.BuildController{}
 	router["app/type:"+actionStr] = &controllers.TypeController{}
-	router["app/app:"+actionStr] = &controllers.AppController{}
+	router["test/app:"+actionStr] = &controllers.AppController{}
+	router["test/environment:"+actionStr] = &controllers.EnvironmnetController{}
+	router["test/project:"+actionStr]=&controllers.ProjectController{}
 	for k, v := range router {
 		kArr := strings.Split(k, ":")
 		path := "/backstage/" + kArr[0]
@@ -81,11 +83,10 @@ func commRouter() {
 				rootPath += "/" + strings.ToLower(action)
 			}
 			action = "*:" + utils.StrFirstToUpper(action)
-			beego.Info("rootPath:", rootPath, " | action:", action, " | v:", v)
+			//beego.Info("rootPath:", rootPath, " | action:", action, " | v:", v)
 			beego.Router(rootPath, v, action)
 		}
 	}
-
 }
 
 func taskTime() {

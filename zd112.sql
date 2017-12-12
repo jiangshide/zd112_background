@@ -936,8 +936,12 @@ CREATE TABLE `zd_app_type` (
 DROP TABLE IF EXISTS `zd_app`; #渠道包管理
 CREATE TABLE `zd_app` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `project_id`  INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '项目ID',
   `test_id`     INT(11)            NOT NULL      DEFAULT '0'
   COMMENT '测试ID',
+  `icon`        VARCHAR(100)       NOT NULL NULL DEFAULT ''
+  COMMENT 'Logo',
   `type`        VARCHAR(30)        NOT NULL      DEFAULT ''
   COMMENT '应用平台类型,如:android',
   `application` VARCHAR(20)        NOT NULL      DEFAULT ''
@@ -964,6 +968,8 @@ CREATE TABLE `zd_app` (
   COMMENT '打包次数',
   `url`         VARCHAR(100)       NOT NULL      DEFAULT ''
   COMMENT '下载地址',
+  `qr_img`      VARCHAR(100)       NOT NULL      DEFAULT ''
+  COMMENT '二维码地址',
   `downs`       INT                NOT NULL      DEFAULT '0'
   COMMENT '下载次数',
   `create_id`   INT(11)            NOT NULL      DEFAULT '0'
@@ -984,9 +990,74 @@ CREATE TABLE `zd_app` (
 
 #--------the app---end-----#
 
-#--------the app---start-----#
+#--------the test---start-----#
 
-#--------the app---end-----#
+DROP TABLE IF EXISTS `zd_test_environment`; #系统环境设置
+CREATE TABLE `zd_test_environment` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(30)      NOT NULL      DEFAULT ''
+  COMMENT '环境类型',
+  `jdk`         VARCHAR(100)     NOT NULL      DEFAULT ''
+  COMMENT 'jdk安装路径',
+  `git`         VARCHAR(100)     NOT NULL      DEFAULT ''
+  COMMENT 'Git安装路径',
+  `gradle`      VARCHAR(100)     NOT NULL      DEFAULT ''
+  COMMENT 'Gradle安装路径',
+  `adb`         VARCHAR(100)     NOT NULL      DEFAULT ''
+  COMMENT 'Adb安装路径',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='系统环境管理';
+
+DROP TABLE IF EXISTS `zd_test_project`; #GIT工程目录
+CREATE TABLE `zd_test_project` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `parent_id`      INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '系统环境ID',
+  `name`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '项目名称',
+  `icon`        VARCHAR(100)       NOT NULL NULL DEFAULT ''
+  COMMENT 'Logo',
+  `address`     TEXT COMMENT '项目地址:git,svn,...',
+  `account`     VARCHAR(30)        NOT NULL      DEFAULT ''
+  COMMENT '账号名称',
+  `psw`         VARCHAR(50)        NOT NULL      DEFAULT ''
+  COMMENT '账号密码',
+  `branch`      VARCHAR(50)        NOT NULL      DEFAULT ''
+  COMMENT '分支',
+  `tag`         VARCHAR(50)        NOT NULL      DEFAULT ''
+  COMMENT '标签tag',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='项目工程管理';
+
+#--------the test---end-----#
 
 #--------the other---start-----#
 

@@ -27,9 +27,34 @@ func Init() {
 		dsn += "&loc=" + url.QueryEscape(timeZone)
 	}
 	orm.RegisterDataBase("default", "mysql", dsn, maxConn, maxIdle)
-	orm.RegisterModel(new(Admin), new(Role), new(RoleAuth), new(Auth), new(Nation), new(Continent), new(State), new(Province), new(City), new(Region), new(County), new(Town), new(Country), new(Village), new(Group), new(Team), new(Banner), new(Compress), new(FormatType), new(Format))
+	orm.RegisterModel(new(Admin), new(Role), new(RoleAuth), new(Auth), new(Nation), new(Continent), new(State), new(Province), new(City), new(Region), new(County), new(Town), new(Country), new(Village), new(Group), new(Team), new(Banner), new(Compress), new(FormatType), new(Format),
+		new(Environment), new(Project), new(App), new(Channel), new(Application), new(Pkg), new(Version), new(Code), new(Env), new(Build), new(Type))
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
+	}
+	InitEnv()
+}
+
+func InitEnv() {
+	env := [...]string{"java", "git", "gradle", "adb"}
+	orm.NewOrm().Raw("truncate table zd_test_environment").Exec()
+	environment := new(Environment)
+	environment.Name = "系统环境"
+	for _, v := range env {
+		res, _ := utils.ExecCommand("which " + v)
+		if v == "java" {
+			environment.Jdk = string(res)
+		} else if v == "git" {
+			environment.Git = string(res)
+		} else if v == "gradle" {
+			environment.Gradle = string(res)
+		} else if v == "adb" {
+			environment.Adb = string(res)
+		}
+	}
+	if environment.Jdk != "" || environment.Git != "" || environment.Gradle != "" || environment.Adb != "" {
+		_, err := environment.Add()
+		beego.Error(err)
 	}
 }
 
