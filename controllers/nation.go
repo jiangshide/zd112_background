@@ -28,7 +28,7 @@ func (this *NationController) Add() {
 func (this *NationController) Edit() {
 	this.pageTitle("编辑民族名称")
 	nation := new(models.Nation)
-	nation.Id = this.getInt("id", 0)
+	nation.Id = this.getId64(0)
 	if err := nation.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -43,7 +43,7 @@ func (this *NationController) Edit() {
 
 func (this *NationController) AjaxSave() {
 	nation := new(models.Nation)
-	nation.Id = this.getInt("id", 0)
+	nation.Id = this.getId64(0)
 	nation.Name = this.getString("name", "名称不能为空!", 1)
 	nation.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	if nation.Id == 0 {
@@ -67,17 +67,14 @@ func (this *NationController) Table() {
 	result, count := nation.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["file"] = v.Icon
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *NationController) AjaxDel() {
 	nation := new(models.Nation)
-	nation.Id = this.getInt("id", 0)
+	nation.Id = this.getId64(0)
 	if _, err := nation.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}

@@ -22,24 +22,17 @@ func (this *EnvironmnetController) Add() {
 func (this *EnvironmnetController) Edit() {
 	this.pageTitle("编辑系统环境变量")
 	environment := new(models.Environment)
-	environment.Id = this.getInt("id", 0)
+	environment.Id = this.getId64(0)
 	if err := environment.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	row["id"] = environment.Id
-	row["name"] = environment.Name
-	row["jdk"] = environment.Jdk
-	row["git"] = environment.Git
-	row["gradle"] = environment.Gradle
-	row["adb"] = environment.Adb
-	this.Data["row"] = row
+	this.row(nil, environment, false)
 	this.display(this.getBgTestAction("environment/edit"))
 }
 
 func (this *EnvironmnetController) AjaxSave() {
 	environment := new(models.Environment)
-	environment.Id = this.getInt("id", 0)
+	environment.Id = this.getId64(0)
 	environment.Name = this.getString("name", "环境名称不能为空!", 2)
 	environment.Jdk = this.getString("jdk", "jdk没有安装!", 2)
 	environment.Git = this.getString("git", "git没有安装!", 2)
@@ -66,20 +59,14 @@ func (this *EnvironmnetController) Table() {
 	result, count := environment.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["jdk"] = v.Jdk
-		row["git"] = v.Git
-		row["gradle"] = v.Gradle
-		row["adb"] = v.Adb
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *EnvironmnetController) AjaxDel() {
 	environment := new(models.Environment)
-	environment.Id = this.getInt("id", 0)
+	environment.Id = this.getId64(0)
 	if _, err := environment.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -104,32 +91,25 @@ func (this *ProjectController) Add() {
 func (this *ProjectController) Edit() {
 	this.pageTitle("编辑工程项目名称")
 	project := new(models.Project)
-	project.Id = this.getInt("id", 0)
+	project.Id = this.getId64(0)
 	if err := project.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(project.ParentId)
-	row := make(map[string]interface{})
-	row["parent_id"] = project.ParentId
-	row["icon"] = project.Icon
-	row["address"] = project.Address
-	row["account"] = project.Account
-	row["psw"] = project.Psw
-	row["branch"] = project.Branch
-	row["tag"] = project.Tag
-	this.row(row, project.Id, project.Name, project.Descript)
+	this.row(nil, project, false)
 	this.display(this.getBgTestAction("project/edit"))
 }
 
 func (this *ProjectController) AjaxSave() {
 	project := new(models.Project)
-	project.Id = this.getInt("id", 0)
+	project.Id = this.getId64(0)
 	project.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 	project.Name = this.getString("name", "项目名称不能为空!", 1)
 	project.Icon = this.getString("icon", "Icon不能为空!", 1)
 	project.Address = this.getString("address", "项目地址不能为空!", 2)
 	project.Account = this.getString("account", "", 0)
 	project.Psw = this.getString("psw", "", 0)
+	project.ParentId = this.getInt64("group_id", 0)
 	var err error
 	if project.Id == 0 {
 		project.CreateId = this.userId
@@ -151,21 +131,12 @@ func (this *ProjectController) Table() {
 	result, count := project.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["file"] = v.Icon
-		row["address"] = v.Address
-		row["account"] = v.Account
-		row["psw"] = v.Psw
-		row["branch"] = v.Branch
-		row["tag"] = v.Tag
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
-func (this *ProjectController) parent(id int) {
+func (this *ProjectController) parent(id int64) {
 	environment := new(models.Environment)
 	result, count := environment.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -185,9 +156,39 @@ func (this *ProjectController) parent(id int) {
 
 func (this *ProjectController) AjaxDel() {
 	project := new(models.Project)
-	project.Id = this.getInt("id", 0)
+	project.Id = this.getId64(0)
 	if _, err := project.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
+}
+
+type TestController struct {
+	BaseController
+}
+
+func (this *TestController) List() {
+	this.pageTitle("测试列表")
+	this.display(this.getBgTestAction("test/list"))
+}
+
+func (this *TestController) Add() {
+	this.pageTitle("增加测试名称")
+
+}
+
+func (this *TestController) Edit() {
+
+}
+
+func (this *TestController) AjaxSave() {
+
+}
+
+func (this *TestController) Table() {
+
+}
+
+func (this *TestController) AjaxDel() {
+
 }

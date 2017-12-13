@@ -78,7 +78,6 @@ func (this *UserController) Login() {
 		userName := this.getString("username", "账号不能为空!", defaultMinSize)
 		password := this.getString("password", "密码不能为空!", defaultMinSize)
 		user, err := models.AdminGetByName(userName)
-		beego.Info("--------user:", user, " | err:", err)
 		if err != nil || user.Password != utils.Md5(password+user.Salt) {
 			this.showTips(err)
 		} else if user.Status == -1 {
@@ -88,14 +87,13 @@ func (this *UserController) Login() {
 		user.LastLogin = time.Now().Unix()
 		user.Update()
 		authKey := utils.Md5(this.getClientIp() + "|" + user.Password + user.Salt)
-		this.Ctx.SetCookie("auth", strconv.Itoa(user.Id)+"|"+authKey, 7*86400)
+		this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id,10)+"|"+authKey, 7*86400)
 		this.redirect(beego.URLFor("MainController.Index"))
 	}
 	this.TplName = "login/login.html"
 }
 
 func (this *UserController) LoginOut() {
-	beego.Info("----------loginout")
 	this.Ctx.SetCookie("auth", "")
 	this.redirect(beego.URLFor("IndexController.Index"))
 }
@@ -105,7 +103,6 @@ func (this *UserController) NoAuth() {
 }
 
 func (this *UserController) Edit() {
-	beego.Info("---------------edit")
 	this.Data["pageTitle"] = "资料修改"
 	id := this.userId
 	Admin, _ := models.AdminGetById(id)

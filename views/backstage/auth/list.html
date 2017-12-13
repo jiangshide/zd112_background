@@ -142,7 +142,7 @@
 <script type="text/javascript">
     var zNodes = [{ id:1, pId:0, name:"数据错误"}];
     $(document).ready(function(){
-        // $("form[name=form]").parent().find("input[type=radio]").eq(1).attr("checked", true);
+        // $("form[app_name=form]").parent().find("input[type=radio]").eq(1).attr("checked", true);
         var setting = {
             // edit: {
             //  enable: true
@@ -177,7 +177,7 @@
             $("#pid").val(nodes[0].pId);
             $("#id").val(nodes[0].id);
             $("#pname").val(pname);
-            $("form[name=form]").find("input[name=name]").val(nodes[0].name);
+            $("form[app_name=form]").find("input[app_name=app_name]").val(nodes[0].name);
 
             $.ajax({
                 type: "POST",
@@ -187,11 +187,11 @@
                 success: function(data) {
 
                     if(data.code==0){
-                        $("form[name=form]").find("input[name=url]").val(data.data.url);
-                        $("form[name=form]").find("input[name=icon]").val(data.data.icon);
-                        $("form[name=form]").find("input[name=sort]").val(data.data.sort);
+                        $("form[app_name=form]").find("input[app_name=url]").val(data.data.url);
+                        $("form[app_name=form]").find("input[app_name=icon]").val(data.data.icon);
+                        $("form[app_name=form]").find("input[app_name=sort]").val(data.data.sort);
                         var is_show = data.data.is_show
-                        $("form[name=form]").find("input[type=radio][value="+is_show+"]").attr("checked", true);
+                        $("form[app_name=form]").find("input[type=radio][value="+is_show+"]").attr("checked", true);
                         //form.render();
                     }
                 }
@@ -267,14 +267,14 @@
 
         // //新增 type=1
         // $('#submit_add_button').on('click',function(){
-        //     var data = $('form[name=form_add]').serialize();
+        //     var data = $('form[app_name=form_add]').serialize();
 
         //     ajaxRequest({'nodes':data,'type':1},'/auth/auth/save_auth','submit_add_button','POST',0);
         // });
 
         // //新增 type=2
         // $('#submit_edit_button').on('click',function(){
-        //     var data = $('form[name=form_add]').serialize();
+        //     var data = $('form[app_name=form_add]').serialize();
 
         //     ajaxRequest({'nodes':data,'type':2},'/auth/auth/save_auth','submit_edit_button','POST',0);
         // });
@@ -303,9 +303,9 @@
 
         // //清空
         // $('#submit_cancel_button').on('click',function(){
-        //     var fields = ['id','pid','pname','name','menu_url','sort'];
+        //     var fields = ['id','pid','pname','app_name','menu_url','sort'];
         //     $.each(fields,function(k,v) {
-        //         $("form[name=form_add]").find("input[name="+v+"]").val('');
+        //         $("form[app_name=form_add]").find("input[app_name="+v+"]").val('');
         //     });
 
         // });

@@ -63,8 +63,8 @@ func commRouter() {
 	router["tools/formattype:"+actionStr] = &controllers.FormatTypeController{}
 	router["tools/format:"+actionStr] = &controllers.FormatController{}
 	router["app/channel:"+actionStr] = &controllers.ChannelController{}
-	router["app/application:"+actionStr] = &controllers.ApplicationController{}
-	router["app/pkg:"+actionStr] = &controllers.PkgController{}
+	router["app/app_name:"+actionStr] = &controllers.AppNameController{}
+	router["app/pkgs:"+actionStr] = &controllers.PkgsController{}
 	router["app/version:"+actionStr] = &controllers.VersionController{}
 	router["app/code:"+actionStr] = &controllers.CodeController{}
 	router["app/env:"+actionStr] = &controllers.EnvController{}
@@ -72,7 +72,8 @@ func commRouter() {
 	router["app/type:"+actionStr] = &controllers.TypeController{}
 	router["test/app:"+actionStr] = &controllers.AppController{}
 	router["test/environment:"+actionStr] = &controllers.EnvironmnetController{}
-	router["test/project:"+actionStr]=&controllers.ProjectController{}
+	router["test/project:"+actionStr] = &controllers.ProjectController{}
+	router["test/test:"+actionStr] = &controllers.TestController{}
 	for k, v := range router {
 		kArr := strings.Split(k, ":")
 		path := "/backstage/" + kArr[0]
@@ -83,7 +84,7 @@ func commRouter() {
 				rootPath += "/" + strings.ToLower(action)
 			}
 			action = "*:" + utils.StrFirstToUpper(action)
-			//beego.Info("rootPath:", rootPath, " | action:", action, " | v:", v)
+			//beego.Info("rootPath:", rootPath, " | action:", action)
 			beego.Router(rootPath, v, action)
 		}
 	}

@@ -5,17 +5,17 @@ import (
 )
 
 type Auth struct {
-	Id         int
+	Id         int64
 	Name       string
 	Url        string
-	UserId     int
+	UserId     int64
 	Pid        int
 	Sort       int
 	Icon       string
 	IsShow     int
 	Status     int
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -55,14 +55,14 @@ func (this *Auth) List(pageSize, offSet int) (list []*Auth, total int64) {
 	return
 }
 
-func AuthGetById(id int) (this *Auth, err error) {
+func AuthGetById(id int64) (this *Auth, err error) {
 	this = &Auth{
 		Id: id,
 	}
 	return this, orm.NewOrm().Read(this)
 }
 
-func AuthDelById(id int) (int64, error) {
+func AuthDelById(id int64) (int64, error) {
 	return orm.NewOrm().QueryTable(TableName("uc_auth")).Filter("id", id).Delete()
 }
 
@@ -71,9 +71,9 @@ func AuthGetListByIds(authIds string, userId int) ([]*Auth, error) {
 	var lists []orm.Params
 	var err error
 	if userId == 1 {
-		_, err = orm.NewOrm().Raw("select id,name,url,pid,sort,icon,is_show from zd_uc_auth where status=? order by pid asc,sort asc", 1).Values(&lists)
+		_, err = orm.NewOrm().Raw("select id,app_name,url,pid,sort,icon,is_show from zd_uc_auth where status=? order by pid asc,sort asc", 1).Values(&lists)
 	} else {
-		_, err = orm.NewOrm().Raw("select id,name,url,pid,sort,icon,is_show from zd_uc_auth where status=1 and id in("+authIds+") order by pid asc,sort asc", authIds).Values(&lists)
+		_, err = orm.NewOrm().Raw("select id,app_name,url,pid,sort,icon,is_show from zd_uc_auth where status=1 and id in("+authIds+") order by pid asc,sort asc", authIds).Values(&lists)
 	}
 	return list, err
 }

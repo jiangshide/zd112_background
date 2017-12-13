@@ -209,7 +209,7 @@ func Unzip(zipPath, destPath string) (err error) {
 		if err := os.MkdirAll(destPath, os.ModePerm); err == nil {
 			guid, _ := GetGuid()
 			f, err := os.Create(destPath + guid)
-			beego.Info("----------destPath:", tempPath, " | name:", fileName, " | f:", f)
+			beego.Info("----------destPath:", tempPath, " | app_name:", fileName, " | f:", f)
 			tempPath = f.Name()
 			if err != nil {
 				beego.Error("------1-err:", err)
@@ -402,7 +402,7 @@ func tarGzFile(srcFile, recPath string, tw *tar.Writer, fi os.FileInfo) (err err
 	if fi.IsDir() {
 		// Create tar header
 		hdr := new(tar.Header)
-		// if last character of header name is '/' it also can be directory
+		// if last character of header app_name is '/' it also can be directory
 		// but if you don't set Typeflag, error will occur when you untargz
 		hdr.Name = recPath + "/"
 		hdr.Typeflag = tar.TypeDir

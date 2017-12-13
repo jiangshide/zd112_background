@@ -24,11 +24,11 @@ func (this *RoleController) Add() {
 func (this *RoleController) Edit() {
 	this.Data["zTree"] = true
 	this.pageTitle("编辑角色")
-	id := this.getInt("id",0)
+	id := this.getInt64("id",0)
 	role, _ := models.RoleGetById(id)
 	this.Data["role"] = role
 	roleAuth, _ := models.RoleAuthGetById(id)
-	authId := make([]int, 0)
+	authId := make([]int64, 0)
 	for _, v := range roleAuth {
 		authId = append(authId, v.AuthId)
 	}
@@ -45,7 +45,7 @@ func (this *RoleController) AjaxSave() {
 }
 
 func (this *RoleController) AjaxDel() {
-	id := this.getInt("id",0)
+	id := this.getInt64("id",0)
 	role, _ := models.RoleGetById(id)
 	role.Status = 0
 	role.Id = id

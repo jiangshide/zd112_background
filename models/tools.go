@@ -3,11 +3,11 @@ package models
 import "github.com/astaxie/beego/orm"
 
 type FormatType struct {
-	Id         int
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -43,12 +43,12 @@ func (this *FormatType) List(pageSize, offSet int) (list []*FormatType, total in
 }
 
 type Format struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -84,18 +84,18 @@ func (this *Format) List(pageSize, offSet int) (list []*Format, total int64) {
 }
 
 type Compress struct {
-	Id         int
+	Id         int64
 	Name       string
 	Url        string
-	Type       int
+	Type       int64
 	Format     string
 	Descript   string
 	Size       int64
 	ReSize     int64
 	Compress   int
 	Downs      int
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int

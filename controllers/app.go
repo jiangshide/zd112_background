@@ -9,13 +9,6 @@ type ChannelController struct {
 	BaseController
 }
 
-func (this *BaseController) row(row map[string]interface{}, id int, name, descript string) {
-	row["id"] = id
-	row["name"] = name
-	row["descript"] = descript
-	this.Data["row"] = row
-}
-
 func (this *ChannelController) List() {
 	this.pageTitle("渠道列表")
 	this.display(this.getBgAppAction("channel/list"))
@@ -29,19 +22,17 @@ func (this *ChannelController) Add() {
 func (this *ChannelController) Edit() {
 	this.pageTitle("编辑渠道名称")
 	channel := new(models.Channel)
-	channel.Id = this.getInt("id", 0)
+	channel.Id = this.getId64(0)
 	if err := channel.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	row["friend_id"] = channel.FriendId
-	this.row(row, channel.Id, channel.Name, channel.Descript)
+	this.row(nil, channel, false)
 	this.display(this.getBgAppAction("channel/edit"))
 }
 
 func (this *ChannelController) AjaxSave() {
 	channel := new(models.Channel)
-	channel.Id = this.getInt("id", 0)
+	channel.Id = this.getId64(0)
 	channel.Name = this.getString("name", "名称不能为空!", 1)
 	channel.FriendId = this.getString("friend_id", "", 0)
 	channel.Descript = this.getString("descript", "", 0)
@@ -66,64 +57,59 @@ func (this *ChannelController) Table() {
 	result, count := channel.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["friend_id"] = v.FriendId
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *ChannelController) AjaxDel() {
 	channel := new(models.Channel)
-	channel.Id = this.getInt("id", 0)
+	channel.Id = this.getId64(0)
 	if _, err := channel.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
 }
 
-type ApplicationController struct {
+type AppNameController struct {
 	BaseController
 }
 
-func (this ApplicationController) List() {
+func (this AppNameController) List() {
 	this.pageTitle("应用名称列表")
-	this.display(this.getBgAppAction("application/list"))
+	this.display(this.getBgAppAction("app_name/list"))
 }
 
-func (this ApplicationController) Add() {
+func (this AppNameController) Add() {
 	this.pageTitle("增加应用名称")
-	this.display(this.getBgAppAction("application/add"))
+	this.display(this.getBgAppAction("app_name/add"))
 }
 
-func (this ApplicationController) Edit() {
+func (this AppNameController) Edit() {
 	this.pageTitle("编辑应用名称")
-	application := new(models.Application)
-	application.Id = this.getInt("id", 0)
-	if err := application.Query(); err != nil {
+	appName := new(models.AppName)
+	appName.Id = this.getId64(0)
+	if err := appName.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	this.row(row, application.Id, application.Name, application.Descript)
-	this.display(this.getBgAppAction("application/edit"))
+	this.row(nil, appName, false)
+	this.display(this.getBgAppAction("app_name/edit"))
 }
 
-func (this ApplicationController) AjaxSave() {
-	application := new(models.Application)
-	application.Id = this.getInt("id", 0)
-	application.Name = this.getString("name", "应用名称不能为空!", 1)
-	application.Descript = this.getString("descript", "", 0)
+func (this AppNameController) AjaxSave() {
+	appName := new(models.AppName)
+	appName.Id = this.getId64(0)
+	appName.Name = this.getString("name", "应用名称不能为空!", 1)
+	appName.Descript = this.getString("descript", "", 0)
 	var err error
-	if application.Id == 0 {
-		application.CreateId = this.userId
-		application.CreateTime = time.Now().Unix()
-		_, err = application.Add()
+	if appName.Id == 0 {
+		appName.CreateId = this.userId
+		appName.CreateTime = time.Now().Unix()
+		_, err = appName.Add()
 	} else {
-		application.UpdateId = this.userId
-		application.UpdateTime = time.Now().Unix()
-		_, err = application.Update()
+		appName.UpdateId = this.userId
+		appName.UpdateTime = time.Now().Unix()
+		_, err = appName.Update()
 	}
 	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
@@ -131,57 +117,53 @@ func (this ApplicationController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this ApplicationController) Table() {
-	application := new(models.Application)
-	result, count := application.List(this.pageSize, this.offSet)
+func (this AppNameController) Table() {
+	appName := new(models.AppName)
+	result, count := appName.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
-func (this *ApplicationController) AjaxDel() {
-	application := new(models.Application)
-	application.Id = this.getInt("id", 0)
-	if _, err := application.Del(); err != nil {
+func (this *AppNameController) AjaxDel() {
+	appName := new(models.AppName)
+	appName.Id = this.getId64(0)
+	if _, err := appName.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
 }
 
-type PkgController struct {
+type PkgsController struct {
 	BaseController
 }
 
-func (this PkgController) List() {
+func (this PkgsController) List() {
 	this.pageTitle("应用包列表")
-	this.display(this.getBgAppAction("pkg/list"))
+	this.display(this.getBgAppAction("pkgs/list"))
 }
 
-func (this PkgController) Add() {
+func (this PkgsController) Add() {
 	this.pageTitle("增加应用包")
-	this.display(this.getBgAppAction("pkg/add"))
+	this.display(this.getBgAppAction("pkgs/add"))
 }
 
-func (this PkgController) Edit() {
+func (this PkgsController) Edit() {
 	this.pageTitle("编辑应用包")
-	pkg := new(models.Pkg)
-	pkg.Id = this.getInt("id", 0)
-	if err := pkg.Query(); err != nil {
+	pkgs := new(models.Pkgs)
+	pkgs.Id = this.getId64(0)
+	if err := pkgs.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	this.row(row, pkg.Id, pkg.Name, pkg.Descript)
-	this.display(this.getBgAppAction("pkg/edit"))
+	this.row(nil, pkgs, false)
+	this.display(this.getBgAppAction("pkgs/edit"))
 }
 
-func (this *PkgController) AjaxSave() {
-	pkg := new(models.Pkg)
-	pkg.Id = this.getInt("id", 0)
+func (this *PkgsController) AjaxSave() {
+	pkg := new(models.Pkgs)
+	pkg.Id = this.getId64(0)
 	pkg.Name = this.getString("name", "包名称不能为空!", 1)
 	pkg.Descript = this.getString("descript", "", 0)
 	var err error
@@ -200,22 +182,19 @@ func (this *PkgController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *PkgController) Table() {
-	pkg := new(models.Pkg)
+func (this *PkgsController) Table() {
+	pkg := new(models.Pkgs)
 	result, count := pkg.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
-func (this *PkgController) AjaxDel() {
-	pkg := new(models.Pkg)
-	pkg.Id = this.getInt("id", 0)
+func (this *PkgsController) AjaxDel() {
+	pkg := new(models.Pkgs)
+	pkg.Id = this.getId64(0)
 	if _, err := pkg.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -239,18 +218,17 @@ func (this *VersionController) Add() {
 func (this *VersionController) Edit() {
 	this.pageTitle("编辑应用版本")
 	version := new(models.Version)
-	version.Id = this.getInt("id", 0)
+	version.Id = this.getId64(0)
 	if err := version.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	this.row(row, version.Id, version.Name, version.Descript)
+	this.row(nil, version, false)
 	this.display(this.getBgAppAction("version/edit"))
 }
 
 func (this *VersionController) AjaxSave() {
 	version := new(models.Version)
-	version.Id = this.getInt("id", 0)
+	version.Id = this.getId64(0)
 	version.Name = this.getString("name", "版本名称不能为空!", 1)
 	version.Descript = this.getString("descript", "", 0)
 	var err error
@@ -274,17 +252,14 @@ func (this *VersionController) Table() {
 	result, count := version.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row ["name"] = v.Name
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *VersionController) AjaxDel() {
 	version := new(models.Version)
-	version.Id = this.getInt("id", 0)
+	version.Id = this.getId64(0)
 	if _, err := version.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -308,21 +283,17 @@ func (this *CodeController) Add() {
 func (this *CodeController) Edit() {
 	this.pageTitle("编辑应用编号")
 	code := new(models.Code)
-	code.Id = this.getInt("id", 0)
+	code.Id = this.getId64(0)
 	if err := code.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	row["id"] = code.Id
-	row["code"] = code.Code
-	row["descript"] = code.Descript
-	this.Data["row"] = row
+	this.row(nil, code, false)
 	this.display(this.getBgAppAction("code/edit"))
 }
 
 func (this *CodeController) AjaxSave() {
 	code := new(models.Code)
-	code.Id = this.getInt("id", 0)
+	code.Id = this.getId64(0)
 	code.Code = this.getInt("code", 0)
 	code.Descript = this.getString("descript", "", 0)
 	var err error
@@ -346,17 +317,14 @@ func (this *CodeController) Table() {
 	result, count := code.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["code"] = v.Code
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *CodeController) AjaxDel() {
 	code := new(models.Code)
-	code.Id = this.getInt("id", 0)
+	code.Id = this.getId64(0)
 	if _, err := code.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -380,18 +348,17 @@ func (this *EnvController) Add() {
 func (this *EnvController) Edit() {
 	this.pageTitle("编辑应用环境")
 	env := new(models.Env)
-	env.Id = this.getInt("id", 0)
+	env.Id = this.getId64(0)
 	if err := env.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	this.row(row, env.Id, env.Name, env.Descript)
+	this.row(nil, env, false)
 	this.display(this.getBgAppAction("env/edit"))
 }
 
 func (this *EnvController) AjaxSave() {
 	env := new(models.Env)
-	env.Id = this.getInt("id", 0)
+	env.Id = this.getId64(0)
 	env.Name = this.getString("name", "应用环境名称不能为空！", 1)
 	env.Descript = this.getString("descript", "", 0)
 	var err error
@@ -415,17 +382,14 @@ func (this *EnvController) Table() {
 	result, count := env.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *EnvController) AjaxDel() {
 	env := new(models.Env)
-	env.Id = this.getInt("id", 0)
+	env.Id = this.getId64(0)
 	if _, err := env.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -449,18 +413,17 @@ func (this *BuildController) Add() {
 func (this *BuildController) Edit() {
 	this.pageTitle("编辑构建类型")
 	build := new(models.Build)
-	build.Id = this.getInt("id", 0)
+	build.Id = this.getId64(0)
 	if err := build.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	this.row(row, build.Id, build.Name, build.Descript)
+	this.row(nil, build, true)
 	this.display(this.getBgAppAction("build/edit"))
 }
 
 func (this *BuildController) AjaxSave() {
 	build := new(models.Build)
-	build.Id = this.getInt("id", 0)
+	build.Id = this.getId64(0)
 	build.Name = this.getString("name", "名称不能为空!", 1)
 	build.Descript = this.getString("descript", "", 0)
 	var err error
@@ -483,17 +446,14 @@ func (this *BuildController) Table() {
 	result, count := build.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *BuildController) AjaxDel() {
 	build := new(models.Build)
-	build.Id = this.getInt("id", 0)
+	build.Id = this.getId64(0)
 	if _, err := build.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -517,18 +477,17 @@ func (this *TypeController) Add() {
 func (this *TypeController) Edit() {
 	this.pageTitle("编辑平台名称")
 	types := new(models.Type)
-	types.Id = this.getInt("id", 0)
+	types.Id = this.getId64(0)
 	if err := types.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	this.row(row, types.Id, types.Name, types.Descript)
+	this.row(nil, types, false)
 	this.display(this.getBgAppAction("type/edit"))
 }
 
 func (this *TypeController) AjaxSave() {
 	types := new(models.Type)
-	types.Id = this.getInt("id", 0)
+	types.Id = this.getId64(0)
 	types.Name = this.getString("name", "名称不能为空!", 1)
 	types.Descript = this.getString("descript", "", 0)
 	var err error
@@ -551,17 +510,14 @@ func (this *TypeController) Table() {
 	result, count := types.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *TypeController) AjaxDel() {
 	types := new(models.Type)
-	types.Id = this.getInt("id", 0)
+	types.Id = this.getId64(0)
 	if _, err := types.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -574,17 +530,25 @@ type AppController struct {
 
 func (this *AppController) List() {
 	this.pageTitle("应用列表")
-	this.display(this.getBgAppAction("app/list"))
+	this.display(this.getBgTestAction("app/list"))
 }
 
 func (this *AppController) Add() {
 	this.pageTitle("增加应用")
-	this.display(this.getBgAppAction("app/add"))
+	this.setChannel(0)
+	this.setBuild(0)
+	this.setEnv(0)
+	this.setCode(0)
+	this.setVersion(0)
+	this.setPkg(0)
+	this.setApplication(0)
+	this.setType(0)
+	this.display(this.getBgTestAction("app/add"))
 }
 
 func (this *AppController) Edit() {
 	app := new(models.App)
-	app.Id = this.getInt("id", 0)
+	app.Id = this.getId64(0)
 	if err := app.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -593,38 +557,37 @@ func (this *AppController) Edit() {
 	row["project_id"] = app.ProjectId
 	row["test_id"] = app.TestId
 	row["icon"] = app.Icon
-	row["type"] = app.Type
-	row["application"] = app.Application
-	row["pkg"] = app.Pkg
-	row["version"] = app.Version
-	row["code"] = app.Code
-	row["env"] = app.Env
-	row["build"] = app.Build
-	row["channel"] = app.Channel
-	row["friend_id"] = app.FriendId
+	this.setFileSize(row, app.Icon)
+	this.setType(app.TypeId)
+	this.setApplication(app.ApplicationId)
+	this.setPkg(app.PkgId)
+	this.setVersion(app.VersionId)
+	this.setCode(app.CodeId)
+	this.setEnv(app.EnvId)
+	this.setBuild(app.BuildId)
+	this.setChannel(app.ChannelId)
 	row["descript"] = app.Descript
 	row["status"] = app.Status
 	row["times"] = app.Times
 	row["url"] = app.Url
 	row["downs"] = app.Downs
 	this.Data["row"] = row
-	this.display(this.getBgAppAction("app/edit"))
+	this.display(this.getBgTestAction("app/edit"))
 }
 
 func (this *AppController) AjaxSave() {
 	app := new(models.App)
-	app.Id = this.getInt("id", 0)
-	app.TestId = this.getInt("test_id", 0)
+	app.Id = this.getId64(0)
+	app.TestId = this.getInt64("test_id", 0)
 	app.Icon = this.getString("icon", "Logo不能为空!", 1)
-	app.Type = this.getString("type", "构建平台不能为空", 1)
-	app.Application = this.getString("application", "应用名称不能为空!", 1)
-	app.Pkg = this.getString("pkg", "应用包名不能为空!", 1)
-	app.Version = this.getString("version", "应用版本不能为空!", 1)
-	app.Code = this.getInt("code", 0)
-	app.Env = this.getString("env", "构建应用环境不能为空", 1)
-	app.Build = this.getString("build", "构建应用类型不能为空", 1)
-	app.Channel = this.getString("channel", "构建应用渠道不能为空!", 1)
-	app.FriendId = this.getString("friend_id", "FriendId不能为空!", 1)
+	app.TypeId = this.getInt64("type_id", 0)
+	app.ApplicationId = this.getInt64("application_id", 0)
+	app.PkgId = this.getInt64("pkg_id", 0)
+	app.VersionId = this.getInt64("version_id", 0)
+	app.CodeId = this.getInt64("code", 0)
+	app.EnvId = this.getInt64("env_id", 0)
+	app.BuildId = this.getInt64("build_id", 0)
+	app.ChannelId = this.getInt64("channel_id", 0)
 	app.Descript = this.getString("descript", "", 0)
 	app.Status = this.getInt("status", 0)
 	app.Times = this.getInt("times", 0)
@@ -654,28 +617,203 @@ func (this *AppController) Table() {
 		row := make(map[string]interface{})
 		row["test_id"] = v.TestId
 		row["icon"] = v.Icon
-		row["type"] = v.Type
-		row["application"] = v.Application
-		row["pkg"] = v.Pkg
-		row["version"] = v.Version
-		row["code"] = v.Code
-		row["env"] = v.Env
-		row["build"] = v.Build
-		row["channel"] = v.Channel
-		row["friend_id"] = v.FriendId
+		types := new(models.Type)
+		types.Id = v.TypeId
+		if err := types.Query(); err == nil {
+			row["type"] = types.Name
+		}
+		application := new(models.AppName)
+		application.Id = v.ApplicationId
+		if err := application.Query(); err == nil {
+			row["name"] = application.Name
+		}
+		pkg := new(models.Pkgs)
+		pkg.Id = v.PkgId
+		if err := pkg.Query(); err == nil {
+			row["pkgs"] = pkg.Name
+		}
+		version := new(models.Version)
+		version.Id = v.VersionId
+		if err := version.Query(); err == nil {
+			row["version"] = version.Name
+		}
+		code := new(models.Code)
+		code.Id = v.CodeId
+		if err := code.Query(); err == nil {
+			row["code"] = code.Code
+		}
+		env := new(models.Env)
+		env.Id = v.EnvId
+		if err := env.Query(); err == nil {
+			row["env"] = env.Name
+		}
+		build := new(models.Build)
+		build.Id = v.BuildId
+		if err := build.Query(); err == nil {
+			row["build"] = build.Name
+		}
+		channel := new(models.Channel)
+		channel.Id = v.ChannelId
+		if err := channel.Query(); err == nil {
+			row["channel"] = channel.Name
+		}
 		row["descript"] = v.Descript
 		row["status"] = v.Status
 		row["times"] = v.Times
 		row["url"] = v.Url
 		row["downs"] = v.Downs
-		this.parse(list, row, k, v.Id, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row,k,v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
+func (this *AppController) setBuild(id int64) {
+	build := new(models.Build)
+	result, count := build.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data[" build"] = list
+}
+
+func (this *AppController) setEnv(id int64) {
+	env := new(models.Env)
+	result, count := env.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["env"] = list
+}
+
+func (this *AppController) setCode(id int64) {
+	code := new(models.Code)
+	result, count := code.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Code
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["code"] = list
+}
+
+func (this *AppController) setVersion(id int64) {
+	version := new(models.Version)
+	result, count := version.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["version"] = list
+}
+
+func (this *AppController) setPkg(id int64) {
+	pkg := new(models.Pkgs)
+	result, count := pkg.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["pkgs"] = list
+}
+
+func (this *AppController) setApplication(id int64) {
+	application := new(models.AppName)
+	result, count := application.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["app_name"] = list
+}
+
+func (this *AppController) setType(id int64) {
+	types := new(models.Type)
+	result, count := types.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["type"] = list
+}
+
+func (this *AppController) setChannel(id int64) {
+	channel := new(models.Channel)
+	result, count := channel.List(-1, -1)
+	list := make([]map[string]interface{}, count)
+	for k, v := range result {
+		row := make(map[string]interface{}, 0)
+		row["id"] = v.Id
+		row["name"] = v.Name
+		if v.Id == id {
+			row["selected"] = true
+		} else {
+			row["selected"] = false
+		}
+		list[k] = row
+	}
+	this.Data["channel"] = list
+}
+
 func (this *AppController) AjaxDel() {
 	app := new(models.App)
-	app.Id = this.getInt("id", 0)
+	app.Id = this.getId64(0)
 	if _, err := app.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}

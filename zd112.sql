@@ -772,8 +772,8 @@ CREATE TABLE `zd_app_channer` (
   DEFAULT CHARSET = utf8mb4
   COMMENT ='APP渠道管理';
 
-DROP TABLE IF EXISTS `zd_app_application`; #应用名称
-CREATE TABLE `zd_app_application` (
+DROP TABLE IF EXISTS `zd_app_name`; #应用名称
+CREATE TABLE `zd_app_name` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
   `name`        VARCHAR(20) UNIQUE NOT NULL      DEFAULT ''
   COMMENT '应用名称',
@@ -795,8 +795,8 @@ CREATE TABLE `zd_app_application` (
   DEFAULT CHARSET = utf8mb4
   COMMENT ='应用名称管理';
 
-DROP TABLE IF EXISTS `zd_app_pkg`; #应用包管理
-CREATE TABLE `zd_app_pkg` (
+DROP TABLE IF EXISTS `zd_app_pkgs`; #应用包管理
+CREATE TABLE `zd_app_pkgs` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
   `NAME`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
   COMMENT '应用包',
@@ -935,52 +935,50 @@ CREATE TABLE `zd_app_type` (
 
 DROP TABLE IF EXISTS `zd_app`; #渠道包管理
 CREATE TABLE `zd_app` (
-  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `project_id`  INT(11)            NOT NULL      DEFAULT '0'
+  `id`             INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `project_id`     INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '项目ID',
-  `test_id`     INT(11)            NOT NULL      DEFAULT '0'
+  `test_id`        INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '测试ID',
-  `icon`        VARCHAR(100)       NOT NULL NULL DEFAULT ''
+  `icon`           VARCHAR(100)     NOT NULL NULL DEFAULT ''
   COMMENT 'Logo',
-  `type`        VARCHAR(30)        NOT NULL      DEFAULT ''
-  COMMENT '应用平台类型,如:android',
-  `application` VARCHAR(20)        NOT NULL      DEFAULT ''
-  COMMENT '应用名称',
-  `pkg`         VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
-  COMMENT '应用包',
-  `version`     VARCHAR(20)        NOT NULL      DEFAULT ''
-  COMMENT '应用版本',
-  `code`        INT                NOT NULL      DEFAULT '0'
-  COMMENT '应用版本号',
-  `env`         VARCHAR(20)        NOT NULL      DEFAULT ''
-  COMMENT '应用环境',
-  `build`       VARCHAR(10)        NOT NULL      DEFAULT ''
-  COMMENT '构建类型:debug...',
-  `channel`     VARCHAR(20) UNIQUE NOT NULL      DEFAULT ''
-  COMMENT '渠道名称',
-  `friend_id`   VARCHAR(30) UNIQUE NOT NULL      DEFAULT ''
-  COMMENT '关联ID',
-  `descript`    TEXT
+  `type_id`        INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '应用平台类型ID',
+  `application_id` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '应用名称ID',
+  `pkg_id`         INT(11) UNIQUE   NOT NULL      DEFAULT '0'
+  COMMENT '应用包ID',
+  `version_id`     INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '应用版本ID',
+  `code_id`        INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '应用版本号ID',
+  `env_id`         INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '应用环境ID',
+  `build_id`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '构建类型ID',
+  `channel_id`     INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '渠道ID',
+  `descript`       TEXT
   COMMENT '描述',
-  `status`      TINYINT(4)         NOT NULL      DEFAULT '0'
+  `status`         TINYINT(4)       NOT NULL      DEFAULT '0'
   COMMENT '当前状态:0~无,-1~打包失败,1~打包中,2~打包成功,-3~测试失败,3~测试中,4~测试完成',
-  `times`       INT                NOT NULL      DEFAULT '0'
+  `times`          INT              NOT NULL      DEFAULT '0'
   COMMENT '打包次数',
-  `url`         VARCHAR(100)       NOT NULL      DEFAULT ''
+  `url`            VARCHAR(100)     NOT NULL      DEFAULT ''
   COMMENT '下载地址',
-  `qr_img`      VARCHAR(100)       NOT NULL      DEFAULT ''
+  `qr_img`         VARCHAR(100)     NOT NULL      DEFAULT ''
   COMMENT '二维码地址',
-  `downs`       INT                NOT NULL      DEFAULT '0'
+  `downs`          INT              NOT NULL      DEFAULT '0'
   COMMENT '下载次数',
-  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  `create_id`      INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '创建者ID',
-  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  `update_id`      INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '修改者ID',
-  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  `create_time`    INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '创建时间',
-  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  `update_time`    INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '更新时间',
-  `views`       INT(11)            NOT NULL      DEFAULT '0'
+  `views`          INT(11)          NOT NULL      DEFAULT '0'
   COMMENT '当前页面展示次数',
   PRIMARY KEY (`id`)
 )
@@ -1024,7 +1022,7 @@ CREATE TABLE `zd_test_environment` (
 DROP TABLE IF EXISTS `zd_test_project`; #GIT工程目录
 CREATE TABLE `zd_test_project` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
-  `parent_id`      INT(11)            NOT NULL      DEFAULT '0'
+  `parent_id`   INT(11)            NOT NULL      DEFAULT '0'
   COMMENT '系统环境ID',
   `name`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
   COMMENT '项目名称',
@@ -1056,6 +1054,31 @@ CREATE TABLE `zd_test_project` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COMMENT ='项目工程管理';
+
+DROP TABLE IF EXISTS `zd_test_test`; #测试类型与方法
+CREATE TABLE `zd_test_test` (
+  `id`          INT(11) UNSIGNED NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(50)      NOT NULL      DEFAULT ''
+  COMMENT '测试名称',
+  `type`        TINYINT(4)       NOT NULL      DEFAULT '0'
+  COMMENT '测试类型',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='测试状态管理';
 
 #--------the test---end-----#
 

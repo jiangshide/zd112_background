@@ -6,7 +6,6 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 	"reflect"
-	"strings"
 	"zd112/utils"
 )
 
@@ -28,7 +27,7 @@ func Init() {
 	}
 	orm.RegisterDataBase("default", "mysql", dsn, maxConn, maxIdle)
 	orm.RegisterModel(new(Admin), new(Role), new(RoleAuth), new(Auth), new(Nation), new(Continent), new(State), new(Province), new(City), new(Region), new(County), new(Town), new(Country), new(Village), new(Group), new(Team), new(Banner), new(Compress), new(FormatType), new(Format),
-		new(Environment), new(Project), new(App), new(Channel), new(Application), new(Pkg), new(Version), new(Code), new(Env), new(Build), new(Type))
+		new(Environment), new(Project), new(App), new(Channel), new(AppName), new(Pkgs), new(Version), new(Code), new(Env), new(Build), new(Type))
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
 	}
@@ -92,8 +91,6 @@ func Field(model interface{}) (fieldName string, fieldValue interface{}) {
 		case reflect.String:
 			fieldValue = v.String()
 		}
-
-		beego.Info(strings.Fields("CreateIdTest")[0])
 		if fieldValue != nil && fieldValue != 0 {
 			break
 		}

@@ -5,12 +5,12 @@ import (
 )
 
 type Role struct {
-	Id         int
+	Id         int64
 	Name       string
 	Detail     string
 	Status     int
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -43,7 +43,7 @@ func RoleList(page, pageSize int, filters ...interface{}) ([]*Role, int64) {
 	return list, total
 }
 
-func RoleGetById(id int) (this *Role, err error) {
+func RoleGetById(id int64) (this *Role, err error) {
 	this = &Role{
 		Id: id,
 	}

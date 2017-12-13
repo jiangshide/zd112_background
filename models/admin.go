@@ -6,7 +6,7 @@ import (
 )
 
 type Admin struct {
-	Id         int
+	Id         int64
 	Name       string
 	RealName   string
 	Password   string
@@ -19,8 +19,8 @@ type Admin struct {
 	LastLogin  int64
 	LastIp     string
 	Status     int
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -54,7 +54,7 @@ func AdminList(page, pageSize int, filters ...interface{}) ([]*Admin, int64) {
 	return list, total
 }
 
-func AdminGetById(id int) (this *Admin, err error) {
+func AdminGetById(id int64) (this *Admin, err error) {
 	this = &Admin{
 		Id: id,
 	}

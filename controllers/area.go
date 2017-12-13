@@ -22,16 +22,11 @@ func (this *ContinentController) Add() {
 func (this *ContinentController) Edit() {
 	this.pageTitle("编辑洲名称")
 	continent := new(models.Continent)
-	continent.Id = this.getInt("id", 0)
+	continent.Id = this.getId64(0)
 	if err := continent.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
-	row["id"] = continent.Id
-	row["name"] = continent.Name
-	row["file"] = continent.Icon
-	this.setFileSize(row, continent.Icon)
-	this.Data["row"] = row
+	this.row(nil, continent, false)
 	this.display(this.getBgAreaAction("continent/edit"))
 }
 
@@ -39,7 +34,7 @@ func (this *ContinentController) AjaxSave() {
 	continent := new(models.Continent)
 	continent.Name = this.getString("name", "名称不能为空!", 1)
 	continent.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
-	continent.Id = this.getInt("id", 0)
+	continent.Id = this.getId64(0)
 	if continent.Id == 0 {
 		continent.CreateId = this.userId
 		continent.CreateTime = time.Now().Unix()
@@ -61,17 +56,14 @@ func (this *ContinentController) Table() {
 	result, count := continent.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["file"] = v.Icon
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *ContinentController) AjaxDel() {
 	continent := new(models.Continent)
-	continent.Id = this.getInt("id", 0)
+	continent.Id = this.getId64(0)
 	if _, err := continent.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -96,17 +88,12 @@ func (this *StateController) Add() {
 func (this *StateController) Edit() {
 	this.pageTitle("编辑国名")
 	state := new(models.State)
-	state.Id = this.getInt("id", 0)
+	state.Id = this.getId64(0)
 	if err := state.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
-	row["id"] = state.Id
 	this.parent(state.ParentId)
-	row["name"] = state.Name
-	row["file"] = state.Icon
-	this.setFileSize(row, state.Icon)
-	this.Data["row"] = row
+	this.row(nil, state, false)
 	this.display(this.getBgAreaAction("state/edit"))
 }
 
@@ -114,9 +101,9 @@ func (this *StateController) AjaxSave() {
 	state := new(models.State)
 	state.Name = this.getString("name", "名称不能为空!", 1)
 	state.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
-	state.Id = this.getInt("id", 0)
+	state.Id = this.getId64(0)
+	state.ParentId = this.getInt64("group_id", 0)
 	if state.Id == 0 {
-		state.ParentId = this.getInt("group_id", 0)
 		state.CreateId = this.userId
 		state.CreateTime = time.Now().Unix()
 		if _, err := state.Add(); err != nil {
@@ -124,7 +111,6 @@ func (this *StateController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	state.ParentId = this.getInt("group_id", 0)
 	state.UpdateId = this.userId
 	state.UpdateTime = time.Now().Unix()
 	if _, err := state.Update(); err != nil {
@@ -133,7 +119,7 @@ func (this *StateController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *StateController) parent(id int) {
+func (this *StateController) parent(id int64) {
 	continent := new(models.Continent)
 	result, count := continent.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -157,21 +143,19 @@ func (this *StateController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		continent := new(models.Continent)
 		continent.Id = v.ParentId
 		if err := continent.Query(); err == nil {
 			row["parent"] = continent.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *StateController) AjaxDel() {
 	state := new(models.State)
-	state.Id = this.getInt("id", 0)
+	state.Id = this.getId64(0)
 	if _, err := state.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -196,17 +180,12 @@ func (this *ProvinceController) Add() {
 func (this *ProvinceController) Edit() {
 	this.pageTitle("编辑省名称")
 	province := new(models.Province)
-	province.Id = this.getInt("id", 0)
+	province.Id = this.getId64(0)
 	if err := province.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(province.ParentId)
-	row["id"] = province.Id
-	row["name"] = province.Name
-	row["file"] = province.Icon
-	this.setFileSize(row, province.Icon)
-	this.Data["row"] = row
+	this.row(nil, province, false)
 	this.display(this.getBgAreaAction("province/edit"))
 }
 
@@ -214,9 +193,9 @@ func (this *ProvinceController) AjaxSave() {
 	province := new(models.Province)
 	province.Name = this.getString("name", "名称不能为空!", 1)
 	province.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	province.Id = this.getInt("id", 0)
+	province.Id = this.getId64(0)
+	province.ParentId = this.getInt64("group_id", 0)
 	if province.Id == 0 {
-		province.ParentId = this.getInt("group_id", 0)
 		province.CreateId = this.userId
 		province.CreateTime = time.Now().Unix()
 		if _, err := province.Add(); err != nil {
@@ -224,7 +203,6 @@ func (this *ProvinceController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	province.ParentId = this.getInt("group_id", 0)
 	province.UpdateId = this.userId
 	province.UpdateTime = time.Now().Unix()
 	if _, err := province.Update(); err != nil {
@@ -233,7 +211,7 @@ func (this *ProvinceController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *ProvinceController) parent(id int) {
+func (this *ProvinceController) parent(id int64) {
 	state := new(models.State)
 	result, count := state.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -257,21 +235,19 @@ func (this *ProvinceController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		state := new(models.State)
 		state.Id = v.ParentId
 		if err := state.Query(); err == nil {
 			row["parent"] = state.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *ProvinceController) AjaxDel() {
 	province := new(models.Province)
-	province.Id = this.getInt("id", 0)
+	province.Id = this.getId64(0)
 	if _, err := province.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -296,17 +272,12 @@ func (this *CityController) Add() {
 func (this *CityController) Edit() {
 	this.pageTitle("编辑城市名称")
 	city := new(models.City)
-	city.Id = this.getInt("id", 0)
+	city.Id = this.getId64(0)
 	if err := city.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(city.ParentId)
-	row["id"] = city.Id
-	row["name"] = city.Name
-	row["file"] = city.Icon
-	this.setFileSize(row, city.Icon)
-	this.Data["row"] = row
+	this.row(nil, city, false)
 	this.display(this.getBgAreaAction("city/edit"))
 }
 
@@ -314,9 +285,9 @@ func (this *CityController) AjaxSave() {
 	city := new(models.City)
 	city.Name = this.getString("name", "名称不能为空!", 1)
 	city.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	city.Id = this.getInt("id", 0)
+	city.Id = this.getId64(0)
+	city.ParentId = this.getInt64("group_id", 0)
 	if city.Id == 0 {
-		city.ParentId = this.getInt("group_id", 0)
 		city.CreateId = this.userId
 		city.CreateTime = time.Now().Unix()
 		if _, err := city.Add(); err != nil {
@@ -324,7 +295,6 @@ func (this *CityController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	city.ParentId = this.getInt("group_id", 0)
 	city.UpdateId = this.userId
 	city.UpdateTime = time.Now().Unix()
 	if _, err := city.Update(); err != nil {
@@ -333,7 +303,7 @@ func (this *CityController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *CityController) parent(id int) {
+func (this *CityController) parent(id int64) {
 	province := new(models.Province)
 	result, count := province.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -357,21 +327,19 @@ func (this *CityController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		province := new(models.Province)
 		province.Id = v.ParentId
 		if err := province.Query(); err == nil {
 			row["parent"] = province.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *CityController) AjaxDel() {
 	city := new(models.City)
-	city.Id = this.getInt("id", 0)
+	city.Id = this.getId64(0)
 	if _, err := city.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -396,17 +364,12 @@ func (this *RegionController) Add() {
 func (this *RegionController) Edit() {
 	this.pageTitle("编辑地区名称")
 	region := new(models.Region)
-	region.Id = this.getInt("id", 0)
+	region.Id = this.getId64(0)
 	if err := region.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(region.ParentId)
-	row["id"] = region.Id
-	row["name"] = region.Name
-	row["file"] = region.Icon
-	this.setFileSize(row, region.Icon)
-	this.Data["row"] = row
+	this.row(nil, region, false)
 	this.display(this.getBgAreaAction("region/edit"))
 }
 
@@ -414,9 +377,9 @@ func (this *RegionController) AjaxSave() {
 	region := new(models.Region)
 	region.Name = this.getString("name", "名称不能为空!", 1)
 	region.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	region.Id = this.getInt("id", 0)
+	region.Id = this.getId64(0)
+	region.ParentId = this.getInt64("group_id", 0)
 	if region.Id == 0 {
-		region.ParentId = this.getInt("group_id", 0)
 		region.CreateId = this.userId
 		region.CreateTime = time.Now().Unix()
 		if _, err := region.Add(); err != nil {
@@ -424,7 +387,6 @@ func (this *RegionController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	region.ParentId = this.getInt("group_id", 0)
 	region.UpdateId = this.userId
 	region.UpdateTime = time.Now().Unix()
 	if _, err := region.Update(); err != nil {
@@ -433,7 +395,7 @@ func (this *RegionController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *RegionController) parent(id int) {
+func (this *RegionController) parent(id int64) {
 	city := new(models.City)
 	result, count := city.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -457,21 +419,19 @@ func (this *RegionController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		city := new(models.City)
 		city.Id = v.ParentId
 		if err := city.Query(); err == nil {
 			row["parent"] = city.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *RegionController) AjaxDel() {
 	region := new(models.Region)
-	region.Id = this.getInt("id", 0)
+	region.Id = this.getId64(0)
 	if _, err := region.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -495,17 +455,12 @@ func (this *CountyController) Add() {
 
 func (this *CountyController) Edit() {
 	county := new(models.County)
-	county.Id = this.getInt("id", 0)
+	county.Id = this.getId64(0)
 	if err := county.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(county.ParentId)
-	row["id"] = county.Id
-	row["name"] = county.Name
-	row["file"] = county.Icon
-	this.setFileSize(row, county.Icon)
-	this.Data["row"] = row
+	this.row(nil, county, false)
 	this.display(this.getBgAreaAction("county/edit"))
 }
 
@@ -513,9 +468,9 @@ func (this *CountyController) AjaxSave() {
 	county := new(models.County)
 	county.Name = this.getString("name", "名称不能为空!", 1)
 	county.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	county.Id = this.getInt("id", 0)
+	county.Id = this.getId64(0)
+	county.ParentId = this.getInt64("group_id", 0)
 	if county.Id == 0 {
-		county.ParentId = this.getInt("group_id", 0)
 		county.CreateId = this.userId
 		county.CreateTime = time.Now().Unix()
 		if _, err := county.Add(); err != nil {
@@ -523,7 +478,6 @@ func (this *CountyController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	county.ParentId = this.getInt("group_id", 0)
 	county.UpdateId = this.userId
 	county.UpdateTime = time.Now().Unix()
 	if _, err := county.Update(); err != nil {
@@ -532,7 +486,7 @@ func (this *CountyController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *CountyController) parent(id int) {
+func (this *CountyController) parent(id int64) {
 	city := new(models.City)
 	result, count := city.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -556,21 +510,19 @@ func (this *CountyController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		region := new(models.Region)
 		region.Id = v.ParentId
 		if err := region.Query(); err == nil {
 			row["parent"] = region.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *CountyController) AjaxDel() {
 	county := new(models.County)
-	county.Id = this.getInt("id", 0)
+	county.Id = this.getId64(0)
 	if _, err := county.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -595,17 +547,12 @@ func (this *TownController) Add() {
 func (this *TownController) Edit() {
 	this.pageTitle("编辑镇名称")
 	town := new(models.Town)
-	town.Id = this.getInt("id", 0)
+	town.Id = this.getId64(0)
 	if err := town.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(town.ParentId)
-	row["id"] = town.Id
-	row["name"] = town.Name
-	row["file"] = town.Icon
-	this.setFileSize(row, town.Icon)
-	this.Data["row"] = row
+	this.row(nil, town, false)
 	this.display(this.getBgAreaAction("town/edit"))
 }
 
@@ -613,9 +560,9 @@ func (this *TownController) AjaxSave() {
 	town := new(models.Town)
 	town.Name = this.getString("name", "名称不能为空!", 1)
 	town.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	town.Id = this.getInt("id", 0)
+	town.Id = this.getId64(0)
+	town.ParentId = this.getInt64("group_id", 0)
 	if town.Id == 0 {
-		town.ParentId = this.getInt("group_id", 0)
 		town.CreateId = this.userId
 		town.CreateTime = time.Now().Unix()
 		if _, err := town.Add(); err != nil {
@@ -623,7 +570,6 @@ func (this *TownController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	town.ParentId = this.getInt("group_id", 0)
 	town.UpdateId = this.userId
 	town.UpdateTime = time.Now().Unix()
 	if _, err := town.Update(); err != nil {
@@ -632,7 +578,7 @@ func (this *TownController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *TownController) parent(id int) {
+func (this *TownController) parent(id int64) {
 	county := new(models.County)
 	result, count := county.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -656,21 +602,19 @@ func (this *TownController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		county := new(models.County)
 		county.Id = v.ParentId
 		if err := county.Query(); err == nil {
 			row["parent"] = county.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *TownController) AjaxDel() {
 	town := new(models.Town)
-	town.Id = this.getInt("id", 0)
+	town.Id = this.getId64(0)
 	if _, err := town.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -695,17 +639,12 @@ func (this *CountryController) Add() {
 func (this *CountryController) Edit() {
 	this.pageTitle("编辑乡名称")
 	country := new(models.Country)
-	country.Id = this.getInt("id", 0)
+	country.Id = this.getInt64("id", 0)
 	if err := country.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(country.ParentId)
-	row["id"] = country.Id
-	row["name"] = country.Name
-	row["file"] = country.Icon
-	this.setFileSize(row, country.Icon)
-	this.Data["row"] = row
+	this.row(nil, country, false)
 	this.display(this.getBgAreaAction("country/edit"))
 }
 
@@ -713,9 +652,9 @@ func (this *CountryController) AjaxSave() {
 	country := new(models.Country)
 	country.Name = this.getString("name", "名称不能为空!", 1)
 	country.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	country.Id = this.getInt("id", 0)
+	country.Id = this.getId64(0)
+	country.ParentId = this.getInt64("group_id", 0)
 	if country.Id == 0 {
-		country.ParentId = this.getInt("group_id", 0)
 		country.CreateId = this.userId
 		country.CreateTime = time.Now().Unix()
 		if _, err := country.Add(); err != nil {
@@ -723,7 +662,6 @@ func (this *CountryController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	country.ParentId = this.getInt("group_id", 0)
 	country.UpdateId = this.userId
 	country.UpdateTime = time.Now().Unix()
 	if _, err := country.Update(); err != nil {
@@ -732,7 +670,7 @@ func (this *CountryController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *CountryController) parent(id int) {
+func (this *CountryController) parent(id int64) {
 	town := new(models.Town)
 	result, count := town.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -756,21 +694,19 @@ func (this *CountryController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		town := new(models.Town)
 		town.Id = v.ParentId
 		if err := town.Query(); err == nil {
 			row["parent"] = town.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *CountryController) AjaxDel() {
 	country := new(models.Country)
-	country.Id = this.getInt("id", 0)
+	country.Id = this.getId64(0)
 	if _, err := country.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -795,17 +731,12 @@ func (this *VillageController) Add() {
 func (this *VillageController) Edit() {
 	this.pageTitle("编辑村名称")
 	village := new(models.Village)
-	village.Id = this.getInt("id", 0)
+	village.Id = this.getId64(0)
 	if err := village.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(village.ParentId)
-	row["id"] = village.Id
-	row["name"] = village.Name
-	row["file"] = village.Icon
-	this.setFileSize(row, village.Icon)
-	this.Data["row"] = row
+	this.row(nil, village, false)
 	this.display(this.getBgAreaAction("village/edit"))
 }
 
@@ -813,9 +744,9 @@ func (this *VillageController) AjaxSave() {
 	village := new(models.Village)
 	village.Name = this.getString("name", "名称不能为空!", 1)
 	village.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	village.Id = this.getInt("id", 0)
+	village.Id = this.getId64(0)
+	village.ParentId = this.getInt64("group_id", 0)
 	if village.Id == 0 {
-		village.ParentId = this.getInt("group_id", 0)
 		village.CreateId = this.userId
 		village.CreateTime = time.Now().Unix()
 		if _, err := village.Add(); err != nil {
@@ -823,7 +754,6 @@ func (this *VillageController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	village.ParentId = this.getInt("group_id", 0)
 	village.UpdateId = this.userId
 	village.UpdateTime = time.Now().Unix()
 	if _, err := village.Update(); err != nil {
@@ -832,7 +762,7 @@ func (this *VillageController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *VillageController) parent(id int) {
+func (this *VillageController) parent(id int64) {
 	country := new(models.Country)
 	result, count := country.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -856,21 +786,19 @@ func (this *VillageController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		country := new(models.Country)
 		country.Id = v.ParentId
 		if err := country.Query(); err == nil {
 			row["parent"] = country.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *VillageController) AjaxDel() {
 	village := new(models.Village)
-	village.Id = this.getInt("id", 0)
+	village.Id = this.getId64(0)
 	if _, err := village.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -895,17 +823,12 @@ func (this *GroupController) Add() {
 func (this *GroupController) Edit() {
 	this.pageTitle("编辑组名称")
 	group := new(models.Group)
-	group.Id = this.getInt("id", 0)
+	group.Id = this.getId64(0)
 	if err := group.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(group.ParentId)
-	row["id"] = group.Id
-	row["name"] = group.Name
-	row["file"] = group.Icon
-	this.setFileSize(row, group.Icon)
-	this.Data["row"] = row
+	this.row(nil, group, false)
 	this.display(this.getBgAreaAction("group/edit"))
 }
 
@@ -913,9 +836,9 @@ func (this *GroupController) AjaxSave() {
 	group := new(models.Group)
 	group.Name = this.getString("name", "名称不能为空!", 1)
 	group.Icon = this.getString("file", "File不能为空!", defaultMinSize)
-	group.Id = this.getInt("id", 0)
+	group.Id = this.getId64(0)
+	group.ParentId = this.getInt64("group_id", 0)
 	if group.Id == 0 {
-		group.ParentId = this.getInt("group_id", 0)
 		group.CreateId = this.userId
 		group.CreateTime = time.Now().Unix()
 		if _, err := group.Add(); err != nil {
@@ -923,7 +846,6 @@ func (this *GroupController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	group.ParentId = this.getInt("group_id", 0)
 	group.UpdateId = this.userId
 	group.UpdateTime = time.Now().Unix()
 	if _, err := group.Update(); err != nil {
@@ -932,7 +854,7 @@ func (this *GroupController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *GroupController) parent(id int) {
+func (this *GroupController) parent(id int64) {
 	village := new(models.Village)
 	result, count := village.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -956,21 +878,19 @@ func (this *GroupController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		village := new(models.Village)
 		village.Id = v.ParentId
 		if err := village.Query(); err == nil {
 			row["parent"] = village.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *GroupController) AjaxDel() {
 	group := new(models.Group)
-	group.Id = this.getInt("id", 0)
+	group.Id = this.getId64(0)
 	if _, err := group.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -995,27 +915,22 @@ func (this *TeamController) Add() {
 func (this *TeamController) Edit() {
 	this.pageTitle("编辑队名称")
 	team := new(models.Team)
-	team.Id = this.getInt("id", 0)
+	team.Id = this.getId64(0)
 	if err := team.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(team.ParentId)
-	row["id"] = team.Id
-	row["name"] = team.Name
-	row["file"] = team.Icon
-	this.setFileSize(row, team.Icon)
-	this.Data["row"] = row
+	this.row(nil, team, false)
 	this.display(this.getBgAreaAction("team/edit"))
 }
 
 func (this *TeamController) AjaxSave() {
 	team := new(models.Team)
-	team.Id = this.getInt("id", 0)
+	team.Id = this.getId64(0)
 	team.Name = this.getString("name", "名称不能为空!", 1)
 	team.Icon = this.getString("file", "File不能为空!", defaultMinSize)
+	team.ParentId = this.getInt64("group_id", 0)
 	if team.Id == 0 {
-		team.ParentId = this.getInt("group_id", 0)
 		team.CreateId = this.userId
 		team.CreateTime = time.Now().Unix()
 		if _, err := team.Add(); err != nil {
@@ -1023,7 +938,6 @@ func (this *TeamController) AjaxSave() {
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
-	team.ParentId = this.getInt("group_id", 0)
 	team.UpdateId = this.userId
 	team.UpdateTime = time.Now().Unix()
 	if _, err := team.Update(); err != nil {
@@ -1032,7 +946,7 @@ func (this *TeamController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *TeamController) parent(id int) {
+func (this *TeamController) parent(id int64) {
 	group := new(models.Group)
 	result, count := group.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -1056,21 +970,19 @@ func (this *TeamController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Icon
 		group := new(models.Group)
 		group.Id = v.ParentId
 		if err := group.Query(); err == nil {
 			row["parent"] = group.Name
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *TeamController) AjaxDel() {
 	team := new(models.Team)
-	team.Id = this.getInt("id", 0)
+	team.Id = this.getInt64("id", 0)
 	if _, err := team.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}

@@ -36,7 +36,7 @@ func (this *AdminController) Add() {
 
 func (this *AdminController) Edit() {
 	this.pageTitle("编辑管理员")
-	id := this.getInt("id", 0)
+	id := this.getInt64("id", 0)
 	admin, _ := models.AdminGetById(id)
 	row := make(map[string]interface{})
 	row["id"] = admin.Id
@@ -57,7 +57,7 @@ func (this *AdminController) Edit() {
 		row := make(map[string]interface{})
 		row["checked"] = 0
 		for i := 0; i < len(role_ids); i++ {
-			role_id, _ := strconv.Atoi(role_ids[i])
+			role_id, _ := strconv.ParseInt(role_ids[i],11,64)
 			if role_id == v.Id {
 				row["checked"] = 1
 			}
@@ -71,7 +71,7 @@ func (this *AdminController) Edit() {
 }
 
 func (this AdminController) AjaxSave() {
-	id := this.getInt("id", 0)
+	id := this.getInt64("id", 0)
 	if id == 0 {
 		admin := new(models.Admin)
 		this.getParam(admin)
@@ -110,8 +110,7 @@ func (this AdminController) getParam(admin *models.Admin) {
 }
 
 func (this AdminController) AjaxDel() {
-	id := this.getInt("id", 0)
-	beego.Info("---------------id:", id)
+	id := this.getInt64("id", 0)
 	admin, _ := models.AdminGetById(id)
 	admin.UpdateTime = time.Now().Unix()
 	admin.Status = 0

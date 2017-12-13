@@ -67,7 +67,7 @@ var apiContent = {
 
 			{id:20, pId:1, t:"async", name:"async : {", open:true},
 			{id:201, pId:20, t:"autoParam", name:"autoParam : [],", iconSkin:"core", showAPI:true},
-			{id:208, pId:20, t:"contentType", name:"contentType : \"application...\",", iconSkin:"core", showAPI:true},
+			{id:208, pId:20, t:"contentType", name:"contentType : \"app_name...\",", iconSkin:"core", showAPI:true},
 			{id:202, pId:20, t:"dataFilter", name:"dataFilter : null,", iconSkin:"core", showAPI:true},
 			{id:203, pId:20, t:"dataType", name:"dataType : \"text\",", iconSkin:"core", showAPI:true},
 			{id:204, pId:20, t:"enable", name:"enable : false,", iconSkin:"core", showAPI:true},
@@ -133,7 +133,7 @@ var apiContent = {
 			{id:510, pId:50, t:"key", name:"key : {", open:true},
 			{id:5101, pId:510, t:"checked", name:"checked : \"checked\",", iconSkin:"check", showAPI:true},
 			{id:5102, pId:510, t:"children", name:"children : \"children\",", iconSkin:"core", showAPI:true},
-			{id:5103, pId:510, t:"name", name:"name : \"name\",", iconSkin:"core", showAPI:true},
+			{id:5103, pId:510, t:"name", name:"app_name : \"app_name\",", iconSkin:"core", showAPI:true},
 			{id:5104, pId:510, t:"title", name:"title : \"\"", iconSkin:"core", showAPI:true},
 			{id:5105, pId:510, t:"url", name:"url : \"url\"", iconSkin:"core", showAPI:true},
 			{id:511, pId:50, name:"},"},

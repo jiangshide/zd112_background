@@ -3,11 +3,11 @@ package models
 import "github.com/astaxie/beego/orm"
 
 type Continent struct {
-	Id         int
+	Id         int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -43,12 +43,12 @@ func (this *Continent) List(pageSize, offSet int) (list []*Continent, total int6
 }
 
 type State struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -84,12 +84,12 @@ func (this *State) List(pageSize, offSet int) (list []*State, total int64) {
 }
 
 type Province struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -125,12 +125,12 @@ func (this *Province) List(pageSize, offSet int) (list []*Province, total int64)
 }
 
 type City struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -166,12 +166,12 @@ func (this *City) List(pageSize, offSet int) (list []*City, total int64) {
 }
 
 type Region struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -207,12 +207,12 @@ func (this *Region) List(pageSize, offSet int) (list []*Region, total int64) {
 }
 
 type County struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -248,12 +248,12 @@ func (this *County) List(pageSize, offSet int) (list []*County, total int64) {
 }
 
 type Town struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -289,12 +289,12 @@ func (this *Town) List(pageSize, offSet int) (list []*Town, total int64) {
 }
 
 type Country struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -330,12 +330,12 @@ func (this *Country) List(pageSize, offSet int) (list []*Country, total int64) {
 }
 
 type Village struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -371,12 +371,12 @@ func (this *Village) List(pageSize, offSet int) (list []*Village, total int64) {
 }
 
 type Group struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -412,12 +412,12 @@ func (this *Group) List(pageSize, offSet int) (list []*Group, total int64) {
 }
 
 type Team struct {
-	Id         int
-	ParentId   int
+	Id         int64
+	ParentId   int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }

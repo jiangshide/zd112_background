@@ -2,15 +2,14 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/astaxie/beego"
 )
 
 type Nation struct {
-	Id         int
+	Id         int64
 	Name       string
 	Icon       string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 }
@@ -41,7 +40,6 @@ func (this *Nation) Query() error {
 func (this *Nation) List(pageSize, offSet int) (list []*Nation, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ = query.Count()
-	beego.Info("---------paegSize:",pageSize," | offSet:",offSet)
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return
 }

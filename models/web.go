@@ -5,14 +5,14 @@ import (
 )
 
 type Banner struct {
-	Id         int
+	Id         int64
 	Name       string
 	Link       string
 	Icon       string
 	Descript   string
 	Clicks     int
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int

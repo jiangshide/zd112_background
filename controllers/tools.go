@@ -26,22 +26,19 @@ func (this *FormatTypeController) Add() {
 
 func (this *FormatTypeController) Edit() {
 	formatType := new(models.FormatType)
-	formatType.Id = this.getInt("id", 0)
+	formatType.Id = this.getId64(0)
 	if err := formatType.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
-	row["id"] = formatType.Id
-	row["name"] = formatType.Name
-	this.Data["row"] = row
+	this.row(nil, formatType, false)
 	this.display(this.getBgToolAction("format/type/edit"))
 }
 
 func (this *FormatTypeController) AjaxSave() {
 	formatType := new(models.FormatType)
-	formatType.Id = this.getInt("id", 0)
+	formatType.Id = this.getId64(0)
+	formatType.Name = this.getString("name", "名称不能为空!", 1)
 	if formatType.Id == 0 {
-		formatType.Name = this.getString("name", "名称不能为空!", 1)
 		formatType.CreateId = this.userId
 		formatType.CreateTime = time.Now().Unix()
 		if _, err := formatType.Add(); err != nil {
@@ -50,7 +47,6 @@ func (this *FormatTypeController) AjaxSave() {
 		this.ajaxMsg("", MSG_OK)
 	}
 	formatType.Query()
-	formatType.Name = this.getString("name", "名称不能为空!", 1)
 	formatType.UpdateId = this.userId
 	formatType.UpdateTime = time.Now().Unix()
 	if _, err := formatType.Update(); err != nil {
@@ -64,16 +60,14 @@ func (this *FormatTypeController) Table() {
 	result, count := formatType.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *FormatTypeController) AjaxDel() {
 	formatType := new(models.FormatType)
-	formatType.Id = this.getInt("id", 0)
+	formatType.Id = this.getId64(0)
 	if _, err := formatType.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -98,23 +92,20 @@ func (this *FormatController) Add() {
 func (this *FormatController) Edit() {
 	this.pageTitle("编辑文件格式")
 	format := new(models.Format)
-	format.Id = this.getInt("id", 0)
+	format.Id = this.getId64(0)
 	if err := format.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
 	this.parent(format.ParentId)
-	row["id"] = format.Id
-	row["name"] = format.Name
-	this.Data["row"] = row
+	this.row(nil, format, false)
 	this.display(this.getBgToolAction("format/edit"))
 }
 
 func (this *FormatController) AjaxSave() {
 	format := new(models.Format)
-	format.ParentId = this.getInt("group_id", 0)
+	format.ParentId = this.getInt64("group_id", 0)
 	format.Name = this.getString("name", "名称不能为空!", 1)
-	format.Id = this.getInt("id", 0)
+	format.Id = this.getId64(0)
 	if format.Id == 0 {
 		format.CreateId = this.userId
 		format.UpdateTime = time.Now().Unix()
@@ -131,7 +122,7 @@ func (this *FormatController) AjaxSave() {
 	this.ajaxMsg("", MSG_OK)
 }
 
-func (this *FormatController) parent(id int) {
+func (this *FormatController) parent(id int64) {
 	formatType := new(models.FormatType)
 	result, count := formatType.List(-1, -1)
 	list := make([]map[string]interface{}, count)
@@ -152,29 +143,28 @@ func (this *FormatController) parent(id int) {
 func (this *FormatController) Table() {
 	format := new(models.Format)
 	result, count := format.List(this.pageSize, this.offSet)
+	beego.Info("result:", result, " | count:", count)
 	if count == 0 {
 		this.Export()
 	}
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
 		formatType := new(models.FormatType)
 		formatType.Id = v.ParentId
-
 		if err := formatType.Query(); err == nil {
 			row["parent"] = formatType.Name
 		} else {
 			beego.Error(err)
 		}
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *FormatController) AjaxDel() {
 	format := new(models.Format)
-	format.Id = this.getInt("id", 0)
+	format.Id = this.getId64(0)
 	if _, err := format.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -246,27 +236,17 @@ func (this *CompressController) Add() {
 func (this *CompressController) Edit() {
 	this.pageTitle("编辑文件")
 	compress := new(models.Compress)
-	compress.Id = this.getInt("id", 0)
+	compress.Id = this.getId64(0)
 	if err := compress.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{}, 0)
-	row["id"] = compress.Id
-	row["name"] = compress.Name
-	row["file"]=compress.Url
-	row["format"] = compress.Format
-	row["size"] = compress.Size
-	row["resize"] = compress.ReSize
-	row["compress"] = compress.Compress
-	row["downs"] = compress.Downs
-	row["descript"] = compress.Descript
-	this.Data["row"] = row
+	this.row(nil, compress, false)
 	this.display(this.getBgToolAction("compress/edit"))
 }
 
 func (this *CompressController) AjaxSave() {
 	compress := new(models.Compress)
-	compress.Id = this.getInt("id", 0)
+	compress.Id = this.getId64(0)
 	compress.Name = this.getString("name", "名称不能为空!", 1)
 	compress.Url = this.getString("file", "上传文件URL为空!", defaultMinSize)
 	compress.Descript = this.getString("descript", "", 0)
@@ -303,24 +283,14 @@ func (this *CompressController) Table() {
 	result, count := compress.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["file"] = v.Url
-		row["parent"] = this.getFileType(v.Url)
-		row["format"] = v.Format
-		row["size"] = v.Size
-		row["resize"] = v.ReSize
-		row["compress"] = v.Compress
-		row["downs"] = v.Downs
-		row["descript"] = v.Descript
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
 
 func (this *CompressController) AjaxDel() {
 	compress := new(models.Compress)
-	compress.Id = this.getInt("id", 0)
+	compress.Id = this.getId64(0)
 	if _, err := compress.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}

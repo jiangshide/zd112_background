@@ -48,14 +48,7 @@ func (this *BannerController) Table() {
 	result, count := banner.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["name"] = v.Name
-		row["link"] = v.Link
-		row["file"] = v.Icon
-		row["descript"] = v.Descript
-		row["clicks"] = v.Clicks
-		row["views"] = v.Views
-		this.parse(list, row, v.Id, k, v.CreateId, v.UpdateId, count, v.CreateTime, v.UpdateTime)
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -63,7 +56,7 @@ func (this *BannerController) Table() {
 func (this *BannerController) Edit() {
 	this.pageTitle("编辑焦点图名称")
 	banner := new(models.Banner)
-	banner.Id = this.getInt("id", 0)
+	banner.Id = this.getId64(0)
 	if err := banner.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -85,7 +78,7 @@ func (this *BannerController) AjaxSave() {
 	banner.Link = this.getString("link", "", 0)
 	banner.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	banner.Descript = this.getString("descript", "", 0)
-	banner.Id = this.getInt("id", 0)
+	banner.Id = this.getId64(0)
 	if banner.Id == 0 {
 
 		banner.CreateId = this.userId
@@ -106,7 +99,7 @@ func (this *BannerController) AjaxSave() {
 
 func (this *BannerController) AjaxDel() {
 	banner := new(models.Banner)
-	banner.Id = this.getInt("id", 0)
+	banner.Id = this.getId64(0)
 	if _, err := banner.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}

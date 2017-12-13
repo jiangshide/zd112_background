@@ -37,7 +37,7 @@ func (this *AuthController) GetNodes() {
 }
 
 func (this *AuthController) GetNode() {
-	id := this.getInt("id", 0)
+	id := this.getInt64("id", 0)
 	result, _ := models.AuthGetById(id)
 	row := make(map[string]interface{})
 	row["id"] = result.Id
@@ -60,7 +60,7 @@ func (this *AuthController) AjaxSave() {
 	auth.Icon = this.getString("icon", "菜单图标不能为空!", 1)
 	auth.UpdateTime = time.Now().Unix()
 	auth.Status = 1
-	id := this.getInt("id", 0)
+	id := this.getInt64("id", 0)
 	if id == 0 {
 		auth.CreateTime = time.Now().Unix()
 		auth.CreateId = this.userId
@@ -79,7 +79,7 @@ func (this *AuthController) AjaxSave() {
 }
 
 func (this *AuthController) AjaxDel() {
-	id := this.getInt("id", 0)
+	id := this.getInt64("id", 0)
 	//auth, _ := models.AuthGetById(id)
 	//auth.Id = id
 	//auth.Status = 0

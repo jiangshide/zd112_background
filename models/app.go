@@ -5,12 +5,12 @@ import (
 )
 
 type Channel struct {
-	Id         int
+	Id         int64
 	Name       string
 	FriendId   string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
@@ -46,82 +46,82 @@ func (this *Channel) List(pageSize, offSet int) (list []*Channel, total int64) {
 	return
 }
 
-type Application struct {
-	Id         int
+type AppName struct {
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
 }
 
-func (this *Application) TableName() string {
-	return TableName("app_application")
+func (this *AppName) TableName() string {
+	return TableName("app_name")
 }
 
-func (this *Application) Add() (int64, error) {
+func (this *AppName) Add() (int64, error) {
 	return orm.NewOrm().Insert(this)
 }
 
-func (this *Application) Del() (int64, error) {
+func (this *AppName) Del() (int64, error) {
 	return orm.NewOrm().Delete(this)
 }
 
-func (this *Application) Update() (int64, error) {
+func (this *AppName) Update() (int64, error) {
 	return orm.NewOrm().Update(this)
 }
 
-func (this *Application) Query() error {
+func (this *AppName) Query() error {
 	if this.Id == 0 {
 		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Application) List(pageSize, offSet int) (list []*Application, total int64) {
+func (this *AppName) List(pageSize, offSet int) (list []*AppName, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return
 }
 
-type Pkg struct {
-	Id         int
+type Pkgs struct {
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
 }
 
-func (this *Pkg) TableName() string {
-	return TableName("app_pkg")
+func (this *Pkgs) TableName() string {
+	return TableName("app_package")
 }
 
-func (this *Pkg) Add() (int64, error) {
+func (this *Pkgs) Add() (int64, error) {
 	return orm.NewOrm().Insert(this)
 }
 
-func (this *Pkg) Del() (int64, error) {
+func (this *Pkgs) Del() (int64, error) {
 	return orm.NewOrm().Delete(this)
 }
 
-func (this *Pkg) Update() (int64, error) {
+func (this *Pkgs) Update() (int64, error) {
 	return orm.NewOrm().Update(this)
 }
 
-func (this *Pkg) Query() error {
+func (this *Pkgs) Query() error {
 	if this.Id == 0 {
 		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
 	}
 	return orm.NewOrm().Read(this)
 }
 
-func (this *Pkg) List(pageSize, offSet int) (list []*Pkg, total int64) {
+func (this *Pkgs) List(pageSize, offSet int) (list []*Pkgs, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ = query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
@@ -129,11 +129,11 @@ func (this *Pkg) List(pageSize, offSet int) (list []*Pkg, total int64) {
 }
 
 type Version struct {
-	Id         int
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
@@ -170,11 +170,11 @@ func (this *Version) List(pageSize, offSet int) (list []*Version, total int64) {
 }
 
 type Code struct {
-	Id         int
+	Id         int64
 	Code       int
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
@@ -211,11 +211,11 @@ func (this *Code) List(pageSize, offSet int) (list []*Code, total int64) {
 }
 
 type Env struct {
-	Id         int
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
@@ -252,11 +252,11 @@ func (this *Env) List(pageSize, offSet int) (list []*Env, total int64) {
 }
 
 type Build struct {
-	Id         int
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
@@ -288,16 +288,16 @@ func (this *Build) Query() error {
 func (this *Build) List(pageSize, offSet int) (list []*Build, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ = query.Count()
-	query.OrderBy("-id").Limit(pageSize, offSet).All(list)
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return
 }
 
 type Type struct {
-	Id         int
+	Id         int64
 	Name       string
 	Descript   string
-	CreateId   int
-	UpdateId   int
+	CreateId   int64
+	UpdateId   int64
 	CreateTime int64
 	UpdateTime int64
 	Views      int
@@ -334,29 +334,28 @@ func (this *Type) List(pageSize, offSet int) (list []*Type, total int64) {
 }
 
 type App struct {
-	Id          int
-	ProjectId   int
-	TestId      int
-	Icon        string
-	Type        string
-	Application string
-	Pkg         string
-	Version     string
-	Code        int
-	Env         string
-	Build       string
-	Channel     string
-	FriendId    string
-	Descript    string
-	Status      int
-	Times       int
-	Url         string
-	Downs       int
-	CreateId    int
-	UpdateId    int
-	CreateTime  int64
-	UpdateTime  int64
-	Views       int
+	Id            int64
+	ProjectId     int64
+	TestId        int64
+	Icon          string
+	TypeId        int64
+	ApplicationId int64
+	PkgId         int64
+	VersionId     int64
+	CodeId        int64
+	EnvId         int64
+	BuildId       int64
+	ChannelId     int64
+	Descript      string
+	Status        int
+	Times         int
+	Url           string
+	Downs         int
+	CreateId      int64
+	UpdateId      int64
+	CreateTime    int64
+	UpdateTime    int64
+	Views         int
 }
 
 func (this *App) TableName() string {

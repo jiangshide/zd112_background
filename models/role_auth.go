@@ -9,7 +9,7 @@ import (
 )
 
 type RoleAuth struct {
-	AuthId int `orm:"pk"`
+	AuthId int64 `orm:"pk"`
 	RoleId int64
 }
 
@@ -21,13 +21,13 @@ func RoleAuthAdd(this *RoleAuth) (int64, error) {
 	return orm.NewOrm().Insert(this)
 }
 
-func RoleAuthGetById(id int) ([]*RoleAuth, error) {
+func RoleAuthGetById(id int64) ([]*RoleAuth, error) {
 	list := make([]*RoleAuth, 0)
 	_, err := orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id", id).All(&list, "AuthId")
 	return list, err
 }
 
-func RoleAuthDelete(id int) (int64, error) {
+func RoleAuthDelete(id int64) (int64, error) {
 	return orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id", id).Delete()
 }
 
@@ -35,14 +35,14 @@ func RoleAuthGetByIds(roleIds string) (string, error) {
 	list := make([]*RoleAuth, 0)
 	ids := strings.Split(roleIds, ",")
 	_, err := orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id__in", ids).All(&list, "AuthId")
-	beego.Error("------------err:",err)
+	beego.Error("------------err:", err)
 	if err != nil {
 		return "", err
 	}
 	b := bytes.Buffer{}
 	for _, v := range list {
 		if v.AuthId != 0 && v.AuthId != 1 {
-			b.WriteString(strconv.Itoa(v.AuthId))
+			b.WriteString(strconv.FormatInt(v.AuthId, 11))
 			b.WriteString(",")
 		}
 	}
