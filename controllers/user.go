@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"zd112/models"
 	"zd112/utils"
-	"fmt"
 )
 
 type UserController struct {
@@ -16,27 +15,21 @@ type UserController struct {
 func (this *UserController) Admin() {
 	beego.ReadFromRequest(&this.Controller)
 	if this.isPost() {
-		userName := this.getString("username", "账号不能为空!", defaultMinSize)
-		password := this.getString("password", "密码不能为空!", defaultMinSize)
-		realName := this.getString("realname", "真实名称不能为空!", 1)
-		email := this.getString("email", "邮箱不能为空!", defaultMinSize)
-		phone := this.getString("phone", "电话号码不能为空!", defaultMinSize)
-		sex := this.getInt("radio", 0)
-		motto := this.getString("motto", "请君赠言...", defaultMinSize)
 		admin := new(models.Admin)
-		admin.Name = userName
-		admin.RealName = realName
+		admin.Name = this.getString("username", "账号不能为空!", defaultMinSize)
+		admin.RealName = this.getString("realname", "真实名称不能为空!", 1)
 		admin.Salt = utils.GetRandomString(10)
 		admin.LastIp = this.getClientIp()
+		password := this.getString("password", "密码不能为空!", defaultMinSize)
 		admin.Password = utils.Md5(password + admin.Salt)
-		admin.Email = email
+		admin.Email = this.getString("email", "邮箱不能为空!", defaultMinSize)
 		admin.RoleIds = "1"
-		admin.Phone = phone
-		admin.Sex = sex
-		admin.Motto = motto
+		admin.Phone = this.getString("phone", "电话号码不能为空!", defaultMinSize)
+		admin.Sex = this.getInt("radio", 0)
+		admin.Motto = this.getString("motto", "请君赠言...", defaultMinSize)
 		admin.CreateTime = time.Now().Unix()
-		if _, err := models.AdminAdd(admin); err != nil {
-			this.showTips(fmt.Sprint(err))
+		if _, err := admin.Add(); err != nil {
+			this.showTips(err)
 		}
 		this.redirect(beego.URLFor("UserController.Login"))
 	}
@@ -46,23 +39,19 @@ func (this *UserController) Admin() {
 func (this *UserController) Reg() {
 	beego.ReadFromRequest(&this.Controller)
 	if this.isPost() {
-		userName := this.getString("username", "账号不能为空!", defaultMinSize)
-		password := this.getString("password", "密码不能为空!", defaultMinSize)
-		email := this.getString("email", "邮箱不能为空!", defaultMinSize)
-		sex := this.getInt("radio", 0)
-
 		admin := new(models.Admin)
-		admin.Name = userName
+		admin.Name = this.getString("username", "账号不能为空!", defaultMinSize)
+		password := this.getString("password", "密码不能为空!", defaultMinSize)
 		admin.Password = password
-		admin.Email = email
-		admin.Sex = sex
+		admin.Email = this.getString("email", "邮箱不能为空!", defaultMinSize)
+		admin.Sex = this.getInt("radio", 0)
 		admin.LastIp = this.getClientIp()
 		admin.Salt = utils.GetRandomString(10)
 		admin.Password = utils.Md5(password + admin.Salt)
 		admin.RoleIds = "2"
 		admin.CreateTime = time.Now().Unix()
-		if _, err := models.AdminAdd(admin); err != nil {
-			this.showTips(fmt.Sprint(err))
+		if _, err := admin.Add(); err != nil {
+			this.showTips(err)
 		}
 		this.redirect(beego.URLFor("UserController.Login"))
 	}
@@ -75,19 +64,20 @@ func (this *UserController) Login() {
 	}
 	beego.ReadFromRequest(&this.Controller)
 	if this.isPost() {
-		userName := this.getString("username", "账号不能为空!", defaultMinSize)
+		admin := new(models.Admin)
+		admin.Name = this.getString("username", "账号不能为空!", defaultMinSize)
 		password := this.getString("password", "密码不能为空!", defaultMinSize)
-		user, err := models.AdminGetByName(userName)
-		if err != nil || user.Password != utils.Md5(password+user.Salt) {
+		err := admin.Query()
+		if err != nil || admin.Password != utils.Md5(password+admin.Salt) {
 			this.showTips(err)
-		} else if user.Status == -1 {
+		} else if admin.Status == -1 {
 			this.showTips("该账号已禁用!")
 		}
-		user.LastIp = this.getClientIp()
-		user.LastLogin = time.Now().Unix()
-		user.Update()
-		authKey := utils.Md5(this.getClientIp() + "|" + user.Password + user.Salt)
-		this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id,10)+"|"+authKey, 7*86400)
+		admin.LastIp = this.getClientIp()
+		admin.LastLogin = time.Now().Unix()
+		admin.Update()
+		authKey := utils.Md5(this.getClientIp() + "|" + admin.Password + admin.Salt)
+		this.Ctx.SetCookie("auth", strconv.FormatInt(admin.Id, 10)+"|"+authKey, 7*86400)
 		this.redirect(beego.URLFor("MainController.Index"))
 	}
 	this.TplName = "login/login.html"
@@ -104,14 +94,11 @@ func (this *UserController) NoAuth() {
 
 func (this *UserController) Edit() {
 	this.Data["pageTitle"] = "资料修改"
-	id := this.userId
-	Admin, _ := models.AdminGetById(id)
-	row := make(map[string]interface{})
-	row["id"] = Admin.Id
-	row["login_name"] = Admin.Name
-	row["real_name"] = Admin.RealName
-	row["phone"] = Admin.Phone
-	row["email"] = Admin.Email
-	this.Data["admin"] = row
+	admin := new(models.Admin)
+	admin.Id = this.userId
+	if err := admin.Query(); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.row(nil, admin)
 	this.display("backstage/user/edit")
 }

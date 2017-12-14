@@ -53,6 +53,7 @@ func (this *BaseController) showTips(errorMsg interface{}) {
 }
 
 func (this *BaseController) getString(key, tips string, minSize int) string {
+	beego.Info("----------form:",this.Ctx.Request.Form)
 	value := strings.TrimSpace(this.GetString(key, ""))
 	errorMsg := ""
 	beego.Info("----------key:", key, " | value:", value)
@@ -69,6 +70,7 @@ func (this *BaseController) getString(key, tips string, minSize int) string {
 
 func (this *BaseController) getInt(key string, defaultValue int) int {
 	resInt, err := this.GetInt(key, defaultValue)
+	beego.Info("resInt:", resInt, " | err:", err)
 	if err != nil {
 		this.showTips(err)
 	}
@@ -77,7 +79,7 @@ func (this *BaseController) getInt(key string, defaultValue int) int {
 
 func (this *BaseController) getInt64(key string, defaultValue int64) int64 {
 	resInt, err := this.GetInt64(key, defaultValue)
-	beego.Info("resInt:", resInt, " | err:", err)
+	beego.Info("resInt64:", resInt, " | err:", err)
 	if err != nil {
 		this.showTips(err)
 	}
@@ -85,14 +87,23 @@ func (this *BaseController) getInt64(key string, defaultValue int64) int64 {
 }
 
 func (this *BaseController) getId(defaultValue int) int {
-	return this.getInt("Id", defaultMinSize)
+	return this.getInt("id", defaultMinSize)
 }
 
 func (this *BaseController) getId64(defaultValue int64) int64 {
-	return this.getInt64("Id", defaultValue)
+	return this.getInt64("id", defaultValue)
+}
+
+func (this *BaseController) getGroupId(defaultValue int) int {
+	return this.getInt("groupId", defaultValue)
+}
+
+func (this *BaseController) getGroupId64(defaultValue int64) int64 {
+	return this.getInt64("groupId", defaultValue)
 }
 
 func (this *BaseController) Prepare() {
+	beego.Info("---------prepare")
 	this.pageSize = 20
 	controller, action := this.GetControllerAndAction()
 	this.controller = strings.ToLower(controller[0:len(controller)-10])
@@ -111,6 +122,7 @@ func (this *BaseController) Prepare() {
 }
 
 func (this *BaseController) currParam() {
+	beego.Info("----------currParam")
 	this.auth()
 	this.Data["userId"] = this.userId
 	this.Data["userName"] = this.userName
@@ -123,20 +135,27 @@ func (this *BaseController) currParam() {
 
 func (this *BaseController) auth() {
 	arr := strings.Split(this.Ctx.GetCookie("auth"), "|")
+	beego.Info("-----------auth~arr:",arr)
 	this.userId = 0
 	if len(arr) == 2 {
 		idstr, psw := arr[0], arr[1]
 		userId, _ := strconv.ParseInt(idstr, 11, 64)
+		beego.Info("-------------userId:",userId)
 		if userId > 0 {
-			user, err := models.AdminGetById(userId)
-			if err == nil && psw == utils.Md5(this.getClientIp()+"|"+user.Password+user.Salt) {
-				this.userId = user.Id
-				this.loginName = user.Name
-				this.userName = user.RealName
+			admin := new(models.Admin)
+			admin.Id = userId
+			err := admin.Query()
+			if err == nil && psw == utils.Md5(this.getClientIp()+"|"+admin.Password+admin.Salt) {
+				this.userId = admin.Id
+				this.loginName = admin.Name
+				this.userName = admin.RealName
 				this.userIcon = "/static/mingzu/img/1.jpg"
 				this.isLogin = true
-				this.user = user
+				this.user = admin
+			}else{
+				beego.Error(err)
 			}
+			beego.Info("--------------controller:",this.controller)
 			if strings.Contains(this.controller, "backstage") {
 				this.AdminAuth()
 			}
@@ -158,8 +177,10 @@ func (this *BaseController) auth() {
 func (this *BaseController) AdminAuth() {
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
+	beego.Info("--------------adminAuth:", this.userId)
 	if this.userId != 1 {
 		adminAuthIds, _ := models.RoleAuthGetByIds(this.user.RoleIds)
+		beego.Info("----------adminAuthIds:", adminAuthIds)
 		adminAuthIdArr := strings.Split(adminAuthIds, ",")
 		filters = append(filters, "id__in", adminAuthIdArr)
 	}
@@ -282,10 +303,7 @@ func (this *BaseController) ajaxList(msg interface{}, msgNo int, count int64, da
 	this.StopRun()
 }
 
-func (this *BaseController) row(row map[string]interface{}, model interface{}, isTime bool) map[string]interface{} {
-	if model == nil {
-		return nil
-	}
+func (this *BaseController) row(row map[string]interface{}, model interface{}) map[string]interface{} {
 	var field reflect.Type
 	var value reflect.Value
 	field = reflect.TypeOf(model).Elem()
@@ -297,8 +315,7 @@ func (this *BaseController) row(row map[string]interface{}, model interface{}, i
 	}
 	for i := 0; i < size; i++ {
 		v := value.Field(i)
-		fieldName = strings.ToLower(field.Field(i).Name)
-		beego.Info("fileName:", fieldName)
+		fieldName = field.Field(i).Name
 		switch value.Field(i).Kind() {
 		case reflect.Bool:
 			row[fieldName] = v.Bool()
@@ -307,18 +324,26 @@ func (this *BaseController) row(row map[string]interface{}, model interface{}, i
 				row[fieldName] = v.Int()
 			}
 		case reflect.Int64:
-			if isTime {
-				if (fieldName == "createtime" || fieldName == "updatetime") && v.Int() > 0 {
-					row[fieldName] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
-				} else if (fieldName == "createid" || fieldName == "updateid") && v.Int() > 0 {
-					//if admin,err := models.Admin
+			if (fieldName == "CreateTime" || fieldName == "UpdateTime") && v.Int() > 0 {
+				row[fieldName] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
+				continue
+			}
+			if fieldName == "CreateId" || fieldName == "UpdateId" {
+				admin := new(models.Admin)
+				admin.Id = v.Int()
+				if err := admin.Query(); err == nil {
+					if fieldName == "CreateId" {
+						row["CreateName"] = admin.Name
+					} else {
+						row["UpdateName"] = admin.Name
+					}
 				}
 				continue
 			}
 			row[fieldName] = v.Int()
 		case reflect.String:
 			if strings.Contains(v.String(), "static/") {
-				row["file"] = v.String()
+				row["File"] = v.String()
 				this.setFileSize(row, v.String())
 			} else {
 				row[fieldName] = v.String()
@@ -359,7 +384,9 @@ func (this *BaseController) parse(list []map[string]interface{}, row map[string]
 				continue
 			}
 			if fieldName == "CreateId" || fieldName == "UpdateId" {
-				if admin, err := models.AdminGetById(v.Int()); err == nil {
+				admin := new(models.Admin)
+				admin.Id = v.Int()
+				if err := admin.Query(); err == nil {
 					if fieldName == "CreateId" {
 						row["CreateName"] = admin.Name
 					} else {
@@ -371,7 +398,7 @@ func (this *BaseController) parse(list []map[string]interface{}, row map[string]
 			row[fieldName] = v.Int()
 		case reflect.String:
 			if strings.Contains(v.String(), "static/") {
-				row["file"] = v.String()
+				row["File"] = v.String()
 				this.setFileSize(row, v.String())
 			} else {
 				row[fieldName] = v.String()
@@ -380,6 +407,70 @@ func (this *BaseController) parse(list []map[string]interface{}, row map[string]
 	}
 	list[k] = row
 }
+
+func (this *BaseController) group(list []map[string]interface{}, row map[string]interface{}, k int, v interface{}, id int64) {
+	if list == nil {
+		return
+	}
+	var field reflect.Type
+	var value reflect.Value
+	field = reflect.TypeOf(v).Elem()
+	value = reflect.ValueOf(v).Elem()
+	size := field.NumField()
+	var fieldName string
+	if row == nil {
+		row = make(map[string]interface{})
+	}
+
+	for i := 0; i < size; i++ {
+		v := value.Field(i)
+		fieldName = field.Field(i).Name
+		if fieldName == "Id" {
+			if v.Int() == id {
+				row["Selected"] = true
+			} else {
+				row["Selected"] = false
+			}
+			row[fieldName] = v.Int()
+			continue
+		}
+		switch value.Field(i).Kind() {
+		case reflect.Bool:
+			row[fieldName] = v.Bool()
+		case reflect.Int:
+			if v.Int() > 0 {
+				row[fieldName] = v.Int()
+			}
+		case reflect.Int64:
+			if (fieldName == "CreateTime" || fieldName == "UpdateTime") && v.Int() > 0 {
+				row[fieldName] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
+				continue
+			}
+			if fieldName == "CreateId" || fieldName == "UpdateId" {
+				admin := new(models.Admin)
+				admin.Id = v.Int()
+				if err := admin.Query(); err == nil {
+					if fieldName == "CreateId" {
+						row["CreateName"] = admin.Name
+					} else {
+						row["UpdateName"] = admin.Name
+					}
+				}
+				continue
+			}
+			row[fieldName] = v.Int()
+		case reflect.String:
+			if strings.Contains(v.String(), "static/") {
+				row["File"] = v.String()
+				this.setFileSize(row, v.String())
+			} else {
+				row[fieldName] = v.String()
+			}
+		}
+	}
+	list[k] = row
+}
+
 func (this *BaseController) Upload() {
 	f, fh, err := this.GetFile("file")
 	defer f.Close()
@@ -434,5 +525,5 @@ func (this *BaseController) compress(path string) (int64, int64) {
 
 func (this *BaseController) setFileSize(row map[string]interface{}, file string) {
 	size, _ := utils.FileSize(file)
-	row["size"] = size
+	row["Size"] = size
 }

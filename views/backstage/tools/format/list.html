@@ -41,8 +41,8 @@
             if (obj.event === 'detail') {
 
             } else if (obj.event === 'del') {
-                layer.confirm('真的删除[' + data.name + ']么', function (index) {
-                    var jsData = {'id': data.id};
+                layer.confirm('真的删除[' + data.Name + ']么', function (index) {
+                    var jsData = {'id': data.Id};
                     $.post('{{urlfor "FormatController.AjaxDel"}}', jsData, function (out) {
                         if (out.status == 0) {
                             layer.alert('删除成功', function (index) {
@@ -57,7 +57,7 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                window.location.href = "/backstage/tools/format/edit?id=" + data.id
+                window.location.href = "/backstage/tools/format/edit?id=" + data.Id
             }
         });
     });

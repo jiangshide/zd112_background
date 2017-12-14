@@ -19,13 +19,30 @@ func (this *Role) TableName() string {
 	return TableName("uc_role")
 }
 
-func (this *Role) Update(fields ...string) error {
-	_, err := orm.NewOrm().Update(this, fields...)
-	return err
+func (this *Role) Add() (int64, error) {
+	return orm.NewOrm().Insert(this)
 }
 
-func RoleAdd(this *Role) (int64, error) {
-	return orm.NewOrm().Insert(this)
+func (this *Role) Del() (int64, error) {
+	return orm.NewOrm().Delete(this)
+}
+
+func (this *Role) Update() (int64, error) {
+	return orm.NewOrm().Update(this)
+}
+
+func (this *Role) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
+	}
+	return orm.NewOrm().Read(this)
+}
+
+func (this *Role) List(pageSize, offSet int) (list []*Role, total int64) {
+	query := orm.NewOrm().QueryTable(this.TableName())
+	total, _ = query.Count()
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
+	return
 }
 
 func RoleList(page, pageSize int, filters ...interface{}) ([]*Role, int64) {
@@ -41,11 +58,4 @@ func RoleList(page, pageSize int, filters ...interface{}) ([]*Role, int64) {
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
 	return list, total
-}
-
-func RoleGetById(id int64) (this *Role, err error) {
-	this = &Role{
-		Id: id,
-	}
-	return this, orm.NewOrm().Read(this)
 }

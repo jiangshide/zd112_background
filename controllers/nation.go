@@ -32,31 +32,27 @@ func (this *NationController) Edit() {
 	if err := nation.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	row := make(map[string]interface{})
-	row["id"] = nation.Id
-	row["name"] = nation.Name
-	row["file"] = nation.Icon
-	this.setFileSize(row, nation.Icon)
-	this.Data["row"] = row
+	this.row(nil, nation)
 	this.display(this.getBgAction("nation/edit"))
 }
 
 func (this *NationController) AjaxSave() {
+	beego.Info("-----nation-----form:",this.Ctx.Request.Form)
 	nation := new(models.Nation)
 	nation.Id = this.getId64(0)
 	nation.Name = this.getString("name", "名称不能为空!", 1)
 	nation.Icon = this.getString("file", "File不能为空!", defaultMinSize)
+	var err error
 	if nation.Id == 0 {
 		nation.CreateId = this.userId
 		nation.CreateTime = time.Now().Unix()
-		if _, err := nation.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = nation.Add()
+	}else{
+		nation.UpdateId = this.userId
+		nation.UpdateTime = time.Now().Unix()
+		_,err = nation.Update()
 	}
-	nation.UpdateId = this.userId
-	nation.UpdateTime = time.Now().Unix()
-	if _, err := nation.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)

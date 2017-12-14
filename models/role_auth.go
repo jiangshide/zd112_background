@@ -5,7 +5,6 @@ import (
 	"strings"
 	"bytes"
 	"strconv"
-	"github.com/astaxie/beego"
 )
 
 type RoleAuth struct {
@@ -17,25 +16,34 @@ func (this *RoleAuth) TableName() string {
 	return TableName("uc_role_auth")
 }
 
-func RoleAuthAdd(this *RoleAuth) (int64, error) {
+func (this *RoleAuth) Add() (int64, error) {
 	return orm.NewOrm().Insert(this)
 }
 
-func RoleAuthGetById(id int64) ([]*RoleAuth, error) {
-	list := make([]*RoleAuth, 0)
-	_, err := orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id", id).All(&list, "AuthId")
-	return list, err
+func (this *RoleAuth) Del() (int64, error) {
+	return orm.NewOrm().Delete(this)
 }
 
-func RoleAuthDelete(id int64) (int64, error) {
-	return orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id", id).Delete()
+func (this *RoleAuth) Update() (int64, error) {
+	return orm.NewOrm().Update(this)
+}
+
+func (this *RoleAuth) Query() error {
+	if this.AuthId == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
+	}
+	return orm.NewOrm().Read(this)
+}
+
+func (this *RoleAuth) List() (list []*RoleAuth, err error) {
+	_, err = orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).All(&list)
+	return
 }
 
 func RoleAuthGetByIds(roleIds string) (string, error) {
 	list := make([]*RoleAuth, 0)
 	ids := strings.Split(roleIds, ",")
 	_, err := orm.NewOrm().QueryTable(TableName("uc_role_auth")).Filter("role_id__in", ids).All(&list, "AuthId")
-	beego.Error("------------err:", err)
 	if err != nil {
 		return "", err
 	}
@@ -49,13 +57,14 @@ func RoleAuthGetByIds(roleIds string) (string, error) {
 	return strings.TrimRight(b.String(), ","), nil
 }
 
-func RoleAuthMultiAdd(ras []*RoleAuth) (n int, err error) {
-	i, _ := orm.NewOrm().QueryTable(TableName("uc_role_auth")).PrepareInsert()
+func (this *RoleAuth) BatchAdd(ras []*RoleAuth) (n int, err error) {
+	query := orm.NewOrm().QueryTable(this.TableName())
+	insert, _ := query.PrepareInsert()
+	defer insert.Close()
 	for _, ra := range ras {
-		if _, err := i.Insert(ra); err == nil {
+		if _, err = insert.Insert(ra); err == nil {
 			n += 1
 		}
 	}
-	i.Close()
-	return n, err
+	return
 }

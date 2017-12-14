@@ -26,7 +26,7 @@ func (this *EnvironmnetController) Edit() {
 	if err := environment.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, environment, false)
+	this.row(nil, environment)
 	this.display(this.getBgTestAction("environment/edit"))
 }
 
@@ -96,7 +96,7 @@ func (this *ProjectController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(project.ParentId)
-	this.row(nil, project, false)
+	this.row(nil, project)
 	this.display(this.getBgTestAction("project/edit"))
 }
 
@@ -141,17 +141,9 @@ func (this *ProjectController) parent(id int64) {
 	result, count := environment.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *ProjectController) AjaxDel() {

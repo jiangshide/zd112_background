@@ -24,13 +24,30 @@ func (this *Auth) TableName() string {
 	return TableName("uc_auth")
 }
 
-func (this *Auth) Update(fields ...string) error {
-	_, err := orm.NewOrm().Update(this, fields...)
-	return err
+func (this *Auth) Add() (int64, error) {
+	return orm.NewOrm().Insert(this)
 }
 
-func AuthAdd(this *Auth) (int64, error) {
-	return orm.NewOrm().Insert(this)
+func (this *Auth) Del() (int64, error) {
+	return orm.NewOrm().Delete(this)
+}
+
+func (this *Auth) Update() (int64, error) {
+	return orm.NewOrm().Update(this)
+}
+
+func (this *Auth) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
+	}
+	return orm.NewOrm().Read(this)
+}
+
+func (this *Auth) List(pageSize, offSet int) (list []*Auth, total int64) {
+	query := orm.NewOrm().QueryTable(this.TableName())
+	total, _ = query.Count()
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
+	return
 }
 
 func AuthList(page, pageSize int, filters ...interface{}) ([]*Auth, int64) {
@@ -46,24 +63,6 @@ func AuthList(page, pageSize int, filters ...interface{}) ([]*Auth, int64) {
 	total, _ := query.Count()
 	query.OrderBy("pid", "sort").Limit(pageSize, offSet).All(&list)
 	return list, total
-}
-
-func (this *Auth) List(pageSize, offSet int) (list []*Auth, total int64) {
-	query := orm.NewOrm().QueryTable(this.TableName())
-	total, _ = query.Count()
-	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
-	return
-}
-
-func AuthGetById(id int64) (this *Auth, err error) {
-	this = &Auth{
-		Id: id,
-	}
-	return this, orm.NewOrm().Read(this)
-}
-
-func AuthDelById(id int64) (int64, error) {
-	return orm.NewOrm().QueryTable(TableName("uc_auth")).Filter("id", id).Delete()
 }
 
 func AuthGetListByIds(authIds string, userId int) ([]*Auth, error) {

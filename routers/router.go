@@ -84,7 +84,7 @@ func commRouter() {
 				rootPath += "/" + strings.ToLower(action)
 			}
 			action = "*:" + utils.StrFirstToUpper(action)
-			//beego.Info("rootPath:", rootPath, " | action:", action)
+			beego.Info("rootPath:", rootPath, " | action:", action)
 			beego.Router(rootPath, v, action)
 		}
 	}

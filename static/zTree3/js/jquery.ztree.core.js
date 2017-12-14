@@ -94,7 +94,7 @@
             },
             async: {
                 enable: false,
-                contentType: "app_name/x-www-form-urlencoded",
+                contentType: "application/x-www-form-urlencoded",
                 type: "post",
                 dataType: "text",
                 url: "",
@@ -1024,7 +1024,7 @@
                     cache: false,
                     type: setting.async.type,
                     url: tools.apply(setting.async.url, [setting.treeId, node], setting.async.url),
-                    data: setting.async.contentType.indexOf('app_name/json') > -1 ? JSON.stringify(tmpParam) : tmpParam,
+                    data: setting.async.contentType.indexOf('application/json') > -1 ? JSON.stringify(tmpParam) : tmpParam,
                     dataType: setting.async.dataType,
                     success: function (msg) {
                         if (_tmpV != data.getRoot(setting)._ver) {

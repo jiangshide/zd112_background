@@ -3,6 +3,7 @@ package controllers
 import (
 	"zd112/models"
 	"time"
+	"github.com/astaxie/beego"
 )
 
 type ContinentController struct {
@@ -26,26 +27,27 @@ func (this *ContinentController) Edit() {
 	if err := continent.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, continent, false)
+	this.row(nil, continent)
 	this.display(this.getBgAreaAction("continent/edit"))
 }
 
 func (this *ContinentController) AjaxSave() {
 	continent := new(models.Continent)
+	beego.Info("----continent-----name:",this.GetString("name","1"))
+	continent.Id = this.getId64(0)
 	continent.Name = this.getString("name", "名称不能为空!", 1)
 	continent.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
-	continent.Id = this.getId64(0)
+	var err error
 	if continent.Id == 0 {
 		continent.CreateId = this.userId
 		continent.CreateTime = time.Now().Unix()
-		if _, err := continent.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = continent.Add()
+	} else {
+		continent.UpdateId = this.userId
+		continent.UpdateTime = time.Now().Unix()
+		_, err = continent.Update()
 	}
-	continent.UpdateId = this.userId
-	continent.UpdateTime = time.Now().Unix()
-	if _, err := continent.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -93,7 +95,7 @@ func (this *StateController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(state.ParentId)
-	this.row(nil, state, false)
+	this.row(nil, state)
 	this.display(this.getBgAreaAction("state/edit"))
 }
 
@@ -103,17 +105,17 @@ func (this *StateController) AjaxSave() {
 	state.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
 	state.Id = this.getId64(0)
 	state.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if state.Id == 0 {
 		state.CreateId = this.userId
 		state.CreateTime = time.Now().Unix()
-		if _, err := state.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = state.Add()
+	} else {
+		state.UpdateId = this.userId
+		state.UpdateTime = time.Now().Unix()
+		_, err = state.Update()
 	}
-	state.UpdateId = this.userId
-	state.UpdateTime = time.Now().Unix()
-	if _, err := state.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -124,17 +126,9 @@ func (this *StateController) parent(id int64) {
 	result, count := continent.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *StateController) Table() {
@@ -185,7 +179,7 @@ func (this *ProvinceController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(province.ParentId)
-	this.row(nil, province, false)
+	this.row(nil, province)
 	this.display(this.getBgAreaAction("province/edit"))
 }
 
@@ -195,17 +189,17 @@ func (this *ProvinceController) AjaxSave() {
 	province.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	province.Id = this.getId64(0)
 	province.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if province.Id == 0 {
 		province.CreateId = this.userId
 		province.CreateTime = time.Now().Unix()
-		if _, err := province.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = province.Add()
+	} else {
+		province.UpdateId = this.userId
+		province.UpdateTime = time.Now().Unix()
+		_, err = province.Update()
 	}
-	province.UpdateId = this.userId
-	province.UpdateTime = time.Now().Unix()
-	if _, err := province.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -216,17 +210,9 @@ func (this *ProvinceController) parent(id int64) {
 	result, count := state.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *ProvinceController) Table() {
@@ -277,7 +263,7 @@ func (this *CityController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(city.ParentId)
-	this.row(nil, city, false)
+	this.row(nil, city)
 	this.display(this.getBgAreaAction("city/edit"))
 }
 
@@ -287,17 +273,17 @@ func (this *CityController) AjaxSave() {
 	city.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	city.Id = this.getId64(0)
 	city.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if city.Id == 0 {
 		city.CreateId = this.userId
 		city.CreateTime = time.Now().Unix()
-		if _, err := city.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = city.Add()
+	} else {
+		city.UpdateId = this.userId
+		city.UpdateTime = time.Now().Unix()
+		_, err = city.Update()
 	}
-	city.UpdateId = this.userId
-	city.UpdateTime = time.Now().Unix()
-	if _, err := city.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -308,15 +294,7 @@ func (this *CityController) parent(id int64) {
 	result, count := province.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }
@@ -369,7 +347,7 @@ func (this *RegionController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(region.ParentId)
-	this.row(nil, region, false)
+	this.row(nil, region)
 	this.display(this.getBgAreaAction("region/edit"))
 }
 
@@ -379,17 +357,17 @@ func (this *RegionController) AjaxSave() {
 	region.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	region.Id = this.getId64(0)
 	region.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if region.Id == 0 {
 		region.CreateId = this.userId
 		region.CreateTime = time.Now().Unix()
-		if _, err := region.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = region.Add()
+	} else {
+		region.UpdateId = this.userId
+		region.UpdateTime = time.Now().Unix()
+		_, err = region.Update()
 	}
-	region.UpdateId = this.userId
-	region.UpdateTime = time.Now().Unix()
-	if _, err := region.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -400,17 +378,9 @@ func (this *RegionController) parent(id int64) {
 	result, count := city.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *RegionController) Table() {
@@ -460,7 +430,7 @@ func (this *CountyController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(county.ParentId)
-	this.row(nil, county, false)
+	this.row(nil, county)
 	this.display(this.getBgAreaAction("county/edit"))
 }
 
@@ -470,17 +440,17 @@ func (this *CountyController) AjaxSave() {
 	county.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	county.Id = this.getId64(0)
 	county.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if county.Id == 0 {
 		county.CreateId = this.userId
 		county.CreateTime = time.Now().Unix()
-		if _, err := county.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = county.Add()
+	} else {
+		county.UpdateId = this.userId
+		county.UpdateTime = time.Now().Unix()
+		_, err = county.Update()
 	}
-	county.UpdateId = this.userId
-	county.UpdateTime = time.Now().Unix()
-	if _, err := county.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -491,15 +461,7 @@ func (this *CountyController) parent(id int64) {
 	result, count := city.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }
@@ -552,7 +514,7 @@ func (this *TownController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(town.ParentId)
-	this.row(nil, town, false)
+	this.row(nil, town)
 	this.display(this.getBgAreaAction("town/edit"))
 }
 
@@ -562,17 +524,17 @@ func (this *TownController) AjaxSave() {
 	town.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	town.Id = this.getId64(0)
 	town.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if town.Id == 0 {
 		town.CreateId = this.userId
 		town.CreateTime = time.Now().Unix()
-		if _, err := town.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = town.Add()
+	} else {
+		town.UpdateId = this.userId
+		town.UpdateTime = time.Now().Unix()
+		_, err = town.Update()
 	}
-	town.UpdateId = this.userId
-	town.UpdateTime = time.Now().Unix()
-	if _, err := town.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -583,15 +545,7 @@ func (this *TownController) parent(id int64) {
 	result, count := county.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }
@@ -644,7 +598,7 @@ func (this *CountryController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(country.ParentId)
-	this.row(nil, country, false)
+	this.row(nil, country)
 	this.display(this.getBgAreaAction("country/edit"))
 }
 
@@ -654,17 +608,17 @@ func (this *CountryController) AjaxSave() {
 	country.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	country.Id = this.getId64(0)
 	country.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if country.Id == 0 {
 		country.CreateId = this.userId
 		country.CreateTime = time.Now().Unix()
-		if _, err := country.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = country.Add()
+	} else {
+		country.UpdateId = this.userId
+		country.UpdateTime = time.Now().Unix()
+		_, err = country.Update()
 	}
-	country.UpdateId = this.userId
-	country.UpdateTime = time.Now().Unix()
-	if _, err := country.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -675,15 +629,7 @@ func (this *CountryController) parent(id int64) {
 	result, count := town.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }
@@ -736,7 +682,7 @@ func (this *VillageController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(village.ParentId)
-	this.row(nil, village, false)
+	this.row(nil, village)
 	this.display(this.getBgAreaAction("village/edit"))
 }
 
@@ -746,17 +692,17 @@ func (this *VillageController) AjaxSave() {
 	village.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	village.Id = this.getId64(0)
 	village.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if village.Id == 0 {
 		village.CreateId = this.userId
 		village.CreateTime = time.Now().Unix()
-		if _, err := village.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = village.Add()
+	} else {
+		village.UpdateId = this.userId
+		village.UpdateTime = time.Now().Unix()
+		_, err = village.Update()
 	}
-	village.UpdateId = this.userId
-	village.UpdateTime = time.Now().Unix()
-	if _, err := village.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -767,15 +713,7 @@ func (this *VillageController) parent(id int64) {
 	result, count := country.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }
@@ -828,7 +766,7 @@ func (this *GroupController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(group.ParentId)
-	this.row(nil, group, false)
+	this.row(nil, group)
 	this.display(this.getBgAreaAction("group/edit"))
 }
 
@@ -838,17 +776,17 @@ func (this *GroupController) AjaxSave() {
 	group.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	group.Id = this.getId64(0)
 	group.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if group.Id == 0 {
 		group.CreateId = this.userId
 		group.CreateTime = time.Now().Unix()
-		if _, err := group.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = group.Add()
+	} else {
+		group.UpdateId = this.userId
+		group.UpdateTime = time.Now().Unix()
+		_, err = group.Update()
 	}
-	group.UpdateId = this.userId
-	group.UpdateTime = time.Now().Unix()
-	if _, err := group.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -859,15 +797,7 @@ func (this *GroupController) parent(id int64) {
 	result, count := village.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }
@@ -920,7 +850,7 @@ func (this *TeamController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(team.ParentId)
-	this.row(nil, team, false)
+	this.row(nil, team)
 	this.display(this.getBgAreaAction("team/edit"))
 }
 
@@ -930,17 +860,16 @@ func (this *TeamController) AjaxSave() {
 	team.Name = this.getString("name", "名称不能为空!", 1)
 	team.Icon = this.getString("file", "File不能为空!", defaultMinSize)
 	team.ParentId = this.getInt64("group_id", 0)
+	var err error
 	if team.Id == 0 {
 		team.CreateId = this.userId
 		team.CreateTime = time.Now().Unix()
-		if _, err := team.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = team.Add()
+	} else {
+		team.UpdateId = this.userId
+		team.UpdateTime = time.Now().Unix()
 	}
-	team.UpdateId = this.userId
-	team.UpdateTime = time.Now().Unix()
-	if _, err := team.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -951,15 +880,7 @@ func (this *TeamController) parent(id int64) {
 	result, count := group.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
 	this.Data["group"] = list
 }

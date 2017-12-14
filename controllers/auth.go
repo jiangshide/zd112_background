@@ -37,15 +37,18 @@ func (this *AuthController) GetNodes() {
 }
 
 func (this *AuthController) GetNode() {
-	id := this.getInt64("id", 0)
-	result, _ := models.AuthGetById(id)
+	auth := new(models.Auth)
+	auth.Id = this.getInt64("id", 0)
+	if err := auth.Query(); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
 	row := make(map[string]interface{})
-	row["id"] = result.Id
-	row["pid"] = result.Pid
-	row["name"] = result.Name
-	row["sort"] = result.Sort
-	row["is_show"] = result.IsShow
-	row["icon"] = result.Icon
+	row["id"] = auth.Id
+	row["pid"] = auth.Pid
+	row["name"] = auth.Name
+	row["sort"] = auth.Sort
+	row["is_show"] = auth.IsShow
+	row["icon"] = auth.Icon
 	this.ajaxList("成功", MSG_OK, 0, row)
 }
 
@@ -61,33 +64,27 @@ func (this *AuthController) AjaxSave() {
 	auth.UpdateTime = time.Now().Unix()
 	auth.Status = 1
 	id := this.getInt64("id", 0)
+	var err error
 	if id == 0 {
 		auth.CreateTime = time.Now().Unix()
 		auth.CreateId = this.userId
-		auth.UpdateId = this.userId
-		if _, err := models.AuthAdd(auth); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
+		_, err = auth.Add()
 	} else {
 		auth.Id = id
 		auth.UpdateId = this.userId
-		if err := auth.Update(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
+		auth.UpdateTime = time.Now().Unix()
+		_, err = auth.Update()
+	}
+	if err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
 }
 
 func (this *AuthController) AjaxDel() {
-	id := this.getInt64("id", 0)
-	//auth, _ := models.AuthGetById(id)
-	//auth.Id = id
-	//auth.Status = 0
-	//if err := auth.Update(); err != nil {
-	//	this.ajaxMsg(err.Error(), MSG_ERR)
-	//}
-	//this.ajaxMsg("", MSG_OK)
-	if _, err := models.AuthDelById(id); err != nil {
+	auth := new(models.Auth)
+	auth.Id = this.getInt64("id", 0)
+	if _, err := auth.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)

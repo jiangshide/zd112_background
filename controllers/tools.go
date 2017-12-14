@@ -25,12 +25,13 @@ func (this *FormatTypeController) Add() {
 }
 
 func (this *FormatTypeController) Edit() {
+	this.pageTitle("编辑文件类型")
 	formatType := new(models.FormatType)
 	formatType.Id = this.getId64(0)
 	if err := formatType.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, formatType, false)
+	this.row(nil, formatType)
 	this.display(this.getBgToolAction("format/type/edit"))
 }
 
@@ -38,18 +39,17 @@ func (this *FormatTypeController) AjaxSave() {
 	formatType := new(models.FormatType)
 	formatType.Id = this.getId64(0)
 	formatType.Name = this.getString("name", "名称不能为空!", 1)
+	var err error
 	if formatType.Id == 0 {
 		formatType.CreateId = this.userId
 		formatType.CreateTime = time.Now().Unix()
-		if _, err := formatType.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = formatType.Add()
+	} else {
+		formatType.UpdateId = this.userId
+		formatType.UpdateTime = time.Now().Unix()
+		_, err = formatType.Update()
 	}
-	formatType.Query()
-	formatType.UpdateId = this.userId
-	formatType.UpdateTime = time.Now().Unix()
-	if _, err := formatType.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -97,26 +97,26 @@ func (this *FormatController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(format.ParentId)
-	this.row(nil, format, false)
+	this.row(nil, format)
 	this.display(this.getBgToolAction("format/edit"))
 }
 
 func (this *FormatController) AjaxSave() {
 	format := new(models.Format)
-	format.ParentId = this.getInt64("group_id", 0)
+	format.ParentId = this.getGroupId64(0)
 	format.Name = this.getString("name", "名称不能为空!", 1)
 	format.Id = this.getId64(0)
+	var err error
 	if format.Id == 0 {
 		format.CreateId = this.userId
 		format.UpdateTime = time.Now().Unix()
-		if _, err := format.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = format.Add()
+	} else {
+		format.UpdateId = this.userId
+		format.UpdateTime = time.Now().Unix()
+		_, err = format.Update()
 	}
-	format.UpdateId = this.userId
-	format.UpdateTime = time.Now().Unix()
-	if _, err := format.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -127,17 +127,9 @@ func (this *FormatController) parent(id int64) {
 	result, count := formatType.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *FormatController) Table() {
@@ -240,7 +232,7 @@ func (this *CompressController) Edit() {
 	if err := compress.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, compress, false)
+	this.row(nil, compress)
 	this.display(this.getBgToolAction("compress/edit"))
 }
 
@@ -256,6 +248,7 @@ func (this *CompressController) AjaxSave() {
 	if compress.ReSize > 0 {
 		compress.Compress = 1
 	}
+	var err error
 	if compress.Id == 0 {
 		id, reSize, sufix := this.getFileFormat(compress.Url)
 		compress.Type = id
@@ -263,16 +256,14 @@ func (this *CompressController) AjaxSave() {
 		compress.ReSize = reSize
 		compress.CreateId = this.userId
 		compress.CreateTime = time.Now().Unix()
-		if _, err := compress.Add(); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
+		_, err = compress.Add()
+	} else {
+		compress.Downs = this.getInt("downs", 0)
+		compress.UpdateId = this.userId
+		compress.UpdateTime = time.Now().Unix()
+		_, err = compress.Update()
 	}
-
-	compress.Downs = this.getInt("downs", 0)
-	compress.UpdateId = this.userId
-	compress.UpdateTime = time.Now().Unix()
-	if _, err := compress.Update(); err != nil {
+	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)

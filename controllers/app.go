@@ -26,7 +26,7 @@ func (this *ChannelController) Edit() {
 	if err := channel.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, channel, false)
+	this.row(nil, channel)
 	this.display(this.getBgAppAction("channel/edit"))
 }
 
@@ -92,7 +92,7 @@ func (this AppNameController) Edit() {
 	if err := appName.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, appName, false)
+	this.row(nil, appName)
 	this.display(this.getBgAppAction("app_name/edit"))
 }
 
@@ -157,7 +157,7 @@ func (this PkgsController) Edit() {
 	if err := pkgs.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, pkgs, false)
+	this.row(nil, pkgs)
 	this.display(this.getBgAppAction("pkgs/edit"))
 }
 
@@ -222,7 +222,7 @@ func (this *VersionController) Edit() {
 	if err := version.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, version, false)
+	this.row(nil, version)
 	this.display(this.getBgAppAction("version/edit"))
 }
 
@@ -287,7 +287,7 @@ func (this *CodeController) Edit() {
 	if err := code.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, code, false)
+	this.row(nil, code)
 	this.display(this.getBgAppAction("code/edit"))
 }
 
@@ -352,7 +352,7 @@ func (this *EnvController) Edit() {
 	if err := env.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, env, false)
+	this.row(nil, env)
 	this.display(this.getBgAppAction("env/edit"))
 }
 
@@ -417,7 +417,7 @@ func (this *BuildController) Edit() {
 	if err := build.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, build, true)
+	this.row(nil, build)
 	this.display(this.getBgAppAction("build/edit"))
 }
 
@@ -431,10 +431,11 @@ func (this *BuildController) AjaxSave() {
 		build.CreateId = this.userId
 		build.CreateTime = time.Now().Unix()
 		_, err = build.Add()
+	} else {
+		build.UpdateId = this.userId
+		build.UpdateTime = time.Now().Unix()
+		_, err = build.Update()
 	}
-	build.UpdateId = this.userId
-	build.UpdateTime = time.Now().Unix()
-	_, err = build.Update()
 	if err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
@@ -481,7 +482,7 @@ func (this *TypeController) Edit() {
 	if err := types.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, types, false)
+	this.row(nil, types)
 	this.display(this.getBgAppAction("type/edit"))
 }
 
@@ -553,11 +554,6 @@ func (this *AppController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	row := make(map[string]interface{})
-	row["id"] = app.Id
-	row["project_id"] = app.ProjectId
-	row["test_id"] = app.TestId
-	row["icon"] = app.Icon
-	this.setFileSize(row, app.Icon)
 	this.setType(app.TypeId)
 	this.setApplication(app.ApplicationId)
 	this.setPkg(app.PkgId)
@@ -566,12 +562,7 @@ func (this *AppController) Edit() {
 	this.setEnv(app.EnvId)
 	this.setBuild(app.BuildId)
 	this.setChannel(app.ChannelId)
-	row["descript"] = app.Descript
-	row["status"] = app.Status
-	row["times"] = app.Times
-	row["url"] = app.Url
-	row["downs"] = app.Downs
-	this.Data["row"] = row
+	this.row(row, app)
 	this.display(this.getBgTestAction("app/edit"))
 }
 
@@ -615,54 +606,47 @@ func (this *AppController) Table() {
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
 		row := make(map[string]interface{})
-		row["test_id"] = v.TestId
-		row["icon"] = v.Icon
 		types := new(models.Type)
 		types.Id = v.TypeId
 		if err := types.Query(); err == nil {
-			row["type"] = types.Name
+			row["Type"] = types.Name
 		}
 		application := new(models.AppName)
 		application.Id = v.ApplicationId
 		if err := application.Query(); err == nil {
-			row["name"] = application.Name
+			row["AppName"] = application.Name
 		}
 		pkg := new(models.Pkgs)
 		pkg.Id = v.PkgId
 		if err := pkg.Query(); err == nil {
-			row["pkgs"] = pkg.Name
+			row["Pkgs"] = pkg.Name
 		}
 		version := new(models.Version)
 		version.Id = v.VersionId
 		if err := version.Query(); err == nil {
-			row["version"] = version.Name
+			row["Version"] = version.Name
 		}
 		code := new(models.Code)
 		code.Id = v.CodeId
 		if err := code.Query(); err == nil {
-			row["code"] = code.Code
+			row["Code"] = code.Code
 		}
 		env := new(models.Env)
 		env.Id = v.EnvId
 		if err := env.Query(); err == nil {
-			row["env"] = env.Name
+			row["Env"] = env.Name
 		}
 		build := new(models.Build)
 		build.Id = v.BuildId
 		if err := build.Query(); err == nil {
-			row["build"] = build.Name
+			row["Build"] = build.Name
 		}
 		channel := new(models.Channel)
 		channel.Id = v.ChannelId
 		if err := channel.Query(); err == nil {
-			row["channel"] = channel.Name
+			row["Channel"] = channel.Name
 		}
-		row["descript"] = v.Descript
-		row["status"] = v.Status
-		row["times"] = v.Times
-		row["url"] = v.Url
-		row["downs"] = v.Downs
-		this.parse(list, row,k,v)
+		this.parse(list, row, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -672,17 +656,9 @@ func (this *AppController) setBuild(id int64) {
 	result, count := build.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data[" build"] = list
+	this.Data["BuildGroup"] = list
 }
 
 func (this *AppController) setEnv(id int64) {
@@ -690,17 +666,9 @@ func (this *AppController) setEnv(id int64) {
 	result, count := env.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["env"] = list
+	this.Data["EnvGroup"] = list
 }
 
 func (this *AppController) setCode(id int64) {
@@ -708,17 +676,9 @@ func (this *AppController) setCode(id int64) {
 	result, count := code.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Code
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["code"] = list
+	this.Data["CodeGroup"] = list
 }
 
 func (this *AppController) setVersion(id int64) {
@@ -726,17 +686,9 @@ func (this *AppController) setVersion(id int64) {
 	result, count := version.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["version"] = list
+	this.Data["VersionGroup"] = list
 }
 
 func (this *AppController) setPkg(id int64) {
@@ -744,17 +696,9 @@ func (this *AppController) setPkg(id int64) {
 	result, count := pkg.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["pkgs"] = list
+	this.Data["PkgsGroup"] = list
 }
 
 func (this *AppController) setApplication(id int64) {
@@ -762,17 +706,9 @@ func (this *AppController) setApplication(id int64) {
 	result, count := application.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["app_name"] = list
+	this.Data["AppNameGroup"] = list
 }
 
 func (this *AppController) setType(id int64) {
@@ -780,17 +716,9 @@ func (this *AppController) setType(id int64) {
 	result, count := types.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["type"] = list
+	this.Data["TypeGroup"] = list
 }
 
 func (this *AppController) setChannel(id int64) {
@@ -798,17 +726,9 @@ func (this *AppController) setChannel(id int64) {
 	result, count := channel.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		row := make(map[string]interface{}, 0)
-		row["id"] = v.Id
-		row["name"] = v.Name
-		if v.Id == id {
-			row["selected"] = true
-		} else {
-			row["selected"] = false
-		}
-		list[k] = row
+		this.group(list, nil, k, v, id)
 	}
-	this.Data["channel"] = list
+	this.Data["ChannelGroup"] = list
 }
 
 func (this *AppController) AjaxDel() {

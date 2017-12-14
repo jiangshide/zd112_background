@@ -95,7 +95,7 @@
             },
             async: {
                 enable: false,
-                contentType: "app_name/x-www-form-urlencoded",
+                contentType: "application/x-www-form-urlencoded",
                 type: "post",
                 dataType: "text",
                 url: "",
@@ -1025,7 +1025,7 @@
                     cache: false,
                     type: setting.async.type,
                     url: tools.apply(setting.async.url, [setting.treeId, node], setting.async.url),
-                    data: setting.async.contentType.indexOf('app_name/json') > -1 ? JSON.stringify(tmpParam) : tmpParam,
+                    data: setting.async.contentType.indexOf('application/json') > -1 ? JSON.stringify(tmpParam) : tmpParam,
                     dataType: setting.async.dataType,
                     success: function (msg) {
                         if (_tmpV != data.getRoot(setting)._ver) {
@@ -2820,7 +2820,7 @@
 			//right click can't drag & drop
 			if (eventMouseDown.button == 2 || !setting.edit.enable || (!setting.edit.drag.isCopy && !setting.edit.drag.isMove)) return true;
 
-			//input of edit node app_name can't drag & drop
+			//input of edit node name can't drag & drop
 			var target = eventMouseDown.target,
 			_nodes = data.getRoot(setting).curSelectedList,
 			nodes = [];

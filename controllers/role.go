@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"time"
 	"zd112/models"
+	"github.com/astaxie/beego"
 )
 
 type RoleController struct {
@@ -24,15 +24,25 @@ func (this *RoleController) Add() {
 func (this *RoleController) Edit() {
 	this.Data["zTree"] = true
 	this.pageTitle("编辑角色")
-	id := this.getInt64("id",0)
-	role, _ := models.RoleGetById(id)
-	this.Data["role"] = role
-	roleAuth, _ := models.RoleAuthGetById(id)
-	authId := make([]int64, 0)
-	for _, v := range roleAuth {
-		authId = append(authId, v.AuthId)
+	role := new(models.Role)
+	id := this.getInt64("id", 0)
+	role.Id = id
+	if err := role.Query(); err == nil {
+		this.Data["role"] = role
+	} else {
+		beego.Error(err)
 	}
-	this.Data["auth"] = authId
+	roleAuth := new(models.RoleAuth)
+	roleAuth.RoleId = id
+	if roleAuthList, err := roleAuth.List(); err == nil {
+		authId := make([]int64, 0)
+		for _, v := range roleAuthList {
+			authId = append(authId, v.AuthId)
+		}
+		this.Data["auth"] = authId
+	} else {
+		beego.Error(err)
+	}
 	this.display("backstage/role/edit")
 }
 
@@ -45,19 +55,15 @@ func (this *RoleController) AjaxSave() {
 }
 
 func (this *RoleController) AjaxDel() {
-	id := this.getInt64("id",0)
-	role, _ := models.RoleGetById(id)
-	role.Status = 0
-	role.Id = id
-	role.UpdateTime = time.Now().Unix()
-	if err := role.Update(); err != nil {
+	role := new(models.Role)
+	role.Id = this.getInt64("id", 0)
+	if _, err := role.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
 }
 
 func (this *RoleController) Table() {
-	beego.Info("--------------list")
 	page, err := this.GetInt("page")
 	if err != nil {
 		page = 1
@@ -70,16 +76,9 @@ func (this *RoleController) Table() {
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
 	result, count := models.RoleList(page, this.pageSize, filters...)
-	beego.Info("------------result:",result," | count:",count)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["id"] = v.Id
-		row["role_name"] = v.Name
-		row["detail"] = v.Detail
-		row["create_time"] = beego.Date(time.Unix(v.CreateTime, 0), "Y-m-d H:i:s")
-		row["update_time"] = beego.Date(time.Unix(v.UpdateTime, 0), "Y-m-d H:i:s")
-		list[k] = row
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }

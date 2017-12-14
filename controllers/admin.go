@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"zd112/models"
-	"github.com/astaxie/beego"
 	"time"
 	"zd112/utils"
 	"strconv"
@@ -36,8 +35,9 @@ func (this *AdminController) Add() {
 
 func (this *AdminController) Edit() {
 	this.pageTitle("编辑管理员")
-	id := this.getInt64("id", 0)
-	admin, _ := models.AdminGetById(id)
+	admin := new(models.Admin)
+	admin.Id = this.getInt64("id", 0)
+	admin.Query()
 	row := make(map[string]interface{})
 	row["id"] = admin.Id
 	row["login_name"] = admin.Name
@@ -57,7 +57,7 @@ func (this *AdminController) Edit() {
 		row := make(map[string]interface{})
 		row["checked"] = 0
 		for i := 0; i < len(role_ids); i++ {
-			role_id, _ := strconv.ParseInt(role_ids[i],11,64)
+			role_id, _ := strconv.ParseInt(role_ids[i], 11, 64)
 			if role_id == v.Id {
 				row["checked"] = 1
 			}
@@ -71,54 +71,44 @@ func (this *AdminController) Edit() {
 }
 
 func (this AdminController) AjaxSave() {
-	id := this.getInt64("id", 0)
-	if id == 0 {
-		admin := new(models.Admin)
-		this.getParam(admin)
-		admin.Salt = utils.GetRandomString(10)
-		admin.Password = utils.Md5(this.defaultPsw + admin.Salt)
-		admin.CreateTime = time.Now().Unix()
-		admin.CreateId = this.userId
-		if _, err := models.AdminAdd(admin); err != nil {
-			this.ajaxMsg(err.Error(), MSG_ERR)
-		}
-		this.ajaxMsg("", MSG_OK)
-	}
-	admin, _ := models.AdminGetById(id)
-	admin.Id = id
-	this.getParam(admin)
-	resetPsw := this.getInt("reset_pwd", 0)
-	if resetPsw == 1 {
-		admin.Password = utils.Md5(this.defaultPsw + admin.Salt)
-		admin.Salt = utils.GetRandomString(10)
-	}
-	if err := admin.Update(); err != nil {
-		this.ajaxMsg(err.Error(), MSG_ERR)
-	}
-	this.ajaxMsg(strconv.Itoa(resetPsw), MSG_OK)
-}
-
-func (this AdminController) getParam(admin *models.Admin) {
+	admin := new(models.Admin)
+	admin.Id = this.getInt64("id", 0)
 	admin.Name = this.getString("login_name", "账号不能为空!", defaultMinSize)
 	admin.RealName = this.getString("real_name", "真实名字不能为空!", defaultMinSize)
 	admin.Phone = this.getString("phone", "联系电话不能为空!", defaultMinSize)
 	admin.Email = this.getString("email", "邮箱不能为空!", defaultMinSize)
 	admin.RoleIds = this.getString("roleids", "没有选择权限项!", 0)
-	admin.UpdateTime = time.Now().Unix()
-	admin.UpdateId = this.userId
+	resetPsw := this.getInt("reset_pwd", 0)
 	admin.Status = 1
+	var err error
+	if admin.Id == 0 {
+		admin.Salt = utils.GetRandomString(10)
+		admin.Password = utils.Md5(this.defaultPsw + admin.Salt)
+		admin.CreateTime = time.Now().Unix()
+		admin.CreateId = this.userId
+		_, err = admin.Add()
+	} else {
+		admin.UpdateTime = time.Now().Unix()
+		admin.UpdateId = this.userId
+		if resetPsw == 1 {
+			admin.Password = utils.Md5(this.defaultPsw + admin.Salt)
+			admin.Salt = utils.GetRandomString(10)
+		}
+		_, err = admin.Update()
+	}
+	if err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.ajaxMsg(strconv.Itoa(resetPsw), MSG_OK)
 }
 
 func (this AdminController) AjaxDel() {
-	id := this.getInt64("id", 0)
-	admin, _ := models.AdminGetById(id)
-	admin.UpdateTime = time.Now().Unix()
-	admin.Status = 0
-	admin.Id = id
-	if id == 1 {
+	admin := new(models.Admin)
+	admin.Id = this.getInt64("id", 0)
+	if admin.Id == 1 {
 		this.ajaxMsg("超级管理员不允许删除!", MSG_ERR)
 	}
-	if err := admin.Update(); err != nil {
+	if _, err := admin.Del(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.ajaxMsg("", MSG_OK)
@@ -127,19 +117,11 @@ func (this AdminController) AjaxDel() {
 func (this *AdminController) Table() {
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
-	result, count := models.AdminList(this.page, this.pageSize, filters...)
+	admin := new(models.Admin)
+	result, count := admin.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		row := make(map[string]interface{})
-		row["id"] = v.Id
-		row["login_name"] = v.Name
-		row["real_name"] = v.RealName
-		row["phone"] = v.Phone
-		row["email"] = v.Email
-		row["role_ids"] = v.RoleIds
-		row["create_time"] = beego.Date(time.Unix(v.CreateTime, 0), "Y-m-d H:i:s")
-		row["update_time"] = beego.Date(time.Unix(v.UpdateTime, 0), "Y-m-d H:i:s")
-		list[k] = row
+		this.parse(list, nil, k, v)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
