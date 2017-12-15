@@ -78,7 +78,7 @@ func (this *RoleController) Table() {
 	result, count := models.RoleList(page, this.pageSize, filters...)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }

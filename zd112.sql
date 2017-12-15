@@ -667,6 +667,26 @@ CREATE TABLE `zd_web_banner` (
 
 #--------the tool---start-----#
 
+DROP TABLE IF EXISTS `zd_tools_qrcode`; #二维码管理
+CREATE TABLE `zd_tools_qrcode` (
+  `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
+  `name`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
+  COMMENT '名称',
+  `descript`    TEXT COMMENT '描述',
+  `create_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)            NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='二维码管理';
+
 DROP TABLE IF EXISTS `zd_tools_format_type`; #文件格式类型
 CREATE TABLE `zd_tools_format_type` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,

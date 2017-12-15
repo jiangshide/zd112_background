@@ -7,20 +7,20 @@
            lay-filter="nation">
         <thead>
         <tr>
-            <th lay-data="{field:'id',width:80,fixed:true}">ID</th>
-            <th lay-data="{field:'name',width:100}">名称</th>
-            <th lay-data="{field:'file', width:100,templet: '#img'}">图片</th>
-            <th lay-data="{field:'parent',width:100}">类型</th>
-            <th lay-data="{field:'format',width:100}">格式</th>
-            <th lay-data="{field:'size',width:100}">原大小</th>
-            <th lay-data="{field:'resize',widh:100}">大小</th>
-            <th lay-data="{field:'compress',width:100}">次数</th>
-            <th lay-data="{field:'downs',width:100}">次数</th>
-            <th lay-data="{field:'descript',width:100}">描述</th>
-            <th lay-data="{field:'create_name',width:100}">创建人</th>
-            <th lay-data="{field:'update_name',width:100}">更新人</th>
-            <th lay-data="{field:'create_time',width:100,templet:'#create_time'}">创建时间</th>
-            <th lay-data="{field:'update_time',width:100}">更新时间</th>
+            <th lay-data="{field:'Id',width:80,fixed:true}">ID</th>
+            <th lay-data="{field:'Name',width:100}">名称</th>
+            <th lay-data="{field:'File', width:100,templet: '#img'}">图片</th>
+            <th lay-data="{field:'Parent',width:100}">类型</th>
+            <th lay-data="{field:'Format',width:100}">格式</th>
+            <th lay-data="{field:'Size',width:100}">原大小</th>
+            <th lay-data="{field:'Resize',widh:100}">大小</th>
+            <th lay-data="{field:'Compress',width:100}">次数</th>
+            <th lay-data="{field:'Downs',width:100}">次数</th>
+            <th lay-data="{field:'Descript',width:100}">描述</th>
+            <th lay-data="{field:'CreateName',width:100}">创建人</th>
+            <th lay-data="{field:'UpdateName',width:100}">更新人</th>
+            <th lay-data="{field:'CreateTime',width:100,templet:'#Createtime'}">创建时间</th>
+            <th lay-data="{field:'UpdateTime',width:100}">更新时间</th>
             <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
         </tr>
         </thead>
@@ -48,8 +48,8 @@
             if (obj.event === 'detail') {
 
             } else if (obj.event === 'del') {
-                layer.confirm('真的删除[' + data.name + ']么', function (index) {
-                    var jsData = {'id': data.id};
+                layer.confirm('真的删除[' + data.Name + ']么', function (index) {
+                    var jsData = {'id': data.Id};
                     $.post('{{urlfor "CompressController.AjaxDel"}}', jsData, function (out) {
                         if (out.status == 0) {
                             layer.alert('删除成功', function (index) {
@@ -64,7 +64,7 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                window.location.href = "/backstage/tools/compress/edit?id=" + data.id
+                window.location.href = "/backstage/tools/compress/edit?id=" + data.Id
             }
         });
     });

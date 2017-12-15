@@ -26,7 +26,7 @@ func (this *ChannelController) Edit() {
 	if err := channel.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, channel)
+	this.row(nil, channel,true)
 	this.display(this.getBgAppAction("channel/edit"))
 }
 
@@ -57,7 +57,7 @@ func (this *ChannelController) Table() {
 	result, count := channel.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -92,7 +92,7 @@ func (this AppNameController) Edit() {
 	if err := appName.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, appName)
+	this.row(nil, appName,true)
 	this.display(this.getBgAppAction("app_name/edit"))
 }
 
@@ -122,7 +122,7 @@ func (this AppNameController) Table() {
 	result, count := appName.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -157,7 +157,7 @@ func (this PkgsController) Edit() {
 	if err := pkgs.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, pkgs)
+	this.row(nil, pkgs,true)
 	this.display(this.getBgAppAction("pkgs/edit"))
 }
 
@@ -187,7 +187,7 @@ func (this *PkgsController) Table() {
 	result, count := pkg.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -222,7 +222,7 @@ func (this *VersionController) Edit() {
 	if err := version.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, version)
+	this.row(nil, version,true)
 	this.display(this.getBgAppAction("version/edit"))
 }
 
@@ -252,7 +252,7 @@ func (this *VersionController) Table() {
 	result, count := version.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -287,7 +287,7 @@ func (this *CodeController) Edit() {
 	if err := code.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, code)
+	this.row(nil, code,true)
 	this.display(this.getBgAppAction("code/edit"))
 }
 
@@ -317,7 +317,7 @@ func (this *CodeController) Table() {
 	result, count := code.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -352,7 +352,7 @@ func (this *EnvController) Edit() {
 	if err := env.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, env)
+	this.row(nil, env,true)
 	this.display(this.getBgAppAction("env/edit"))
 }
 
@@ -382,7 +382,7 @@ func (this *EnvController) Table() {
 	result, count := env.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -417,7 +417,7 @@ func (this *BuildController) Edit() {
 	if err := build.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, build)
+	this.row(nil, build,true)
 	this.display(this.getBgAppAction("build/edit"))
 }
 
@@ -447,7 +447,7 @@ func (this *BuildController) Table() {
 	result, count := build.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -482,7 +482,7 @@ func (this *TypeController) Edit() {
 	if err := types.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, types)
+	this.row(nil, types,true)
 	this.display(this.getBgAppAction("type/edit"))
 }
 
@@ -511,7 +511,7 @@ func (this *TypeController) Table() {
 	result, count := types.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -562,7 +562,7 @@ func (this *AppController) Edit() {
 	this.setEnv(app.EnvId)
 	this.setBuild(app.BuildId)
 	this.setChannel(app.ChannelId)
-	this.row(row, app)
+	this.row(row, app,true)
 	this.display(this.getBgTestAction("app/edit"))
 }
 
@@ -646,7 +646,7 @@ func (this *AppController) Table() {
 		if err := channel.Query(); err == nil {
 			row["Channel"] = channel.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -656,7 +656,7 @@ func (this *AppController) setBuild(id int64) {
 	result, count := build.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["BuildGroup"] = list
 }
@@ -666,7 +666,7 @@ func (this *AppController) setEnv(id int64) {
 	result, count := env.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["EnvGroup"] = list
 }
@@ -676,7 +676,7 @@ func (this *AppController) setCode(id int64) {
 	result, count := code.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["CodeGroup"] = list
 }
@@ -686,7 +686,7 @@ func (this *AppController) setVersion(id int64) {
 	result, count := version.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["VersionGroup"] = list
 }
@@ -696,7 +696,7 @@ func (this *AppController) setPkg(id int64) {
 	result, count := pkg.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["PkgsGroup"] = list
 }
@@ -706,7 +706,7 @@ func (this *AppController) setApplication(id int64) {
 	result, count := application.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["AppNameGroup"] = list
 }
@@ -716,7 +716,7 @@ func (this *AppController) setType(id int64) {
 	result, count := types.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["TypeGroup"] = list
 }
@@ -726,7 +726,7 @@ func (this *AppController) setChannel(id int64) {
 	result, count := channel.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["ChannelGroup"] = list
 }

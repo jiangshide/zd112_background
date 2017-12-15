@@ -24,7 +24,7 @@ func (this *BannerController) Table() {
 	result, count := banner.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -36,7 +36,7 @@ func (this *BannerController) Edit() {
 	if err := banner.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, banner)
+	this.row(nil, banner,true)
 	this.display(this.getBgWebAction("banner/edit"))
 }
 

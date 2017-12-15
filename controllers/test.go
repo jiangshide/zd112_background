@@ -26,7 +26,7 @@ func (this *EnvironmnetController) Edit() {
 	if err := environment.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, environment)
+	this.row(nil, environment,true)
 	this.display(this.getBgTestAction("environment/edit"))
 }
 
@@ -59,7 +59,7 @@ func (this *EnvironmnetController) Table() {
 	result, count := environment.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -96,7 +96,7 @@ func (this *ProjectController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(project.ParentId)
-	this.row(nil, project)
+	this.row(nil, project,true)
 	this.display(this.getBgTestAction("project/edit"))
 }
 
@@ -131,7 +131,7 @@ func (this *ProjectController) Table() {
 	result, count := project.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -141,7 +141,7 @@ func (this *ProjectController) parent(id int64) {
 	result, count := environment.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["Group"] = list
 }

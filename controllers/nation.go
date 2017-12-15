@@ -32,7 +32,7 @@ func (this *NationController) Edit() {
 	if err := nation.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, nation)
+	this.row(nil, nation,true)
 	this.display(this.getBgAction("nation/edit"))
 }
 
@@ -63,7 +63,7 @@ func (this *NationController) Table() {
 	result, count := nation.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }

@@ -2,6 +2,46 @@ package models
 
 import "github.com/astaxie/beego/orm"
 
+type Qrcode struct {
+	Id         int64
+	Name       string
+	Descript   string
+	CreateId   int64
+	UpdateId   int64
+	CreateTime int64
+	UpdateTime int64
+}
+
+func (this *Qrcode) TableName() string {
+	return TableName("tools_qrcode")
+}
+
+func (this *Qrcode) Add() (int64, error) {
+	return orm.NewOrm().Insert(this)
+}
+
+func (this *Qrcode) Del() (int64, error) {
+	return orm.NewOrm().Delete(this)
+}
+
+func (this *Qrcode) Update() (int64, error) {
+	return orm.NewOrm().Update(this)
+}
+
+func (this *Qrcode) Query() error {
+	if this.Id == 0 {
+		return orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).One(this)
+	}
+	return orm.NewOrm().Read(this)
+}
+
+func (this *Qrcode) List(pageSize, offSet int) (list []*Qrcode, total int64) {
+	query := orm.NewOrm().QueryTable(this.TableName())
+	total, _ = query.Count()
+	query.OrderBy("-id").Limit(pageSize, offSet).All(&list)
+	return
+}
+
 type FormatType struct {
 	Id         int64
 	Name       string

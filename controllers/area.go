@@ -3,7 +3,6 @@ package controllers
 import (
 	"zd112/models"
 	"time"
-	"github.com/astaxie/beego"
 )
 
 type ContinentController struct {
@@ -27,13 +26,12 @@ func (this *ContinentController) Edit() {
 	if err := continent.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, continent)
+	this.row(nil, continent,true)
 	this.display(this.getBgAreaAction("continent/edit"))
 }
 
 func (this *ContinentController) AjaxSave() {
 	continent := new(models.Continent)
-	beego.Info("----continent-----name:",this.GetString("name","1"))
 	continent.Id = this.getId64(0)
 	continent.Name = this.getString("name", "名称不能为空!", 1)
 	continent.Icon = this.getString("file", "Icon不能为空!", defaultMinSize)
@@ -58,7 +56,7 @@ func (this *ContinentController) Table() {
 	result, count := continent.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -95,7 +93,7 @@ func (this *StateController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(state.ParentId)
-	this.row(nil, state)
+	this.row(nil, state,true)
 	this.display(this.getBgAreaAction("state/edit"))
 }
 
@@ -126,7 +124,7 @@ func (this *StateController) parent(id int64) {
 	result, count := continent.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["Group"] = list
 }
@@ -142,7 +140,7 @@ func (this *StateController) Table() {
 		if err := continent.Query(); err == nil {
 			row["parent"] = continent.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -179,7 +177,7 @@ func (this *ProvinceController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(province.ParentId)
-	this.row(nil, province)
+	this.row(nil, province,true)
 	this.display(this.getBgAreaAction("province/edit"))
 }
 
@@ -210,7 +208,7 @@ func (this *ProvinceController) parent(id int64) {
 	result, count := state.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["Group"] = list
 }
@@ -226,7 +224,7 @@ func (this *ProvinceController) Table() {
 		if err := state.Query(); err == nil {
 			row["parent"] = state.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -263,7 +261,7 @@ func (this *CityController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(city.ParentId)
-	this.row(nil, city)
+	this.row(nil, city,true)
 	this.display(this.getBgAreaAction("city/edit"))
 }
 
@@ -294,7 +292,7 @@ func (this *CityController) parent(id int64) {
 	result, count := province.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -310,7 +308,7 @@ func (this *CityController) Table() {
 		if err := province.Query(); err == nil {
 			row["parent"] = province.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -347,7 +345,7 @@ func (this *RegionController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(region.ParentId)
-	this.row(nil, region)
+	this.row(nil, region,true)
 	this.display(this.getBgAreaAction("region/edit"))
 }
 
@@ -378,7 +376,7 @@ func (this *RegionController) parent(id int64) {
 	result, count := city.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["Group"] = list
 }
@@ -394,7 +392,7 @@ func (this *RegionController) Table() {
 		if err := city.Query(); err == nil {
 			row["parent"] = city.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -430,7 +428,7 @@ func (this *CountyController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(county.ParentId)
-	this.row(nil, county)
+	this.row(nil, county,true)
 	this.display(this.getBgAreaAction("county/edit"))
 }
 
@@ -461,7 +459,7 @@ func (this *CountyController) parent(id int64) {
 	result, count := city.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -477,7 +475,7 @@ func (this *CountyController) Table() {
 		if err := region.Query(); err == nil {
 			row["parent"] = region.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -514,7 +512,7 @@ func (this *TownController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(town.ParentId)
-	this.row(nil, town)
+	this.row(nil, town,true)
 	this.display(this.getBgAreaAction("town/edit"))
 }
 
@@ -545,7 +543,7 @@ func (this *TownController) parent(id int64) {
 	result, count := county.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -561,7 +559,7 @@ func (this *TownController) Table() {
 		if err := county.Query(); err == nil {
 			row["parent"] = county.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -598,7 +596,7 @@ func (this *CountryController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(country.ParentId)
-	this.row(nil, country)
+	this.row(nil, country,true)
 	this.display(this.getBgAreaAction("country/edit"))
 }
 
@@ -629,7 +627,7 @@ func (this *CountryController) parent(id int64) {
 	result, count := town.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -645,7 +643,7 @@ func (this *CountryController) Table() {
 		if err := town.Query(); err == nil {
 			row["parent"] = town.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -682,7 +680,7 @@ func (this *VillageController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(village.ParentId)
-	this.row(nil, village)
+	this.row(nil, village,true)
 	this.display(this.getBgAreaAction("village/edit"))
 }
 
@@ -713,7 +711,7 @@ func (this *VillageController) parent(id int64) {
 	result, count := country.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -729,7 +727,7 @@ func (this *VillageController) Table() {
 		if err := country.Query(); err == nil {
 			row["parent"] = country.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -766,7 +764,7 @@ func (this *GroupController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(group.ParentId)
-	this.row(nil, group)
+	this.row(nil, group,true)
 	this.display(this.getBgAreaAction("group/edit"))
 }
 
@@ -797,7 +795,7 @@ func (this *GroupController) parent(id int64) {
 	result, count := village.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -813,7 +811,7 @@ func (this *GroupController) Table() {
 		if err := village.Query(); err == nil {
 			row["parent"] = village.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -850,7 +848,7 @@ func (this *TeamController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(team.ParentId)
-	this.row(nil, team)
+	this.row(nil, team,true)
 	this.display(this.getBgAreaAction("team/edit"))
 }
 
@@ -880,7 +878,7 @@ func (this *TeamController) parent(id int64) {
 	result, count := group.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["group"] = list
 }
@@ -896,7 +894,7 @@ func (this *TeamController) Table() {
 		if err := group.Query(); err == nil {
 			row["parent"] = group.Name
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }

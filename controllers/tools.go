@@ -10,6 +10,74 @@ import (
 	"strings"
 )
 
+type QrcodeController struct {
+	BaseController
+}
+
+func (this *QrcodeController) List() {
+	this.pageTitle("二维码列表")
+	this.display(this.getBgToolAction("qrcode/list"))
+}
+
+func (this *QrcodeController) Add() {
+	this.pageTitle("增加二维码")
+	this.display(this.getBgToolAction("qrcode/add"))
+}
+
+func (this *QrcodeController) Edit() {
+	this.pageTitle("编辑二维码")
+	qrcode := new(models.Qrcode)
+	qrcode.Id = this.getId64(0)
+	if err := qrcode.Query(); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	beego.Info("-----------qrcode:",qrcode)
+	this.row(nil, qrcode,true)
+	this.display(this.getBgToolAction("qrcode/edit"))
+}
+
+func (this *QrcodeController) AjaxSave() {
+	qrcode := new(models.Qrcode)
+	qrcode.Id = this.getId64(0)
+	qrcode.Name = this.getString("name", "名称不能为空!", 1)
+	qrcode.Descript = this.getString("descript", "", 0)
+	var err error
+	if qrcode.Id == 0 {
+		qrcode.CreateId = this.userId
+		qrcode.CreateTime = time.Now().Unix()
+		_, err = qrcode.Add()
+	} else {
+		qrcode.CreateId = this.getInt64("create_id", 0)
+		qrcode.CreateTime = this.getInt64("create_time", 0)
+		qrcode.UpdateId = this.userId
+		qrcode.UpdateTime = time.Now().Unix()
+		_, err = qrcode.Update()
+	}
+	if err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.ajaxMsg("", MSG_OK)
+}
+
+func (this *QrcodeController) Table() {
+	qrcode := new(models.Qrcode)
+	result, count := qrcode.List(this.pageSize, this.offSet)
+	list := make([]map[string]interface{}, len(result))
+	for k, v := range result {
+		this.parse(list, nil, k, v,false)
+	}
+	this.ajaxList("成功", MSG_OK, count, list)
+}
+
+func (this *QrcodeController) AjaxDel() {
+	qrcode := new(models.Qrcode)
+	qrcode.Id = this.getId64(0)
+	if _, err := qrcode.Del(); err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.ajaxMsg("", MSG_OK)
+}
+
 type FormatTypeController struct {
 	BaseController
 }
@@ -31,7 +99,7 @@ func (this *FormatTypeController) Edit() {
 	if err := formatType.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, formatType)
+	this.row(nil, formatType,true)
 	this.display(this.getBgToolAction("format/type/edit"))
 }
 
@@ -60,7 +128,7 @@ func (this *FormatTypeController) Table() {
 	result, count := formatType.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -97,7 +165,7 @@ func (this *FormatController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(format.ParentId)
-	this.row(nil, format)
+	this.row(nil, format,true)
 	this.display(this.getBgToolAction("format/edit"))
 }
 
@@ -127,7 +195,7 @@ func (this *FormatController) parent(id int64) {
 	result, count := formatType.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id)
+		this.group(list, nil, k, v, id,false)
 	}
 	this.Data["Group"] = list
 }
@@ -145,11 +213,11 @@ func (this *FormatController) Table() {
 		formatType := new(models.FormatType)
 		formatType.Id = v.ParentId
 		if err := formatType.Query(); err == nil {
-			row["parent"] = formatType.Name
+			row["Parent"] = formatType.Name
 		} else {
 			beego.Error(err)
 		}
-		this.parse(list, row, k, v)
+		this.parse(list, row, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -232,7 +300,7 @@ func (this *CompressController) Edit() {
 	if err := compress.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, compress)
+	this.row(nil, compress,true)
 	this.display(this.getBgToolAction("compress/edit"))
 }
 
@@ -274,7 +342,8 @@ func (this *CompressController) Table() {
 	result, count := compress.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v)
+
+		this.parse(list, nil, k, v,false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }

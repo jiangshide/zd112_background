@@ -59,6 +59,7 @@ func commRouter() {
 	router["area/group:"+actionStr] = &controllers.GroupController{}
 	router["area/team:"+actionStr] = &controllers.TeamController{}
 	router["web/banner:"+actionStr] = &controllers.BannerController{}
+	router["tools/qrcode:"+actionStr] = &controllers.QrcodeController{}
 	router["tools/compress:"+actionStr] = &controllers.CompressController{}
 	router["tools/formattype:"+actionStr] = &controllers.FormatTypeController{}
 	router["tools/format:"+actionStr] = &controllers.FormatController{}
@@ -84,7 +85,7 @@ func commRouter() {
 				rootPath += "/" + strings.ToLower(action)
 			}
 			action = "*:" + utils.StrFirstToUpper(action)
-			beego.Info("rootPath:", rootPath, " | action:", action)
+			//beego.Info("rootPath:", rootPath, " | action:", action)
 			beego.Router(rootPath, v, action)
 		}
 	}

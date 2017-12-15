@@ -44,7 +44,6 @@ func (this *BaseController) pageTitle(pageTitle string) {
 }
 
 func (this *BaseController) showTips(errorMsg interface{}) {
-	beego.Info("errorMsg:", errorMsg)
 	flash := beego.NewFlash()
 	flash.Error(fmt.Sprint(errorMsg))
 	flash.Store(&this.Controller)
@@ -53,10 +52,8 @@ func (this *BaseController) showTips(errorMsg interface{}) {
 }
 
 func (this *BaseController) getString(key, tips string, minSize int) string {
-	beego.Info("----------form:",this.Ctx.Request.Form)
 	value := strings.TrimSpace(this.GetString(key, ""))
 	errorMsg := ""
-	beego.Info("----------key:", key, " | value:", value)
 	if len(value) == 0 {
 		errorMsg = tips
 	} else if len(value) < minSize {
@@ -70,7 +67,6 @@ func (this *BaseController) getString(key, tips string, minSize int) string {
 
 func (this *BaseController) getInt(key string, defaultValue int) int {
 	resInt, err := this.GetInt(key, defaultValue)
-	beego.Info("resInt:", resInt, " | err:", err)
 	if err != nil {
 		this.showTips(err)
 	}
@@ -79,7 +75,6 @@ func (this *BaseController) getInt(key string, defaultValue int) int {
 
 func (this *BaseController) getInt64(key string, defaultValue int64) int64 {
 	resInt, err := this.GetInt64(key, defaultValue)
-	beego.Info("resInt64:", resInt, " | err:", err)
 	if err != nil {
 		this.showTips(err)
 	}
@@ -103,7 +98,6 @@ func (this *BaseController) getGroupId64(defaultValue int64) int64 {
 }
 
 func (this *BaseController) Prepare() {
-	beego.Info("---------prepare")
 	this.pageSize = 20
 	controller, action := this.GetControllerAndAction()
 	this.controller = strings.ToLower(controller[0:len(controller)-10])
@@ -122,7 +116,6 @@ func (this *BaseController) Prepare() {
 }
 
 func (this *BaseController) currParam() {
-	beego.Info("----------currParam")
 	this.auth()
 	this.Data["userId"] = this.userId
 	this.Data["userName"] = this.userName
@@ -135,12 +128,10 @@ func (this *BaseController) currParam() {
 
 func (this *BaseController) auth() {
 	arr := strings.Split(this.Ctx.GetCookie("auth"), "|")
-	beego.Info("-----------auth~arr:",arr)
 	this.userId = 0
 	if len(arr) == 2 {
 		idstr, psw := arr[0], arr[1]
 		userId, _ := strconv.ParseInt(idstr, 11, 64)
-		beego.Info("-------------userId:",userId)
 		if userId > 0 {
 			admin := new(models.Admin)
 			admin.Id = userId
@@ -152,10 +143,9 @@ func (this *BaseController) auth() {
 				this.userIcon = "/static/mingzu/img/1.jpg"
 				this.isLogin = true
 				this.user = admin
-			}else{
+			} else {
 				beego.Error(err)
 			}
-			beego.Info("--------------controller:",this.controller)
 			if strings.Contains(this.controller, "backstage") {
 				this.AdminAuth()
 			}
@@ -177,10 +167,8 @@ func (this *BaseController) auth() {
 func (this *BaseController) AdminAuth() {
 	filters := make([]interface{}, 0)
 	filters = append(filters, "status", 1)
-	beego.Info("--------------adminAuth:", this.userId)
 	if this.userId != 1 {
 		adminAuthIds, _ := models.RoleAuthGetByIds(this.user.RoleIds)
-		beego.Info("----------adminAuthIds:", adminAuthIds)
 		adminAuthIdArr := strings.Split(adminAuthIds, ",")
 		filters = append(filters, "id__in", adminAuthIdArr)
 	}
@@ -303,62 +291,25 @@ func (this *BaseController) ajaxList(msg interface{}, msgNo int, count int64, da
 	this.StopRun()
 }
 
-func (this *BaseController) row(row map[string]interface{}, model interface{}) map[string]interface{} {
-	var field reflect.Type
-	var value reflect.Value
-	field = reflect.TypeOf(model).Elem()
-	value = reflect.ValueOf(model).Elem()
-	size := field.NumField()
-	var fieldName string
-	if row == nil {
-		row = make(map[string]interface{})
-	}
-	for i := 0; i < size; i++ {
-		v := value.Field(i)
-		fieldName = field.Field(i).Name
-		switch value.Field(i).Kind() {
-		case reflect.Bool:
-			row[fieldName] = v.Bool()
-		case reflect.Int:
-			if v.Int() > 0 {
-				row[fieldName] = v.Int()
-			}
-		case reflect.Int64:
-			if (fieldName == "CreateTime" || fieldName == "UpdateTime") && v.Int() > 0 {
-				row[fieldName] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
-				continue
-			}
-			if fieldName == "CreateId" || fieldName == "UpdateId" {
-				admin := new(models.Admin)
-				admin.Id = v.Int()
-				if err := admin.Query(); err == nil {
-					if fieldName == "CreateId" {
-						row["CreateName"] = admin.Name
-					} else {
-						row["UpdateName"] = admin.Name
-					}
-				}
-				continue
-			}
-			row[fieldName] = v.Int()
-		case reflect.String:
-			if strings.Contains(v.String(), "static/") {
-				row["File"] = v.String()
-				this.setFileSize(row, v.String())
-			} else {
-				row[fieldName] = v.String()
-			}
-		}
-	}
-	this.Data["row"] = row
-	beego.Info("row:", row)
-	return row
+func (this *BaseController) row(row map[string]interface{}, model interface{}, isEdit bool) {
+	this.Data["row"] = this.relectRow(row, model, 0, isEdit)
 }
 
-func (this *BaseController) parse(list []map[string]interface{}, row map[string]interface{}, k int, v interface{}) {
+func (this *BaseController) parse(list []map[string]interface{}, row map[string]interface{}, k int, v interface{}, isEdit bool) {
 	if list == nil {
 		return
 	}
+	list[k] = this.relectRow(row, v, 0, isEdit)
+}
+
+func (this *BaseController) group(list []map[string]interface{}, row map[string]interface{}, k int, v interface{}, id int64, isEdit bool) {
+	if list == nil {
+		return
+	}
+	list[k] = this.relectRow(row, v, id, isEdit)
+}
+
+func (this *BaseController) relectRow(row map[string]interface{}, v interface{}, id int64, isEdit bool) map[string]interface{} {
 	var field reflect.Type
 	var value reflect.Value
 	field = reflect.TypeOf(v).Elem()
@@ -371,61 +322,7 @@ func (this *BaseController) parse(list []map[string]interface{}, row map[string]
 	for i := 0; i < size; i++ {
 		v := value.Field(i)
 		fieldName = field.Field(i).Name
-		switch value.Field(i).Kind() {
-		case reflect.Bool:
-			row[fieldName] = v.Bool()
-		case reflect.Int:
-			if v.Int() > 0 {
-				row[fieldName] = v.Int()
-			}
-		case reflect.Int64:
-			if (fieldName == "CreateTime" || fieldName == "UpdateTime") && v.Int() > 0 {
-				row[fieldName] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
-				continue
-			}
-			if fieldName == "CreateId" || fieldName == "UpdateId" {
-				admin := new(models.Admin)
-				admin.Id = v.Int()
-				if err := admin.Query(); err == nil {
-					if fieldName == "CreateId" {
-						row["CreateName"] = admin.Name
-					} else {
-						row["UpdateName"] = admin.Name
-					}
-				}
-				continue
-			}
-			row[fieldName] = v.Int()
-		case reflect.String:
-			if strings.Contains(v.String(), "static/") {
-				row["File"] = v.String()
-				this.setFileSize(row, v.String())
-			} else {
-				row[fieldName] = v.String()
-			}
-		}
-	}
-	list[k] = row
-}
-
-func (this *BaseController) group(list []map[string]interface{}, row map[string]interface{}, k int, v interface{}, id int64) {
-	if list == nil {
-		return
-	}
-	var field reflect.Type
-	var value reflect.Value
-	field = reflect.TypeOf(v).Elem()
-	value = reflect.ValueOf(v).Elem()
-	size := field.NumField()
-	var fieldName string
-	if row == nil {
-		row = make(map[string]interface{})
-	}
-
-	for i := 0; i < size; i++ {
-		v := value.Field(i)
-		fieldName = field.Field(i).Name
-		if fieldName == "Id" {
+		if fieldName == "Id" && id > 0 {
 			if v.Int() == id {
 				row["Selected"] = true
 			} else {
@@ -442,18 +339,37 @@ func (this *BaseController) group(list []map[string]interface{}, row map[string]
 				row[fieldName] = v.Int()
 			}
 		case reflect.Int64:
-			if (fieldName == "CreateTime" || fieldName == "UpdateTime") && v.Int() > 0 {
-				row[fieldName] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
+			if fieldName == "CreateTime" {
+				if v.Int() > 0 && isEdit {
+					row[fieldName] = v.Int()
+				} else {
+					row["CreateTimeFormat"] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
+				}
+				continue
+			}
+			if fieldName == "UpdateTime" {
+				if v.Int() > 0 && !isEdit {
+					row["UpdateTimeFormat"] = beego.Date(time.Unix(v.Int(), 0), "Y-m-d H:i:s")
+				}
 				continue
 			}
 			if fieldName == "CreateId" || fieldName == "UpdateId" {
-				admin := new(models.Admin)
-				admin.Id = v.Int()
-				if err := admin.Query(); err == nil {
-					if fieldName == "CreateId" {
-						row["CreateName"] = admin.Name
+				if v.Int() > 0 {
+					if isEdit {
+						if fieldName == "CreateId" {
+							row[fieldName] = v.Int()
+						}
 					} else {
-						row["UpdateName"] = admin.Name
+						admin := new(models.Admin)
+						admin.Id = v.Int()
+						if err := admin.Query(); err == nil {
+							if fieldName == "CreateId" {
+								row["CreateName"] = admin.Name
+							} else {
+								row["UpdateName"] = admin.Name
+							}
+						}
+						row[fieldName] = v.Int()
 					}
 				}
 				continue
@@ -468,7 +384,8 @@ func (this *BaseController) group(list []map[string]interface{}, row map[string]
 			}
 		}
 	}
-	list[k] = row
+	beego.Info("-------row:", row)
+	return row
 }
 
 func (this *BaseController) Upload() {
@@ -491,9 +408,15 @@ func (this *BaseController) Upload() {
 func (this *BaseController) getFileFormat(name string) (int64, int64, string) {
 	size, sufix := utils.FileSize(name)
 	format := new(models.Format)
-	format.Name = name
-	format.Query()
-	return format.Id, size, sufix
+	format.Name = sufix
+	if err := format.Query(); err == nil {
+		formatType := new(models.FormatType)
+		formatType.Id = format.ParentId
+		formatType.Query()
+		beego.Info("---------------sufix:", sufix, " | id:", formatType.Id, " | err:", err)
+		return formatType.Id, size, sufix
+	}
+	return 0, size, sufix
 }
 
 func (this *BaseController) getFileType(name string) string {

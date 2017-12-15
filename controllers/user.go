@@ -99,6 +99,6 @@ func (this *UserController) Edit() {
 	if err := admin.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, admin)
+	this.row(nil, admin,true)
 	this.display("backstage/user/edit")
 }
