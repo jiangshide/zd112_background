@@ -413,7 +413,6 @@ func (this *BaseController) getFileFormat(name string) (int64, int64, string) {
 		formatType := new(models.FormatType)
 		formatType.Id = format.ParentId
 		formatType.Query()
-		beego.Info("---------------sufix:", sufix, " | id:", formatType.Id, " | err:", err)
 		return formatType.Id, size, sufix
 	}
 	return 0, size, sufix

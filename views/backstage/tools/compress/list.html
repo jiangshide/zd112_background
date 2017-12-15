@@ -4,7 +4,7 @@
     </div>
     <table class="layui-table"
            lay-data="{width:'full-10',height:'full-105',url:'/backstage/tools/compress/table',page:true,id:'idTest'}"
-           lay-filter="nation">
+           lay-filter="event">
         <thead>
         <tr>
             <th lay-data="{field:'Id',width:80,fixed:true}">ID</th>
@@ -17,21 +17,14 @@
             <th lay-data="{field:'Compress',width:100}">次数</th>
             <th lay-data="{field:'Downs',width:100}">次数</th>
             <th lay-data="{field:'Descript',width:100}">描述</th>
-            <th lay-data="{field:'CreateName',width:100}">创建人</th>
-            <th lay-data="{field:'UpdateName',width:100}">更新人</th>
-            <th lay-data="{field:'CreateTime',width:100,templet:'#Createtime'}">创建时间</th>
-            <th lay-data="{field:'UpdateTime',width:100}">更新时间</th>
-            <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
+        {{template "backstage/comm/comm.html" .}}
         </tr>
         </thead>
     </table>
     <script id="img" type="text/html">
         <img lay-data="<% d.file %>" width="50px" height="50px"/>
     </script>
-    <script type="text/html" id="bar">
-        <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-    </script>
+{{template "backstage/comm/comm_bar.html" .}}
 </div>
 <script>
     var $;
@@ -43,7 +36,7 @@
         var table = layui.table;
         var element = layui.element;
         $ = layui.jquery;
-        table.on('tool(nation)', function (obj) {
+        table.on('tool(event)', function (obj) {
             var data = obj.data;
             if (obj.event === 'detail') {
 

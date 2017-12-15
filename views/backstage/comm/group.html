@@ -3,8 +3,8 @@
     <div class="layui-input-inline">
         <select name="group_id" lay-verify="required" lay-search="" style="width:100%;">
             <option value="">请选择所属</option>
-        {{range .group}}
-            <option value="{{.id}}" {{if .selected}}selected{{end}}>{{.name}}</option>
+        {{range .Group}}
+            <option value="{{.Id}}" {{if .Selected}}Selected{{end}}>{{.Name}}</option>
         {{end}}
         </select>
     </div>

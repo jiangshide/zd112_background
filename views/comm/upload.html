@@ -11,6 +11,12 @@
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label"></label>
+    <div class="layui-progress layui-progress-big layui-input-inline" style="width: 10%;" lay-showpercent="true" lay-filter="demo">
+        <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label"></label>
     <div class="layui-input-inline">
         <input type="button" id="loading" value="原始文件大小:0kb">
     </div>
@@ -30,10 +36,30 @@
     }).use(['layer', 'jquery', 'upload'], function () {
         var $ = layui.jquery;
         var upload = layui.upload
+
+        var xhrOnProgress = function (fun) {
+            xhrOnProgress.onprogress = fun;
+            return function () {
+                var xhr = $.ajaxSettings.xhr();
+                if (typeof xhrOnProgress.onprogress !== 'function')
+                    return xhr;
+                if (xhrOnProgress.onprogress && xhr.upload) {
+                    xhr.upload.onprogress = xhrOnProgress.onprogress;
+                }
+                return xhr;
+            }
+        }
+
         upload.render({
             elem: '#uploadFile'
             , accept: 'file'
             , url: '/upload'
+            , size: 51200
+            // , auto:false
+            , xhr: xhrOnProgress
+            , progress: function (value) {
+                element.progress('demo', value + '%')
+            }
             , before: function (obj) {
                 obj.preview(function (index, file, result) {
                     $('#img').attr('src', result)

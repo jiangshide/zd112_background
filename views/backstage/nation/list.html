@@ -4,27 +4,20 @@
     </div>
     <table class="layui-table"
            lay-data="{width:'full-10',height:'full-105',url:'/backstage/nation/table',page:true,id:'idTest'}"
-           lay-filter="nation">
+           lay-filter="event">
         <thead>
         <tr>
             <th lay-data="{field:'Id',width:80,fixed:true}">ID</th>
             <th lay-data="{field:'Name',width:200}">名称</th>
             <th lay-data="{field:'file', width:150,templet: '#img'}">图片</th>
-            <th lay-data="{field:'CreateName',width:100}">创建人</th>
-            <th lay-data="{field:'UpdateName',width:100}">更新人</th>
-            <th lay-data="{field:'CreateTime',width:200,templet:'#create_time'}">创建时间</th>
-            <th lay-data="{field:'UpdateTime',width:200}">更新时间</th>
-            <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
+        {{template "backstage/comm/comm.html" .}}
         </tr>
         </thead>
     </table>
     <script type="text/html" id="img">
         <img lay-data="{field:'icon'}" width="50px" height="50px"/>
     </script>
-    <script type="text/html" id="bar">
-        <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-    </script>
+{{template "backstage/comm/comm_bar.html" .}}
 </div>
 <script>
     var $;

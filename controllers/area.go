@@ -138,7 +138,7 @@ func (this *StateController) Table() {
 		continent := new(models.Continent)
 		continent.Id = v.ParentId
 		if err := continent.Query(); err == nil {
-			row["parent"] = continent.Name
+			row["Parent"] = continent.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -222,7 +222,7 @@ func (this *ProvinceController) Table() {
 		state := new(models.State)
 		state.Id = v.ParentId
 		if err := state.Query(); err == nil {
-			row["parent"] = state.Name
+			row["Parent"] = state.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -294,7 +294,7 @@ func (this *CityController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *CityController) Table() {
@@ -306,7 +306,7 @@ func (this *CityController) Table() {
 		province := new(models.Province)
 		province.Id = v.ParentId
 		if err := province.Query(); err == nil {
-			row["parent"] = province.Name
+			row["Parent"] = province.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -390,7 +390,7 @@ func (this *RegionController) Table() {
 		city := new(models.City)
 		city.Id = v.ParentId
 		if err := city.Query(); err == nil {
-			row["parent"] = city.Name
+			row["Parent"] = city.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -461,7 +461,7 @@ func (this *CountyController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *CountyController) Table() {
@@ -473,7 +473,7 @@ func (this *CountyController) Table() {
 		region := new(models.Region)
 		region.Id = v.ParentId
 		if err := region.Query(); err == nil {
-			row["parent"] = region.Name
+			row["Parent"] = region.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -545,7 +545,7 @@ func (this *TownController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *TownController) Table() {
@@ -557,7 +557,7 @@ func (this *TownController) Table() {
 		county := new(models.County)
 		county.Id = v.ParentId
 		if err := county.Query(); err == nil {
-			row["parent"] = county.Name
+			row["Parent"] = county.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -629,7 +629,7 @@ func (this *CountryController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *CountryController) Table() {
@@ -641,7 +641,7 @@ func (this *CountryController) Table() {
 		town := new(models.Town)
 		town.Id = v.ParentId
 		if err := town.Query(); err == nil {
-			row["parent"] = town.Name
+			row["Parent"] = town.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -713,7 +713,7 @@ func (this *VillageController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *VillageController) Table() {
@@ -725,7 +725,7 @@ func (this *VillageController) Table() {
 		country := new(models.Country)
 		country.Id = v.ParentId
 		if err := country.Query(); err == nil {
-			row["parent"] = country.Name
+			row["Parent"] = country.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -797,7 +797,7 @@ func (this *GroupController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *GroupController) Table() {
@@ -809,7 +809,7 @@ func (this *GroupController) Table() {
 		village := new(models.Village)
 		village.Id = v.ParentId
 		if err := village.Query(); err == nil {
-			row["parent"] = village.Name
+			row["Parent"] = village.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
@@ -880,7 +880,7 @@ func (this *TeamController) parent(id int64) {
 	for k, v := range result {
 		this.group(list, nil, k, v, id,false)
 	}
-	this.Data["group"] = list
+	this.Data["Group"] = list
 }
 
 func (this *TeamController) Table() {
@@ -892,7 +892,7 @@ func (this *TeamController) Table() {
 		group := new(models.Group)
 		group.Id = v.ParentId
 		if err := group.Query(); err == nil {
-			row["parent"] = group.Name
+			row["Parent"] = group.Name
 		}
 		this.parse(list, row, k, v,false)
 	}
