@@ -13,22 +13,15 @@
             <th lay-data="{field:'Link',align:'center',width:'60'}">链接</th>
             <th lay-data="{field:'Descript',align:'center',width:'100'}">描述</th>
             <th lay-data="{field:'Clicks',align:'center',width:'100'}">点击次数</th>
-            <th lay-data="{field:'CreateName',align:'center',width:'100'}">创建人</th>
-            <th lay-data="{field:'UpdateName',align:'center',width:'100'}">更新人</th>
-            <th lay-data="{field:'CreateTime',align:'center',width:'100',templet:'#create_time'}">创建时间</th>
-            <th lay-data="{field:'UpdateTime',align:'center',width:'100'}">更新时间</th>
             <th lay-data="{field:'Views',align:'center',width:'100'}">展示次数</th>
-            <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
+            {{template "backstage/comm/comm.html" .}}
         </tr>
         </thead>
     </table>
     <script id="img" type="text/html">
         <img lay-data="<% d.file %>" width="50px" height="50px"/>
     </script>
-    <script type="text/html" id="bar">
-        <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-    </script>
+    {{template "backstage/comm/comm_bar.html" .}}>
 </div>
 <script>
     var $;

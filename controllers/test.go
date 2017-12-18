@@ -26,7 +26,7 @@ func (this *EnvironmnetController) Edit() {
 	if err := environment.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, environment,true)
+	this.row(nil, environment, true)
 	this.display(this.getBgTestAction("environment/edit"))
 }
 
@@ -59,7 +59,7 @@ func (this *EnvironmnetController) Table() {
 	result, count := environment.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v,false)
+		this.parse(list, nil, k, v, false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -96,7 +96,7 @@ func (this *ProjectController) Edit() {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
 	this.parent(project.ParentId)
-	this.row(nil, project,true)
+	this.row(nil, project, true)
 	this.display(this.getBgTestAction("project/edit"))
 }
 
@@ -131,7 +131,7 @@ func (this *ProjectController) Table() {
 	result, count := project.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v,false)
+		this.parse(list, nil, k, v, false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -141,7 +141,7 @@ func (this *ProjectController) parent(id int64) {
 	result, count := environment.List(-1, -1)
 	list := make([]map[string]interface{}, count)
 	for k, v := range result {
-		this.group(list, nil, k, v, id,false)
+		this.group(list, nil, k, v, id, false)
 	}
 	this.Data["Group"] = list
 }
@@ -166,19 +166,35 @@ func (this *TestController) List() {
 
 func (this *TestController) Add() {
 	this.pageTitle("增加测试名称")
-
+	this.display(this.getBgTestAction("test/add"))
 }
 
 func (this *TestController) Edit() {
-
+	this.pageTitle("编辑测试名称")
+	this.display(this.getBgTestAction("test/edit"))
 }
 
 func (this *TestController) AjaxSave() {
-
+	test := new(models.Test)
+	test.Id = this.getId64(0)
+	test.Name = this.getString("name", "名称不能为空1", 1)
+	var err error
+	if test.Id == 0 {
+		test.CreateId = this.userId
+		test.CreateTime = time.Now().Unix()
+		_, err = test.Add()
+	} else {
+		test.UpdateId = this.userId
+		test.UpdateTime = time.Now().Unix()
+		_, err = test.Update()
+	}
+	if err != nil {
+		this.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	this.ajaxMsg("", MSG_OK)
 }
 
 func (this *TestController) Table() {
-
 }
 
 func (this *TestController) AjaxDel() {

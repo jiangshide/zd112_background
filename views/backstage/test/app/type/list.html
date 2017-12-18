@@ -11,21 +11,14 @@
             <th lay-data="{field:'name',width:200}">名称</th>
             <th lay-data="{field:'parent',width:100}">类型</th>
             <th lay-data="{field:'file', width:150,templet: '#img'}">图片</th>
-            <th lay-data="{field:'create_name',width:100}">创建人</th>
-            <th lay-data="{field:'update_name',width:100}">更新人</th>
-            <th lay-data="{field:'create_time',width:200,templet:'#create_time'}">创建时间</th>
-            <th lay-data="{field:'update_time',width:200}">更新时间</th>
-            <th lay-data="{fixed:'right',width:200,align:'center',toolbar:'#bar'}">操作</th>
+            {{template "backstage/comm/comm.html" .}}
         </tr>
         </thead>
     </table>
     <script id="img" type="text/html">
         <img lay-data="<% d.icon %>" width="50px" height="50px" src="<% d.icon %>"/>
     </script>
-    <script type="text/html" id="bar">
-        <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-    </script>
+    {{template "backstage/comm/comm_bar.html" .}}
 </div>
 <script>
     var $;
@@ -42,8 +35,8 @@
             if (obj.event === 'detail') {
 
             } else if (obj.event === 'del') {
-                layer.confirm('真的删除[' + data.name + ']么', function (index) {
-                    var jsData = {'id': data.id};
+                layer.confirm('真的删除[' + data.Name + ']么', function (index) {
+                    var jsData = {'id': data.Id};
                     $.post('{{urlfor "CountryController.AjaxDel"}}', jsData, function (out) {
                         if (out.status == 0) {
                             layer.alert('删除成功', function (index) {
@@ -58,7 +51,7 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                window.location.href = "/backstage/area/country/edit?id=" + data.id
+                window.location.href = "/backstage/area/country/edit?id=" + data.Id
             }
         });
     });
