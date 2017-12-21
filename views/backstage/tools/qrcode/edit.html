@@ -2,7 +2,15 @@
 
 {{template "backstage/comm/remarks.html" .}}
     <form class="layui-form" action="" method="post">
-    {{template "backstage/comm/name_descript.html" .}}
+    {{template "backstage/comm/name.html" .}}
+    <div class="layui-form-item">
+        <label class="layui-form-label">扫描内容</label>
+        <div class="layui-input-inline">
+            <input type="text" name="content" id="content" autocomplete="on" placeholder="扫描内容">
+        </div>
+        <div class="layui-form-mid layui-word-aux">*</div>
+    </div>
+    {{template "backstage/comm/descript.html" .}}
     {{template "backstage/comm/button_edit.html" .}}
     </form>
 </div>

@@ -5,17 +5,17 @@ import (
 )
 
 type Banner struct {
-	Id         int64
-	Name       string
-	Link       string
-	Icon       string
-	Descript   string
-	Clicks     int
-	CreateId   int64
-	UpdateId   int64
-	CreateTime int64
-	UpdateTime int64
-	Views      int
+	Id         int64  `json:"id"`
+	Name       string `json:"name"`
+	Link       string `json:"link"`
+	Icon       string `json:"icon"`
+	Descript   string `json:"descript"`
+	Clicks     int    `json:"clicks"`
+	CreateId   int64  `json:"createId"`
+	UpdateId   int64  `json:"UpdateId"`
+	CreateTime int64  `json:"createTime"`
+	UpdateTime int64  `json:"updateTime"`
+	Views      int    `json:"views"`
 }
 
 func (this *Banner) TableName() string {

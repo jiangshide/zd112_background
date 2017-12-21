@@ -6,7 +6,7 @@ import (
 )
 
 type AuthController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *AuthController) Index() {

@@ -12,7 +12,7 @@ import (
 )
 
 type NationController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *NationController) List() {

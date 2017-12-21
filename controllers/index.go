@@ -6,7 +6,7 @@ import (
 )
 
 type IndexController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *IndexController) Get() {

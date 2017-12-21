@@ -6,7 +6,7 @@ import (
 )
 
 type ContinentController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *ContinentController) List() {
@@ -71,7 +71,7 @@ func (this *ContinentController) AjaxDel() {
 }
 
 type StateController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *StateController) List() {
@@ -155,7 +155,7 @@ func (this *StateController) AjaxDel() {
 }
 
 type ProvinceController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *ProvinceController) List() {
@@ -239,7 +239,7 @@ func (this *ProvinceController) AjaxDel() {
 }
 
 type CityController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *CityController) List() {
@@ -323,7 +323,7 @@ func (this *CityController) AjaxDel() {
 }
 
 type RegionController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *RegionController) List() {
@@ -407,7 +407,7 @@ func (this *RegionController) AjaxDel() {
 }
 
 type CountyController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *CountyController) List() {
@@ -490,7 +490,7 @@ func (this *CountyController) AjaxDel() {
 }
 
 type TownController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *TownController) List() {
@@ -574,7 +574,7 @@ func (this *TownController) AjaxDel() {
 }
 
 type CountryController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *CountryController) List() {
@@ -658,7 +658,7 @@ func (this *CountryController) AjaxDel() {
 }
 
 type VillageController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *VillageController) List() {
@@ -742,7 +742,7 @@ func (this *VillageController) AjaxDel() {
 }
 
 type GroupController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *GroupController) List() {
@@ -826,7 +826,7 @@ func (this *GroupController) AjaxDel() {
 }
 
 type TeamController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *TeamController) List() {

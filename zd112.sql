@@ -672,6 +672,8 @@ CREATE TABLE `zd_tools_qrcode` (
   `id`          INT(11) UNSIGNED   NOT NULL      AUTO_INCREMENT,
   `name`        VARCHAR(50) UNIQUE NOT NULL      DEFAULT ''
   COMMENT '名称',
+  `content`     TEXT COMMENT '内容',
+  `url`         TEXT COMMENT '地址',
   `descript`    TEXT COMMENT '描述',
   `create_id`   INT(11)            NOT NULL      DEFAULT '0'
   COMMENT '创建者ID',
@@ -1101,6 +1103,32 @@ CREATE TABLE `zd_test_test` (
   COMMENT ='测试状态管理';
 
 #--------the test---end-----#
+
+#--------the api---start-----#
+
+DROP TABLE IF EXISTS `zd_api_key`;#api认证key管理
+CREATE TABLE `zd_api_key` (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) UNIQUE NOT NULL DEFAULT '' COMMENT '申请名称',
+  `key` VARCHAR(500) UNIQUE NOT NULL DEFAULT '' COMMENT '申请的key',
+  `descript`    TEXT
+  COMMENT '描述',
+  `create_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建者ID',
+  `update_id`   INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '修改者ID',
+  `create_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '创建时间',
+  `update_time` INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '更新时间',
+  `views`       INT(11)          NOT NULL      DEFAULT '0'
+  COMMENT '当前页面展示次数',
+  PRIMARY KEY (`id`)
+)ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT ='api申请key管理';
+
+#--------the api---end-----#
 
 #--------the other---start-----#
 

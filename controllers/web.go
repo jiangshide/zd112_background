@@ -6,7 +6,7 @@ import (
 )
 
 type BannerController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *BannerController) List() {
@@ -24,7 +24,7 @@ func (this *BannerController) Table() {
 	result, count := banner.List(this.pageSize, this.offSet)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result {
-		this.parse(list, nil, k, v,false)
+		this.parse(list, nil, k, v, false)
 	}
 	this.ajaxList("成功", MSG_OK, count, list)
 }
@@ -36,7 +36,7 @@ func (this *BannerController) Edit() {
 	if err := banner.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	this.row(nil, banner,true)
+	this.row(nil, banner, true)
 	this.display(this.getBgWebAction("banner/edit"))
 }
 
@@ -52,7 +52,7 @@ func (this *BannerController) AjaxSave() {
 		banner.CreateId = this.userId
 		banner.CreateTime = time.Now().Unix()
 		_, err = banner.Add()
-	}else{
+	} else {
 
 	}
 	if err != nil {

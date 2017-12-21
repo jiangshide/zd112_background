@@ -11,7 +11,7 @@ import (
 )
 
 type QrcodeController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *QrcodeController) List() {
@@ -31,7 +31,6 @@ func (this *QrcodeController) Edit() {
 	if err := qrcode.Query(); err != nil {
 		this.ajaxMsg(err.Error(), MSG_ERR)
 	}
-	beego.Info("-----------qrcode:",qrcode)
 	this.row(nil, qrcode,true)
 	this.display(this.getBgToolAction("qrcode/edit"))
 }
@@ -79,7 +78,7 @@ func (this *QrcodeController) AjaxDel() {
 }
 
 type FormatTypeController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *FormatTypeController) List() {
@@ -143,7 +142,7 @@ func (this *FormatTypeController) AjaxDel() {
 }
 
 type FormatController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *FormatController) List() {
@@ -280,7 +279,7 @@ func (this *FormatController) addDb(name, format string, ) {
 }
 
 type CompressController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *CompressController) List() {

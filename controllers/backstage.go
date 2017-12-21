@@ -1,7 +1,7 @@
 package controllers
 
 type BackstageController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *BackstageController) Index() {

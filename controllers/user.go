@@ -9,7 +9,7 @@ import (
 )
 
 type UserController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *UserController) Admin() {

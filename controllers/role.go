@@ -7,7 +7,7 @@ import (
 )
 
 type RoleController struct {
-	BaseController
+	BaseWebController
 }
 
 func (this *RoleController) List() {

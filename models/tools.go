@@ -5,6 +5,8 @@ import "github.com/astaxie/beego/orm"
 type Qrcode struct {
 	Id         int64
 	Name       string
+	Content    string
+	Url        string
 	Descript   string
 	CreateId   int64
 	UpdateId   int64

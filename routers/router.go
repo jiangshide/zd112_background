@@ -41,6 +41,14 @@ func init() {
 
 	beego.Router("/upload", &controllers.BaseController{}, "*:Upload")
 	beego.ErrorController(&controllers.ErrorController{})
+
+	/**
+	 the api
+	 */
+	beego.Router("/api/user", &controllers.UserApiController{}, "*:Login")
+	beego.Router("/api/user", &controllers.UserApiController{}, "*:Reg")
+	beego.Router("/api/user", &controllers.UserApiController{}, "*:List")
+	beego.Router("/api/splash", &controllers.SpashApiController{}, "*:Splash")
 }
 
 func commRouter() {
@@ -75,6 +83,7 @@ func commRouter() {
 	router["test/environment:"+actionStr] = &controllers.EnvironmnetController{}
 	router["test/project:"+actionStr] = &controllers.ProjectController{}
 	router["test/test:"+actionStr] = &controllers.TestController{}
+	router["api/key:"+actionStr] = &controllers.KeyController{}
 	for k, v := range router {
 		kArr := strings.Split(k, ":")
 		path := "/backstage/" + kArr[0]

@@ -70,7 +70,9 @@
 <script>
     var message;
     layui.config({
-        base: '/static/js/'
+        base: '/static/js/',
+        anim:1,
+        skin:'layui-layer-molv'
     }).use(['app', 'message'], function () {
         var app = layui.app,
                 $ = layui.jquery,
