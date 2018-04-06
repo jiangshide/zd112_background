@@ -3,6 +3,7 @@ package controllers
 import (
 	"zd112/models"
 	"time"
+	"github.com/astaxie/beego"
 )
 
 type AuthController struct {
@@ -55,16 +56,22 @@ func (this *AuthController) GetNode() {
 func (this *AuthController) AjaxSave() {
 	auth := new(models.Auth)
 	auth.UserId = this.userId
+	beego.Info("-------------userId:",this.userId)
 	auth.Pid = this.getInt("pid", 0)
+	beego.Info("------------Pid:",auth.Pid)
 	auth.Name = this.getString("name", "名称不能为空!", 1)
+	beego.Info("-----------name:",auth.Name)
 	auth.Url = this.getString("url", "访问Action不能为空!", 1)
+	beego.Info("-----------url:",auth.Url)
 	auth.Sort = this.getInt("sort", 0)
 	auth.IsShow = this.getInt("is_show", 0)
 	auth.Icon = this.getString("icon", "菜单图标不能为空!", 1)
+	beego.Info("----------icon:",auth.Icon)
 	auth.UpdateTime = time.Now().Unix()
 	auth.Status = 1
 	id := this.getInt64("id", 0)
 	var err error
+	beego.Info("-------------auth:",auth)
 	if id == 0 {
 		auth.CreateTime = time.Now().Unix()
 		auth.CreateId = this.userId

@@ -116,10 +116,9 @@
                     return false
                 }
             }
-            console.log($("form").serialize());
-
+            alert($("form").serialize())
             $.post('{{urlfor "AuthController.AjaxSave"}}', $("form").serialize(), function (out) {
-
+                alert(out)
                 if (out.status == 0) {
                     // layer.msg("操作成功")
                     layer.alert('你成功了', {icon: 1},function(index){

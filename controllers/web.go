@@ -3,6 +3,7 @@ package controllers
 import (
 	"zd112/models"
 	"time"
+	"github.com/astaxie/beego"
 )
 
 type BannerController struct {
@@ -11,6 +12,10 @@ type BannerController struct {
 
 func (this *BannerController) List() {
 	this.pageTitle("焦点图列表")
+	auth := new(models.Auth)
+	auth.Pid = 1
+	rs := auth.Query()
+	beego.Info("size:"," | rs:",rs)
 	this.display(this.getBgWebAction("banner/list"))
 }
 

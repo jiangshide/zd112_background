@@ -43,6 +43,11 @@ func (this *Auth) Query() error {
 	return orm.NewOrm().Read(this)
 }
 
+func (this *Auth) QueryAll() (list []*Auth) {
+	orm.NewOrm().QueryTable(this.TableName()).Filter(Field(this)).All(&list)
+	return
+}
+
 func (this *Auth) List(pageSize, offSet int) (list []*Auth, total int64) {
 	query := orm.NewOrm().QueryTable(this.TableName())
 	total, _ = query.Count()

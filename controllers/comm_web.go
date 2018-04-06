@@ -27,6 +27,7 @@ func (this *BaseWebController) Prepare() {
 func (this *BaseWebController) getInt(key string, defaultValue int) int {
 	resInt, err := this.GetInt(key, defaultValue)
 	if err != nil {
+		beego.Info("------------key:", key, " | err:", err)
 		this.showTips(err)
 	}
 	return resInt
@@ -35,6 +36,7 @@ func (this *BaseWebController) getInt(key string, defaultValue int) int {
 func (this *BaseWebController) getInt64(key string, defaultValue int64) int64 {
 	resInt, err := this.GetInt64(key, defaultValue)
 	if err != nil {
+		beego.Info("--------key:", key, " | err:", err)
 		this.showTips(err)
 	}
 	return resInt
@@ -74,11 +76,8 @@ func (this *BaseWebController) getString(key, tips string, minSize int) string {
 		errorMsg = "长度不能小于" + fmt.Sprint(minSize) + "字符"
 	}
 	if errorMsg != "" {
-		if this.isApi {
-
-		} else {
-			this.showTips(errorMsg)
-		}
+		beego.Info("--------------key:", key, " | errorMsg:", errorMsg)
+		this.showTips(errorMsg)
 	}
 	return value
 }
@@ -160,7 +159,7 @@ func (this *BaseWebController) AdminAuth() {
 	lists := make([]map[string]interface{}, len(result))
 	allow_url := ""
 	i, j := 0, 0
-	for _, v := range result {
+	for k, v := range result {
 		if v.Url != " " || v.Url != "/" {
 			allow_url += v.Url
 		}
@@ -185,7 +184,12 @@ func (this *BaseWebController) AdminAuth() {
 			lists[j] = row
 			j++
 		}
+
+			beego.Info("----------id:",v.Id," | pid:",v.Pid," | k:",k," | name:",v.Name)
+		
 	}
+	beego.Info("list:",list[:i])
+	beego.Info("lists:",lists[:j])
 	this.Data["SideMenu1"] = list[:i]
 	this.Data["SideMenu2"] = lists[:j]
 	this.allowUrl = allow_url + "/backstage/index"
